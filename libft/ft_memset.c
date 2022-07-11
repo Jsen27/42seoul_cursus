@@ -6,9 +6,11 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 17:00:39 by sehjung           #+#    #+#             */
-/*   Updated: 2022/07/06 17:16:46 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/07/11 14:51:23 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 void	*ft_memset(void *b, int c, size_t len)
 {

@@ -6,9 +6,11 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 20:42:21 by sehjung           #+#    #+#             */
-/*   Updated: 2022/07/08 21:02:40 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/07/11 14:50:42 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 size_t	ft_numlen(long nb)
 {

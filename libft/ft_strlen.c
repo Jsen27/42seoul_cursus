@@ -6,9 +6,11 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 16:53:28 by sehjung           #+#    #+#             */
-/*   Updated: 2022/07/10 17:05:48 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/07/11 14:50:12 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 size_t	ft_strlen(const char *s)
 {

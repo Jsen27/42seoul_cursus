@@ -6,11 +6,13 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 19:51:20 by sehjung           #+#    #+#             */
-/*   Updated: 2022/07/08 15:45:04 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/07/11 14:52:21 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	toupper(int c)
+#include "libft.h"
+
+int	ft_toupper(int c)
 {
 	if (c >= 97 && c <= 122)
 		return (c - 32);

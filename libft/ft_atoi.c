@@ -6,9 +6,11 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 15:53:56 by sehjung           #+#    #+#             */
-/*   Updated: 2022/07/08 15:56:36 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/07/11 20:27:29 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 int	checkblank(char *str)
 {
@@ -34,11 +36,11 @@ int	checkblank(char *str)
 
 int	ft_atoi(const char *str)
 {
-	int	i;
-	int	pm;
-	int	ans;
+	size_t	i;
+	long	pm;
+	long	ans;
 
-	i = checkblank(str);
+	i = checkblank((char *)str);
 	pm = 1;
 	ans = 0;
 	while (str[i] == '-' || str[i] == '+')
@@ -50,6 +52,10 @@ int	ft_atoi(const char *str)
 	while (str[i] >= '0' && str[i] <= '9')
 	{
 		ans = (ans * 10) + (str[i] - '0');
+		if (ans > 2147483647 && pm == 1)
+			return (-1);
+		if (ans > 2147483648 && pm == -1)
+			return (0);
 		i++;
 	}
 	return (ans * pm);

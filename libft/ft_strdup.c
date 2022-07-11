@@ -6,11 +6,13 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 16:13:20 by sehjung           #+#    #+#             */
-/*   Updated: 2022/07/08 20:00:18 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/07/11 20:51:17 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*strdup(const char *s1)
+#include "libft.h"
+
+char	*ft_strdup(const char *s1)
 {
 	char	*temp;
 	int		len;
@@ -19,8 +21,11 @@ char	*strdup(const char *s1)
 	len = 0;
 	i = 0;
 	while (s1[i])
+	{
 		len++;
-	temp = malloc(sizeof(char) * len);
+		i++;
+	}
+	temp = malloc(sizeof(char) * len + 1);
 	if (!temp)
 		return (0);
 	i = 0;

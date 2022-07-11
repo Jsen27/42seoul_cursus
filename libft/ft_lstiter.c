@@ -5,18 +5,20 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/10 16:41:52 by sehjung           #+#    #+#             */
-/*   Updated: 2022/07/10 16:41:52 by sehjung          ###   ########.fr       */
+/*   Created: 2022/07/11 14:20:12 by sehjung           #+#    #+#             */
+/*   Updated: 2022/07/11 14:20:12 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void    ft_lstiter(t_list *lst, void (*f)(void *))
+#include "libft.h"
+
+void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
-    if (lst == NULL || f == NULL)
-        return ;
-    while (lst)
-    {
-        f(lst->content);
-        lst = lst->next;
-    }
+	if (lst == NULL || f == NULL)
+		return ;
+	while (lst)
+	{
+		f(lst->content);
+		lst = lst->next;
+	}
 }

@@ -6,9 +6,11 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 16:23:21 by sehjung           #+#    #+#             */
-/*   Updated: 2022/07/06 16:54:30 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/07/11 14:50:37 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 int	ft_isdigit(int c)
 {

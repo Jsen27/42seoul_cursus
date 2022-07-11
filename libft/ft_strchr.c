@@ -6,26 +6,24 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 19:58:02 by sehjung           #+#    #+#             */
-/*   Updated: 2022/07/08 20:06:15 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/07/11 15:17:37 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*strchr(const char *s, int c)
+#include "libft.h"
+
+char	*ft_strchr(const char *s, int c)
 {
 	int	i;
 
 	i = 0;
-	if (c == 0)
-	{
-		while (s[i])
-			i++;
-		return (s[i]);
-	}
 	while (s[i])
 	{
 		if (s[i] == c)
-			return (s[i]);
+			return ((char *)s + i);
 		i++;
 	}
-	return (0);
+	if (s[i] == c)
+		return ((char *)s + i);
+	return (NULL);
 }

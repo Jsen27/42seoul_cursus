@@ -6,11 +6,13 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 19:53:12 by sehjung           #+#    #+#             */
-/*   Updated: 2022/07/06 20:08:26 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/07/11 14:52:18 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	tolower(int c)
+#include "libft.h"
+
+int	ft_tolower(int c)
 {
 	if (c >= 65 && c <= 90)
 		return (c + 32);

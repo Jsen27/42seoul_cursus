@@ -5,12 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/10 15:28:22 by sehjung           #+#    #+#             */
-/*   Updated: 2022/07/10 15:28:22 by sehjung          ###   ########.fr       */
+/*   Created: 2022/07/11 14:21:25 by sehjung           #+#    #+#             */
+/*   Updated: 2022/07/11 14:21:25 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void    ft_putchar_fd(char c, int fd)
+#include "libft.h"
+
+void	ft_putchar_fd(char c, int fd)
 {
-    write(fd, &c, 1);
+	write(fd, &c, 1);
 }

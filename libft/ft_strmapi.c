@@ -6,9 +6,11 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 21:02:53 by sehjung           #+#    #+#             */
-/*   Updated: 2022/07/08 21:07:39 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/07/11 14:52:00 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "libft.h"
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {

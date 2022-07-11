@@ -6,11 +6,13 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 20:12:27 by sehjung           #+#    #+#             */
-/*   Updated: 2022/07/08 19:59:40 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/07/11 15:25:08 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-void	*memchr(const void *s, int c, size_t n)
+#include "libft.h"
+
+void	*ft_memchr(const void *s, int c, size_t n)
 {
 	size_t			i;
 	unsigned char	*temp;
@@ -20,7 +22,7 @@ void	*memchr(const void *s, int c, size_t n)
 	while (i < n)
 	{
 		if (temp[i] == (unsigned char)c)
-			return (temp[i]);
+			return ((void *)s + i);
 		i++;
 	}
 	return (0);
