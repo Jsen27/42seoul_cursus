@@ -8,8 +8,6 @@ RM		= rm -f
 AR		= ar
 ARFLAGS       = crs
 
-INCLUDES	= libft.h 
-
 SRCS_1	=       ft_strlen.c		\
 		  ft_strlcpy.c		\
 		  ft_strlcat.c		\
@@ -58,7 +56,6 @@ SRCS_BN =       ft_lstnew.c		\
 
 SRCS	= $(SRCS_1)			\
 	  $(SRCS_2)			\
-	  $(SRCS_BN)		\
 
 OBJS	= $(SRCS:.c=.o)
 
@@ -70,10 +67,10 @@ all : $(NAME)
 	$(CC) $(CFLAG) -c $< -o $@
 
 clean :
-	$(RM) $(RMFLAG) $(OBJS) $(OBJS_BONUS)
+	$(RM) $(OBJS) $(OBJS_BONUS)
 
 fclean : clean
-	$(RM) $(RMFLAG) $(NAME)
+	$(RM) $(NAME)
 
 re : fclean all
 

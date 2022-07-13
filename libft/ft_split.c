@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 20:15:31 by sehjung           #+#    #+#             */
-/*   Updated: 2022/07/11 16:03:08 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/07/12 17:18:11 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,22 @@ char	**freeall(char **str)
 int	count_word(const char *str, char charset)
 {
 	int	i;
-	int	count;
+	int	cnt;
 
 	i = 0;
-	count = 0;
-	while (str[i] != '\0')
+	cnt = 0;
+	while (str[i])
 	{
-		if (str[i] != charset && str[i + 1] == charset)
-			count++;
-		i++;
+		if (str[i] == charset)
+			i++;
+		else
+		{
+			cnt++;
+			while (str[i] && str[i] != charset)
+				i++;
+		}
 	}
-	if (str[i - 1] != charset)
-		count++;
-	return (count);
+	return (cnt);
 }
 
 void	copy_str(char *arr, const char *str, char charset)
@@ -46,7 +49,7 @@ void	copy_str(char *arr, const char *str, char charset)
 	int	i;
 
 	i = 0;
-	while (str[i] != charset)
+	while (str[i] != charset && str[i])
 	{
 		arr[i] = str[i];
 		i++;
@@ -62,16 +65,16 @@ char	**real_split(char **arr, char const *str, char charset)
 
 	word = 0;
 	i = 0;
-	while (str[i] != '\0')
+	while (str[i])
 	{
 		if (str[i] == charset)
 			i++;
 		else
 		{
 			j = 0;
-			while (str[i + j] != charset)
+			while (str[i + j] != charset && str[i + j])
 				j++;
-			arr[word] = malloc(sizeof(char) * (j + 1));
+			arr[word] = (char *)malloc(sizeof(char) * (j + 1));
 			if (!arr[word])
 				return (freeall(arr));
 			copy_str(arr[word], str + i, charset);
@@ -87,10 +90,12 @@ char	**ft_split(char const *s, char c)
 	char	**arr;
 	int		word;
 
+	if (!s)
+		return (NULL);
 	word = count_word(s, c);
 	arr = (char **)malloc(sizeof(char *) * (word + 1));
-	if (arr == 0)
-		return (0);
+	if (!arr)
+		return (NULL);
 	arr[word] = 0;
 	arr = real_split(arr, s, c);
 	return (arr);

@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 21:02:53 by sehjung           #+#    #+#             */
-/*   Updated: 2022/07/11 14:52:00 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/07/12 17:22:04 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,11 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	unsigned int	i;
 
 	i = 0;
-	str = malloc(sizeof(char) * (ft_strlen(s) + 1));
+	if (!s)
+		return (NULL);
+	str = (char *)malloc(sizeof(char) * (ft_strlen(s) + 1));
+	if (!str)
+		return (NULL);
 	while (s[i])
 	{
 		str[i] = f(i, s[i]);
