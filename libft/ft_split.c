@@ -6,13 +6,13 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 20:15:31 by sehjung           #+#    #+#             */
-/*   Updated: 2022/07/12 17:18:11 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/07/15 19:48:18 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	**freeall(char **str)
+static char	**freeall(char **str)
 {
 	int	i;
 
@@ -23,7 +23,7 @@ char	**freeall(char **str)
 	return (NULL);
 }
 
-int	count_word(const char *str, char charset)
+static int	count_word(const char *str, char charset)
 {
 	int	i;
 	int	cnt;
@@ -44,7 +44,7 @@ int	count_word(const char *str, char charset)
 	return (cnt);
 }
 
-void	copy_str(char *arr, const char *str, char charset)
+static void	copy_str(char *arr, const char *str, char charset)
 {
 	int	i;
 
@@ -57,7 +57,7 @@ void	copy_str(char *arr, const char *str, char charset)
 	arr[i] = '\0';
 }
 
-char	**real_split(char **arr, char const *str, char charset)
+static char	**real_split(char **arr, char const *str, char charset)
 {
 	int	word;
 	int	i;

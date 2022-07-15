@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 16:13:20 by sehjung           #+#    #+#             */
-/*   Updated: 2022/07/11 20:51:17 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/07/15 20:04:50 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*ft_strdup(const char *s1)
 		len++;
 		i++;
 	}
-	temp = malloc(sizeof(char) * len + 1);
+	temp = (char *)malloc(sizeof(char) * len + 1);
 	if (!temp)
 		return (0);
 	i = 0;

@@ -6,13 +6,13 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 15:53:56 by sehjung           #+#    #+#             */
-/*   Updated: 2022/07/12 16:34:02 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/07/15 20:15:27 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	checkblank(char *str)
+static size_t	checkblank(char *str)
 {
 	size_t	i;
 

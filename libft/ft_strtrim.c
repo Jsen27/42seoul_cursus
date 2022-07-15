@@ -6,13 +6,13 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 20:00:44 by sehjung           #+#    #+#             */
-/*   Updated: 2022/07/12 14:37:06 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/07/15 19:48:38 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	checkset(char c, char const *set)
+static int	checkset(char c, char const *set)
 {
 	size_t	i;
 

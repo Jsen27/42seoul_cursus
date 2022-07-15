@@ -6,13 +6,13 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 16:57:59 by sehjung           #+#    #+#             */
-/*   Updated: 2022/07/15 15:59:39 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/07/15 19:48:53 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	lencheck(char const *s, unsigned int start, size_t len)
+static int	lencheck(char const *s, unsigned int start, size_t len)
 {
 	if ((ft_strlen(s) - start) < len)
 		return ((ft_strlen(s) - start));
