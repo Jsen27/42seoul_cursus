@@ -1,83 +1,82 @@
-NAME	      = libft.a
+NAME		= libft.a
 
-CC		= gcc
-CFLAG	      = -Wall -Wextra -Werror
+CC			= gcc
+RM			= rm -rf
+CFLAGS		= -Wall -Wextra -Werror
 
-RM		= rm -f
+SRCS		= ft_strlen.c		\
+				ft_strlcpy.c		\
+				ft_strlcat.c		\
+				ft_strchr.c		\
+				ft_strnstr.c		\
+				ft_strncmp.c		\
+				ft_strdup.c		\
+				ft_strrchr.c		\
+				ft_striteri.c		\
+				ft_memset.c		\
+				ft_memcpy.c		\
+				ft_memmove.c		\
+				ft_memchr.c		\
+				ft_memcmp.c		\
+				ft_bzero.c		\
+				ft_atoi.c		\
+				ft_calloc.c		\
+				ft_isalnum.c		\
+				ft_isalpha.c		\
+				ft_isascii.c		\
+				ft_isdigit.c		\
+				ft_isprint.c		\
+				ft_strdup.c		\
+				ft_tolower.c		\
+				ft_toupper.c		\
+				ft_substr.c		\
+				ft_strjoin.c		\
+				ft_strtrim.c		\
+				ft_split.c		\
+				ft_strmapi.c		\
+				ft_itoa.c		\
+				ft_putchar_fd.c	\
+				ft_putstr_fd.c	\
+				ft_putendl_fd.c	\
+				ft_putnbr_fd.c	\
 
-AR		= ar
-ARFLAGS       = crs
+SRCS_BONUS	= ft_lstnew.c		\
+				ft_lstsize.c		\
+				ft_lstadd_front.c	\
+				ft_lstadd_back.c	\
+				ft_lstclear.c	\
+				ft_lstlast.c		\
+				ft_lstiter.c		\
+				ft_lstmap.c		\
+				ft_lstdelone.c	\
 
-SRCS_1	=       ft_strlen.c		\
-		  ft_strlcpy.c		\
-		  ft_strlcat.c		\
-		  ft_strchr.c		\
-		  ft_strnstr.c		\
-		  ft_strncmp.c		\
-		  ft_strdup.c		\
-		  ft_strrchr.c		\
-		  ft_memset.c		\
-		  ft_memcpy.c		\
-		  ft_memmove.c		\
-		  ft_memchr.c		\
-		  ft_memcmp.c		\
-		  ft_bzero.c		\
-		  ft_atoi.c		\
-		  ft_calloc.c		\
-		  ft_isalnum.c		\
-		  ft_isalpha.c		\
-		  ft_isascii.c		\
-		  ft_isdigit.c		\
-		  ft_isprint.c		\
-		  ft_strdup.c		\
-		  ft_tolower.c		\
-		  ft_toupper.c		\
-			
-SRCS_2	=       ft_substr.c		\
-		  ft_strjoin.c		\
-		  ft_strtrim.c		\
-		  ft_split.c		\
-		  ft_strmapi.c		\
-		  ft_itoa.c		\
-		  ft_putchar_fd.c	\
-		  ft_putstr_fd.c	\
-		  ft_putendl_fd.c	\
-		  ft_putnbr_fd.c	\
+OBJS		= $(SRCS:.c=.o)
 
-SRCS_BN =       ft_lstnew.c		\
-		  ft_lstsize.c		\
-		  ft_lstadd_front.c	\
-		  ft_lstadd_back.c	\
-		  ft_lstclear.c	\
-		  ft_lstlast.c		\
-		  ft_lstiter.c		\
-		  ft_lstmap.c		\
-		  ft_lstdelone.c	\
+OBJS_BONUS	= $(SRCS_BONUS:.c=.o)
 
-SRCS	= $(SRCS_1)			\
-	  $(SRCS_2)			\
+ifdef WITH_BONUS
+	OBJ_FILES = $(OBJS) $(OBJS_BONUS)
+else
+	OBJ_FILES = $(OBJS)
+endif
 
-OBJS	= $(SRCS:.c=.o)
+all:		$(NAME)
 
-OBJS_BONUS = $(SRCS_BN:.c=.o)
+.c.o:
+		${CC} ${CFLAGS} -g -c $< -o ${<:.c=.o}
 
-all : $(NAME)
+$(NAME):	$(OBJ_FILES)
+				ar crs $(NAME) $(OBJ_FILES)
 
-%.o : %.c
-	$(CC) $(CFLAG) -c $< -o $@
+bonus :
+	make WITH_BONUS=1 all
 
-clean :
-	$(RM) $(OBJS) $(OBJS_BONUS)
+clean:
+				$(RM) $(OBJS) $(OBJS_BONUS)
 
-fclean : clean
-	$(RM) $(NAME)
+fclean:		clean
+				$(RM) $(NAME)
 
-re : fclean all
+re:			fclean $(NAME)
 
-$(NAME) : $(OBJS)
-	$(AR) $(ARFLAGS) $@ $^
-
-bonus : $(OBJS) $(OBJS_BONUS)
-	$(AR) $(ARFLAGS) $(NAME) $^
-
- .PHONY : all clean fclean re
+.PHONY:		bonus all clean fclean re
