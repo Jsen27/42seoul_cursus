@@ -40,15 +40,15 @@ SRCS		= ft_strlen.c		\
 				ft_putendl_fd.c	\
 				ft_putnbr_fd.c	\
 
-SRCS_BONUS	= ft_lstnew.c		\
-				ft_lstsize.c		\
-				ft_lstadd_front.c	\
-				ft_lstadd_back.c	\
-				ft_lstclear.c	\
-				ft_lstlast.c		\
-				ft_lstiter.c		\
-				ft_lstmap.c		\
-				ft_lstdelone.c	\
+SRCS_BONUS	= ft_lstnew_bonus.c		\
+				ft_lstsize_bonus.c		\
+				ft_lstadd_front_bonus.c	\
+				ft_lstadd_back_bonus.c	\
+				ft_lstclear_bonus.c	\
+				ft_lstlast_bonus.c		\
+				ft_lstiter_bonus.c		\
+				ft_lstmap_bonus.c		\
+				ft_lstdelone_bonus.c	\
 
 OBJS		= $(SRCS:.c=.o)
 
@@ -69,7 +69,7 @@ $(NAME):	$(OBJ_FILES)
 				ar crs $(NAME) $(OBJ_FILES)
 
 bonus :
-	make WITH_BONUS=1 all
+			make WITH_BONUS=1 all
 
 clean:
 				$(RM) $(OBJS) $(OBJS_BONUS)
