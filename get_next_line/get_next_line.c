@@ -6,12 +6,11 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 20:31:03 by sehjung           #+#    #+#             */
-/*   Updated: 2022/07/18 15:53:51 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/07/19 18:08:29 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#define BUFFER_SIZE 5 // 삭제해야함 (input)
 
 static char	*read_line(int fd, char *buf, char *backup)
 {
@@ -26,7 +25,7 @@ static char	*read_line(int fd, char *buf, char *backup)
 			return (0);
 		else if (check == 0)
 			break ;
-		temp[check] = '\0';
+		buf[check] = '\0';
 		if(!backup)
 			backup = ft_strdup("");
 		temp = backup;
@@ -41,6 +40,26 @@ static char	*read_line(int fd, char *buf, char *backup)
 	return (backup);
 }
 
+static char	*extract(char *line)
+{
+	int		i;
+	char	*temp;
+	i = 0;
+	while (line[i] !='\0' && line[i] != '\n')
+		i++;
+	if (line[i] == '\0')
+		return (NULL);
+	temp = ft_substr(line, i + 1, ft_strlen(line), - i);
+	if (!temp)
+		return (NULL);
+	if (temp[0] == '\0')
+	{
+		free (temp);
+		temp = NULL;
+		return (NULL);
+	}
+}
+
 char	*get_next_line(int fd)
 {
 	char	*buf;
@@ -53,4 +72,10 @@ char	*get_next_line(int fd)
 	if (!buf)
 		return (NULL);
 	line = read_line(fd, buf, backup);
+	free(buf);
+	buf = NULL;
+	if (!line)
+		return (NULL);
+	backup = extract(line);
+	return (line);
 }

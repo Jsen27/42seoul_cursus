@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 15:58:09 by sehjung           #+#    #+#             */
-/*   Updated: 2022/07/18 18:21:56 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/07/19 16:31:21 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,8 @@
 
 void	*ft_calloc(size_t count, size_t size)
 {
-	void		*temp;
-	size_t		total;
+	void	*temp;
 
-	total = count * size;
-	if (total / count != size)
-		return (NULL);
 	temp = (void *)malloc(count * size);
 	if (!temp)
 		return (NULL);

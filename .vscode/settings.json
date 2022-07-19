@@ -1,0 +1,6 @@
+{
+	"makefile.extensionOutputFolder": "./.vscode",
+	"files.associations": {
+		"get_next_line.h": "c"
+	}
+}

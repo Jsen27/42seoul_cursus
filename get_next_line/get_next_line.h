@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 21:27:15 by sehjung           #+#    #+#             */
-/*   Updated: 2022/07/18 15:53:07 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/07/19 17:46:15 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,5 +19,7 @@
 char	*ft_strdup(const char *s1);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strchr(const char *s, int c);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+size_t	ft_strlen(const char *s);
 
 #endif

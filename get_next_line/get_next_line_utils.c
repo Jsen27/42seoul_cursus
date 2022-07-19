@@ -6,11 +6,44 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 21:26:55 by sehjung           #+#    #+#             */
-/*   Updated: 2022/07/18 15:53:00 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/07/19 18:08:30 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+size_t	ft_strlen(const char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	size_t	i;
+	size_t	j;
+	char	*temp;
+
+	i = 0;
+	j = 0;
+	if (!s)
+		return (NULL);
+	temp = malloc(len + 1);
+	if (!temp)
+		return (NULL);
+	while (s[i])
+	{
+		if (i >= start && j < len)
+			temp[j++] = s[i];
+		i++;
+	}
+	temp[j] = '\0';
+	return (temp);
+}
 
 char	*ft_strdup(const char *s1)
 {
