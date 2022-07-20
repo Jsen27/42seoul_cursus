@@ -6,18 +6,18 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 20:15:31 by sehjung           #+#    #+#             */
-/*   Updated: 2022/07/19 18:09:41 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/07/20 15:16:12 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	**freeall(char **str)
+static char	**freeall(char **str, int word)
 {
 	int	i;
 
 	i = 0;
-	while (str[i])
+	while (i < word)
 		free(str[i++]);
 	free(str);
 	return (NULL);
@@ -76,7 +76,7 @@ static char	**real_split(char **arr, char const *str, char charset)
 				j++;
 			arr[word] = (char *)malloc(sizeof(char) * (j + 1));
 			if (!arr[word])
-				return (freeall(arr));
+				return (freeall(arr, word));
 			copy_str(arr[word], str + i, charset);
 			i += j;
 			word++;
