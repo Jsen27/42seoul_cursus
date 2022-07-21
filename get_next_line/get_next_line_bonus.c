@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 14:46:57 by sehjung           #+#    #+#             */
-/*   Updated: 2022/07/20 14:48:13 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/07/21 19:21:37 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static char	*read_line(int fd, char *buf, char *backup)
 {
 	int		check;
-	char	*temp[100];
+	char	*temp;
 
 	check = 1;
 	while (check)
@@ -34,7 +34,7 @@ static char	*read_line(int fd, char *buf, char *backup)
 			return (NULL);
 		free (temp);
 		temp = NULL;
-		if (ft_strchr(buf,'\n'));
+		if (ft_strchr(buf,'\n'))
 			break;
 	}
 	return (backup);
@@ -49,7 +49,7 @@ static char	*extract(char *line)
 		i++;
 	if (line[i] == '\0')
 		return (NULL);
-	temp = ft_substr(line, i + 1, ft_strlen(line), - i);
+	temp = ft_substr(line, i + 1, ft_strlen(line) - i);
 	if (!temp)
 		return (NULL);
 	if (temp[0] == '\0')
@@ -58,24 +58,26 @@ static char	*extract(char *line)
 		temp = NULL;
 		return (NULL);
 	}
+	line[i + 1] = '\0';
+	return (temp);
 }
 
 char	*get_next_line(int fd)
 {
-	char	*buf;
-	char	*line;
-	static char	*backup;
+	char		*buf;
+	char		*line;
+	static char	*backup[OPEN_MAX];
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd > OPEN_MAX)
 		return (NULL);
 	buf = malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if (!buf)
 		return (NULL);
-	line = read_line(fd, buf, backup);
+	line = read_line(fd, buf, backup[fd]);
 	free(buf);
 	buf = NULL;
 	if (!line)
 		return (NULL);
-	backup = extract(line);
+	backup[fd] = extract(line);
 	return (line);
 }

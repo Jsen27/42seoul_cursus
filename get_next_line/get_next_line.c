@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 20:31:03 by sehjung           #+#    #+#             */
-/*   Updated: 2022/07/19 18:08:29 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/07/21 17:11:44 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static char	*read_line(int fd, char *buf, char *backup)
 			return (NULL);
 		free (temp);
 		temp = NULL;
-		if (ft_strchr(buf,'\n'));
+		if (ft_strchr(buf,'\n'))
 			break;
 	}
 	return (backup);
@@ -49,7 +49,7 @@ static char	*extract(char *line)
 		i++;
 	if (line[i] == '\0')
 		return (NULL);
-	temp = ft_substr(line, i + 1, ft_strlen(line), - i);
+	temp = ft_substr(line, i + 1, ft_strlen(line) - i);
 	if (!temp)
 		return (NULL);
 	if (temp[0] == '\0')
@@ -58,6 +58,8 @@ static char	*extract(char *line)
 		temp = NULL;
 		return (NULL);
 	}
+	line[i + 1] = '\0';
+	return (temp);
 }
 
 char	*get_next_line(int fd)

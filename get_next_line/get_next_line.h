@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 21:27:15 by sehjung           #+#    #+#             */
-/*   Updated: 2022/07/19 17:46:15 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/07/21 16:55:33 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
+char	*get_next_line(int fd);
 char	*ft_strdup(const char *s1);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strchr(const char *s, int c);
