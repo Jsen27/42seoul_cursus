@@ -1,0 +1,13 @@
+# gitignore file setting
+
+# executable files
+a.out
+
+# -g option directory for debuging
+*.dSYM
+
+# vscode
+.vscode
+
+# gitignore
+.gitignore
