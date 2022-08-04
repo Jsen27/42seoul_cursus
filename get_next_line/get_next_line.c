@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 20:31:03 by sehjung           #+#    #+#             */
-/*   Updated: 2022/07/21 17:11:44 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/08/03 16:01:40 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static char	*read_line(int fd, char *buf, char *backup)
 		else if (check == 0)
 			break ;
 		buf[check] = '\0';
-		if(!backup)
+		if (!backup)
 			backup = ft_strdup("");
 		temp = backup;
 		backup = (ft_strjoin(temp, buf));
@@ -34,8 +34,8 @@ static char	*read_line(int fd, char *buf, char *backup)
 			return (NULL);
 		free (temp);
 		temp = NULL;
-		if (ft_strchr(buf,'\n'))
-			break;
+		if (ft_strchr(buf, '\n'))
+			break ;
 	}
 	return (backup);
 }
@@ -44,8 +44,9 @@ static char	*extract(char *line)
 {
 	int		i;
 	char	*temp;
+
 	i = 0;
-	while (line[i] !='\0' && line[i] != '\n')
+	while (line[i] != '\0' && line[i] != '\n')
 		i++;
 	if (line[i] == '\0')
 		return (NULL);
@@ -64,8 +65,8 @@ static char	*extract(char *line)
 
 char	*get_next_line(int fd)
 {
-	char	*buf;
-	char	*line;
+	char		*buf;
+	char		*line;
 	static char	*backup;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
