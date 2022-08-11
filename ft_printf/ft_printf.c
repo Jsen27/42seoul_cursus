@@ -12,18 +12,22 @@
 
 #include "ft_printf.h"
 
-static int	find_format(char c, va_list *ap)
+static int	find_format(char c, va_list ap)
 {
 	if (c == 'c')
-		return (ft_putchar(va_arg(ap, char)));
+		return (ft_putchar(va_arg(ap, int)));
 	else if (c == 's')
 		return (ft_putstr(va_arg(ap, char *)));
 	else if (c == 'p')
 		return (ft_printf_ptr(va_arg(ap, unsigned long long)));
-	else if (c == 'd' || 'i')
-		return (ft_putstr(va_arg(ap, int)));
+	else if (c == 'd' || c == 'i')
+		return (ft_putnbr(va_arg(ap, int)));
 	else if (c == 'u')
-	
+		return (ft_putunbr(va_arg(ap, unsigned int)));
+	else if (c == 'x' || c == 'X')
+		return (ft_printf_hex(va_arg(ap, unsigned int), c));
+	else if (c == '%')
+		return (ft_putpercent());
 }
 
 int	ft_printf(const char *input, ...)
@@ -43,10 +47,16 @@ int	ft_printf(const char *input, ...)
 			cnt += find_format(input[i], ap);
 		}
 		else
-		{
-			write(1, &input[i], 1);
-			cnt++;
-		}
+			cnt += ft_putchar(input[i]);
+		i++;
 	}
 	return (cnt);
+}
+
+#include <stdio.h>
+int main()
+{
+	char str[5] = "qwer";
+	printf("%d",ft_printf("abc%s\n", str));
+	return 0;
 }

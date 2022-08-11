@@ -38,6 +38,6 @@ int	ft_printf_ptr(unsigned long long ptr)
 	if (!ptr)
 		len += write(1, "0", 1);
 	else
-		ft_putptr(ptr, *len);
+		ft_putptr(ptr, &len);
 	return (len);
 }

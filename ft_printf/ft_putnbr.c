@@ -32,13 +32,11 @@ static size_t	ft_numlen(long nb)
 	return (len);
 }
 
-static char	*ft_itoa(int n)
+static char	*ft_itoa(long nb)
 {
-	long	nb;
 	int		len;
 	char	*str;
 
-	nb = n;
 	len = (ft_numlen(nb));
 	str = (char *)malloc(sizeof(char) * (len + 1));
 	if (!str)
@@ -65,7 +63,18 @@ int	ft_putnbr(int n)
 	int		len;
 	char	*str;
 
-	str = itoa(n);
+	str = ft_itoa(n);
+	len = ft_putstr(str);
+	free(str);
+	return (len);
+}
+
+int	ft_putunbr(unsigned int n)
+{
+	int		len;
+	char	*str;
+
+	str = ft_itoa(n);
 	len = ft_putstr(str);
 	free(str);
 	return (len);
