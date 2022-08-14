@@ -28,6 +28,7 @@ static int	find_format(char c, va_list ap)
 		return (ft_printf_hex(va_arg(ap, unsigned int), c));
 	else if (c == '%')
 		return (ft_putpercent());
+	return (0);
 }
 
 int	ft_printf(const char *input, ...)
@@ -50,13 +51,6 @@ int	ft_printf(const char *input, ...)
 			cnt += ft_putchar(input[i]);
 		i++;
 	}
+	va_end(ap);
 	return (cnt);
-}
-
-#include <stdio.h>
-int main()
-{
-	char str[5] = "qwer";
-	printf("%d",ft_printf("abc%s\n", str));
-	return 0;
 }

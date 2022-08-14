@@ -23,7 +23,7 @@ int	ft_printf_ptr(unsigned long long ptr);
 int	ft_putnbr(int n);
 int	ft_putunbr(unsigned int n);
 int	ft_printf_hex(unsigned int num, const char format);
-int	ft_putpercent();
+int	ft_putpercent(void);
 int	ft_printf(const char *input, ...);
 
 #endif

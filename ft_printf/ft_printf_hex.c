@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_hex.c                                     :+:      :+:    :+:   */
+/*   ft_printf_hex.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/08 18:33:28 by sehjung           #+#    #+#             */
-/*   Updated: 2022/08/08 18:33:28 by sehjung          ###   ########.fr       */
+/*   Created: 2022/08/14 20:04:50 by sehjung           #+#    #+#             */
+/*   Updated: 2022/08/14 20:04:50 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static int	ft_hexlen(unsigned int num)
 {
-	int cnt;
+	int	cnt;
 
 	cnt = 0;
 	while (num)
@@ -48,7 +48,7 @@ static void	ft_put_hex(unsigned int num, const char format)
 
 int	ft_printf_hex(unsigned int num, const char format)
 {
-	if ( num == 0)
+	if (num == 0)
 		return (write(1, "0", 1));
 	else
 		ft_put_hex(num, format);
