@@ -48,15 +48,15 @@ int	ft_printf(const char *input, ...)
 		{
 			i++;
 			len = find_format(input[i], ap);
-			if (len == -1)
-				reutrn (-1);
 			cnt += len;
 		}
 		else
 		{
-			cnt += ft_putchar(input[i]);
-			
+			len = ft_putchar(input[i]);
+			cnt += len;
 		}
+		if (len == -1)
+			return (-1);
 		i++;
 	}
 	va_end(ap);
