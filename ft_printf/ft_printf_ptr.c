@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static void	ft_putptr(unsigned long long ptr, int *len)
+static void	ft_putptr(unsigned long ptr, int *len)
 {
 	if (ptr >= 16)
 	{
@@ -29,7 +29,7 @@ static void	ft_putptr(unsigned long long ptr, int *len)
 	}
 }
 
-int	ft_printf_ptr(unsigned long long ptr)
+int	ft_printf_ptr(void *ptr)
 {
 	int	len;
 
@@ -38,6 +38,6 @@ int	ft_printf_ptr(unsigned long long ptr)
 	if (!ptr)
 		len += write(1, "0", 1);
 	else
-		ft_putptr(ptr, &len);
+		ft_putptr((unsigned long)ptr, &len);
 	return (len);
 }

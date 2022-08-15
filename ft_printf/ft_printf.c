@@ -19,7 +19,7 @@ static int	find_format(char c, va_list ap)
 	else if (c == 's')
 		return (ft_putstr(va_arg(ap, char *)));
 	else if (c == 'p')
-		return (ft_printf_ptr(va_arg(ap, unsigned long long)));
+		return (ft_printf_ptr(va_arg(ap, void *)));
 	else if (c == 'd' || c == 'i')
 		return (ft_putnbr(va_arg(ap, int)));
 	else if (c == 'u')
@@ -28,14 +28,16 @@ static int	find_format(char c, va_list ap)
 		return (ft_printf_hex(va_arg(ap, unsigned int), c));
 	else if (c == '%')
 		return (ft_putpercent());
-	return (0);
+	else
+		return (-1);
 }
 
 int	ft_printf(const char *input, ...)
 {
 	va_list	ap;
-	int		i;
+	size_t	i;
 	int		cnt;
+	int		len;
 
 	va_start(ap, input);
 	i = 0;
@@ -45,10 +47,16 @@ int	ft_printf(const char *input, ...)
 		if (input[i] == '%')
 		{
 			i++;
-			cnt += find_format(input[i], ap);
+			len = find_format(input[i], ap);
+			if (len == -1)
+				reutrn (-1);
+			cnt += len;
 		}
 		else
+		{
 			cnt += ft_putchar(input[i]);
+			
+		}
 		i++;
 	}
 	va_end(ap);
