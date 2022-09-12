@@ -1,26 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_printable.c                              :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42seoul.k>        +#+  +:+       +#+        */
+/*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/23 15:33:48 by sehjung           #+#    #+#             */
-/*   Updated: 2022/05/23 21:33:17 by sehjung          ###   ########.fr       */
+/*   Created: 2022/09/12 17:19:38 by sehjung           #+#    #+#             */
+/*   Updated: 2022/09/12 17:19:45 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-int	ft_str_is_printable(char *str)
-{
-	int	i;
 
-	i = 0;
-	if (str[0] == '\0')
-		return (1);
-	while (str[i] != '\0')
-	{
-		if (!(str[i] >= ' ' && str[i] <= '~'))
-			return (0);
-		i++;
-	}
-	return (1);
+int main(void)
+{
+
+	
 }
