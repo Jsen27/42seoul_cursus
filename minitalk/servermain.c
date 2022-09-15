@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 20:48:42 by sehjung           #+#    #+#             */
-/*   Updated: 2022/09/15 14:11:37 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/09/15 14:16:43 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,10 @@ int	main(void)
 {
 	int PID;
 	struct sigaction act;
-	
-	
+
+	act.sa_sigaction = f;
+	act.flags = SIGINFO;
+
 	PID = getpid();
 	signal(SIGUSR1, f);
 	signal(SIGUSR2, g);
