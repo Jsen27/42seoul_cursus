@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 20:48:42 by sehjung           #+#    #+#             */
-/*   Updated: 2022/09/15 15:25:58 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/09/15 15:58:20 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,4 @@ void f(int signum, siginfo_t *act, void *context)
 		printf("SIGUSR1 호출 !\n");
 	else if (signum == SIGUSR2)
 		printf("SIGUSR2 호출 !\n");
-	exit(0);
 }
