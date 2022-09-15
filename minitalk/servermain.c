@@ -6,14 +6,12 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 20:48:42 by sehjung           #+#    #+#             */
-/*   Updated: 2022/09/15 14:16:43 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/09/15 14:45:49 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stdio.h>
-#include <signal.h>
-#include <stdlib.h>
+#include "server.h"
+
 
 void f();
 void g();
@@ -23,9 +21,10 @@ int	main(void)
 	int PID;
 	struct sigaction act;
 
-	act.sa_sigaction = f;
-	act.flags = SIGINFO;
-
+	act.sa_flags = SA_SIGINFO;
+	act.sa_handler = f;
+	
+	sigaction(PID, &act, NULL);
 	PID = getpid();
 	signal(SIGUSR1, f);
 	signal(SIGUSR2, g);
