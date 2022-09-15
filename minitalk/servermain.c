@@ -6,15 +6,13 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 20:48:42 by sehjung           #+#    #+#             */
-/*   Updated: 2022/09/15 14:45:49 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/09/15 15:25:58 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "server.h"
 
-
-void f();
-void g();
+void f(int, siginfo_t *, void *);
 
 int	main(void)
 {
@@ -22,12 +20,10 @@ int	main(void)
 	struct sigaction act;
 
 	act.sa_flags = SA_SIGINFO;
-	act.sa_handler = f;
-	
-	sigaction(PID, &act, NULL);
+	act.sa_sigaction = f;
 	PID = getpid();
-	signal(SIGUSR1, f);
-	signal(SIGUSR2, g);
+	sigaction(SIGUSR1, &act, NULL);
+	sigaction(SIGUSR2, &act, NULL);
 	printf("server PID : %d\n",PID);
 	while (1)
 	{
@@ -36,14 +32,11 @@ int	main(void)
 	return 0;
 }
 
-void f()
+void f(int signum, siginfo_t *act, void *context)
 {
-	printf("SIGUSR1 호출 ! \n 서버 종료 !\n");
-	exit(0);
-}
-
-void g()
-{
-	printf("SIGUSR2 호출 ! \n 서버 종료 !\n");
+	if (signum == SIGUSR1)
+		printf("SIGUSR1 호출 !\n");
+	else if (signum == SIGUSR2)
+		printf("SIGUSR2 호출 !\n");
 	exit(0);
 }

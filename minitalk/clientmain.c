@@ -6,13 +6,11 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 20:58:31 by sehjung           #+#    #+#             */
-/*   Updated: 2022/09/15 14:11:38 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/09/15 15:26:22 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <signal.h>
-#include <stdio.h>
-#include <stdlib.h>
+#include "server.h"
 
 int	main(int argc, char **argv)
 {
