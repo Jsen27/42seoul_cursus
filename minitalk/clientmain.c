@@ -6,13 +6,13 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 20:58:31 by sehjung           #+#    #+#             */
-/*   Updated: 2022/09/17 20:46:39 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/09/17 21:54:11 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "server.h"
 
-static void convert(int PID, unsigned char ch)
+static void ft_convert(int PID, unsigned char ch)
 {
 	int n, i = 0;
     int arr[10];
@@ -43,9 +43,16 @@ static void convert(int PID, unsigned char ch)
 			kill(PID, SIGUSR2);
 		usleep(1000);
 	}
-
 }
 
+static void send_str(int PID, char *str)
+{
+	for (int i = 0; i < strlen(str); i++)
+	{
+		ft_convert(PID,str[i]);
+	}
+	ft_convert(PID, 127);
+}
 
 int	main(int argc, char **argv)
 {
@@ -55,6 +62,6 @@ int	main(int argc, char **argv)
 		printf("매개변수 갯수 오류 !\n");
 		return 0;
 	}
-	convert(PID, argv[2][0]);
+	send_str(PID, argv[2]);
 	return 0;
 }
