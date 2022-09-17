@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 20:48:42 by sehjung           #+#    #+#             */
-/*   Updated: 2022/09/15 15:58:20 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/09/17 21:12:48 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,21 @@ int	main(void)
 
 void f(int signum, siginfo_t *act, void *context)
 {
-	if (signum == SIGUSR1)
-		printf("SIGUSR1 호출 !\n");
-	else if (signum == SIGUSR2)
-		printf("SIGUSR2 호출 !\n");
+	static int	num = 0;
+	static int	count = 0;
+	static int	q = 1;
+	unsigned char  a;
+
+	if(signum == SIGUSR2)
+		num += (2 * q);
+	q *= 2;
+	count++;
+	if(count == 8)
+	{
+		a = (unsigned char)num;
+		write(1, &a, 1);
+		count = 0;
+		num = 0;
+		q = 1;
+	}
 }
