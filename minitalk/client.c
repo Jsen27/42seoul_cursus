@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   clientmain.c                                       :+:      :+:    :+:   */
+/*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 20:58:31 by sehjung           #+#    #+#             */
-/*   Updated: 2022/09/18 15:41:47 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/09/18 17:18:39 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,23 +30,24 @@ static void convert(int PID, unsigned char ch)
 	}
 	while (i < 8)
 		arr[i++] = 0;
+	i--;
 	while (i >= 0)
 	{
 		if (arr[i--] == 0)
 			kill(PID, SIGUSR1);
 		else
 			kill(PID, SIGUSR2);
-			usleep(1000);
+			usleep(10);
 	}
 }
 
 static void send_str(int PID, char *str)
 {
-	int		i;
+	size_t	i;
 	size_t	len;
 
 	i = 0;
-	len = ft_strlen(str);
+	len = strlen(str);
 	while (i < len)
 		convert(PID, str[i++]);
 	convert(PID, 127);
@@ -57,7 +58,7 @@ int	main(int argc, char **argv)
 	int PID = atoi(argv[1]);
 
 	if (argc != 3){
-		ft_printf("매개변수 갯수 오류 !\n");
+		printf("매개변수 갯수 오류 !\n");
 		return 0;
 	}
 	send_str(PID, argv[2]);

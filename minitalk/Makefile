@@ -1,14 +1,14 @@
 CC = cc
-CFLAGS = -Wall -Wextra =Werror
+CFLAGS = -Wall -Wextra -Werror
 AR = ar rcs
 RM = rm -f
 
 all : client server
 
 client : client.o libft printf
-		$(CC) $(CFLAGS) $@ $< -L libft -lft -L ft_printf -lft
+		$(CC) $(CFLAGS) -c -o $@ $< -L libft -lft -L ft_printf -lft
 server : server.o libft printf
-		$(CC) $(CFLAGS) $@ $< -L libft -lft -L ft_printf -lft
+		$(CC) $(CFLAGS) -c -o $@ $< -L libft -lft -L ft_printf -lft
 
 .o : .c
 		$(CC) -c $(CFLAGS) $<
@@ -16,7 +16,7 @@ server : server.o libft printf
 libft :
 		make -C libft
 printf :
-		make -C printf
+		make -C ft_printf
 
 clean :
 		$(RM) server.o client.o
