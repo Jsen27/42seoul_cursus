@@ -1,22 +1,27 @@
+CLIENT_SRC = client.c
+SERVER_SRC = server.c
+
+CLIENTNAME = client
+SERVERNAME = server
+
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
-AR = ar rcs
-RM = rm -f
 
-all : client server
+LIBFT = make -C libft
+PRINTF = make -C ft_printf
 
-client : client.o libft printf
-		$(CC) $(CFLAGS) -c -o $@ $< -L libft -lft -L ft_printf -lft
-server : server.o libft printf
-		$(CC) $(CFLAGS) -c -o $@ $< -L libft -lft -L ft_printf -lft
+CLIENT_OBJ = $(CLIENT_SRC:.c=.o)
+SERVER_OBJ = $(SERVER_SRC:.c=.o)
 
-.o : .c
-		$(CC) -c $(CFLAGS) $<
+all : $(CLIENTNAME) $(SERVERNAME)
 
-libft :
-		make -C libft
-printf :
-		make -C ft_printf
+$(CLIENTNAME) :	$(CLIENT_OBJ)
+				$(LIBFT)
+				$(PRINTF)
+				$(CC) $(CFLAGS) -o $(CLIENTNAME) $(CLIENT_OBJ) libft/libft.a ft_printf/libftprintf.a
+
+$(SERVERNAME) : $(SERVER_OBJ)
+				$(CC) $(CFLAGS) -o $(SERVERNAME) $(SERVER_OBJ) libft/libft.a ft_printf/libftprintf.a
 
 clean :
 		$(RM) server.o client.o
