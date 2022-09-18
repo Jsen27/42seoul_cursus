@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 20:48:42 by sehjung           #+#    #+#             */
-/*   Updated: 2022/09/17 21:58:14 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/09/18 15:41:51 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@ void f(int signum, siginfo_t *act, void *context)
 	static int	power = 0;
 	unsigned char  a;
 
-	if(signum == SIGUSR2)
+	if (signum == SIGUSR2)
 		num += (1 << (7 - power));
 	power++;
 	count++;
 	if (count == 8 && num == 127)
 	{
-		printf("\n");
+		ft_printf("\n");
 		count = 0;
 		num = 0;
 		power = 0;
@@ -50,7 +50,7 @@ int	main(void)
 	PID = getpid();
 	sigaction(SIGUSR1, &act, NULL);
 	sigaction(SIGUSR2, &act, NULL);
-	printf("server PID : %d\n",PID);
+	ft_printf("server PID : %d\n",PID);
 	while (1)
 	{
 		pause();
