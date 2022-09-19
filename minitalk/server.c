@@ -6,17 +6,17 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 20:48:42 by sehjung           #+#    #+#             */
-/*   Updated: 2022/09/18 22:23:43 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/09/19 18:46:22 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-static void handler(int signum, siginfo_t *act, void *context)
+static void	handler(int signum, siginfo_t *act, void *context)
 {
-	static int	num = 0;
-	static int	count = 0;
-	unsigned 	char  a;
+	static int		num;
+	static int		count;
+	unsigned char	a;
 
 	(void)*act;
 	(void)*context;
@@ -40,19 +40,18 @@ static void handler(int signum, siginfo_t *act, void *context)
 
 int	main(void)
 {
-	int PID;
-	struct sigaction act;
+	int					pid;
+	struct sigaction	act;
 
+	pid = getpid();
 	act.sa_flags = SA_SIGINFO;
 	act.sa_sigaction = handler;
-	PID = getpid();
 	sigaction(SIGUSR1, &act, NULL);
 	sigaction(SIGUSR2, &act, NULL);
-	ft_printf("server PID : %d\n",PID);
+	ft_printf("server PID : %d\n", pid);
 	while (1)
 	{
 		pause();
 	}
-	return 0;
+	return (0);
 }
-
