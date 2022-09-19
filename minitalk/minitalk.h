@@ -6,12 +6,12 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 14:22:41 by sehjung           #+#    #+#             */
-/*   Updated: 2022/09/18 22:11:31 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/09/20 07:18:39 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SERVER_H
-# define SERVER_H
+#ifndef MINITALK_H
+# define MINITALK_H
 
 # include <signal.h>
 # include "libft/libft.h"

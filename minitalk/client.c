@@ -6,13 +6,13 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 20:58:31 by sehjung           #+#    #+#             */
-/*   Updated: 2022/09/19 18:29:33 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/09/20 08:05:36 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-static void	convert(int pid, unsigned char ch)
+static void	convert(int pid, char ch)
 {
 	int	n;
 	int	i;
