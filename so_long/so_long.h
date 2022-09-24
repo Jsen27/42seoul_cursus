@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 20:07:21 by sehjung           #+#    #+#             */
-/*   Updated: 2022/09/23 21:36:29 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/09/25 02:09:04 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,11 @@ typedef struct s_var
 	void	*win;
 	void	*wall;
 	void	*glass;
-	void	*coin;
+	void	*axe;
 	char	**map;
-	int		coin;
-	int		exit;
-	int		player;
+	int		axe_check;
+	int		exit_check;
+	int		player_check;
 }				t_var;
 
 // typedef struct s_map

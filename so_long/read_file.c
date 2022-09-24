@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 19:25:10 by sehjung           #+#    #+#             */
-/*   Updated: 2022/09/23 22:00:08 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/09/25 02:09:03 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 void	map_check(t_var *var)
 {
-	if (var->coin == 0 || var->exit != 1 || var->player != 1)
+	if (var->axe_check == 0 || var->exit_check != 1 || var->player_check != 1)
 	{
 		printf("Map ERROR!\n");
 		exit(-1);
@@ -32,11 +32,11 @@ void	map_init(t_var *var, char *str)
 	while (str[i])
 	{
 		if(str[i] == 'E')
-			var->exit++;
+			var->exit_check++;
 		else if (str[i] == 'C')
-			var->coin++;
+			var->axe_check++;
 		else if (str[i] == 'P')
-			var->player++;
+			var->player_check++;
 		else if (str[i] != 0 && str[i] != 1)
 		{
 			printf("Map ERROR!\n");
