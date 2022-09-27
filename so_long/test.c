@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 17:14:40 by sehjung           #+#    #+#             */
-/*   Updated: 2022/09/23 19:14:10 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/09/27 14:43:30 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,31 +71,31 @@ int main()
 
 
 
-// typedef struct my_data{
-// 	void *mlx;
-// 	void *win;
-// 	int x;
-// 	int y;
-// 	void *rock;
-// 	void *glass;
-// 	void *coin;
+typedef struct my_data{
+	void *mlx;
+	void *win;
+	int x;
+	int y;
+	void *rock;
+	void *glass;
+	void *coin;
 
-// } data;
+} data;
 
-// int main()
-// {
-// 	data var;
+int main()
+{
+	data var;
 
-// 	var.mlx = mlx_init();
-// 	var.win = mlx_new_window(var.mlx, 800, 600, "testfile");
-// 	var.rock = mlx_xpm_file_to_image(var.mlx, "./images/rock.xpm", &var.x, &var.y);
-// 	var.glass = mlx_xpm_file_to_image(var.mlx, "./images/glass.xpm", &var.x, &var.y);
-// 	var.coin = mlx_xpm_file_to_image(var.mlx, "./images/coin.xpm", &var.x, &var.y);
+	var.mlx = mlx_init();
+	var.win = mlx_new_window(var.mlx, 800, 600, "testfile");
+	var.rock = mlx_xpm_file_to_image(var.mlx, "./images/rock.xpm", &var.x, &var.y);
+	var.glass = mlx_xpm_file_to_image(var.mlx, "./images/glass.xpm", &var.x, &var.y);
+	var.coin = mlx_xpm_file_to_image(var.mlx, "./images/coin.xpm", &var.x, &var.y);
 
-// 	mlx_put_image_to_window(var.mlx, var.win, var.rock, 0, 0);
-// 	mlx_put_image_to_window(var.mlx, var.win, var.glass, 64, 0);
-// 	mlx_put_image_to_window(var.mlx, var.win, var.coin, 128, 0);
-// 	mlx_loop(var.mlx);
+	mlx_put_image_to_window(var.mlx, var.win, var.rock, 0, 0);
+	mlx_put_image_to_window(var.mlx, var.win, var.glass, 64, 0);
+	mlx_put_image_to_window(var.mlx, var.win, var.coin, 128, 0);
+	mlx_loop(var.mlx);
 	
-// 	return 0;
-// }
+	return 0;
+}

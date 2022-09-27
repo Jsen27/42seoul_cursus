@@ -6,28 +6,30 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 20:07:21 by sehjung           #+#    #+#             */
-/*   Updated: 2022/09/25 02:09:04 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/09/27 14:48:35 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "get_next_line/get_next_line.h"
+#include <fcntl.h>
+#include <stdio.h>
+#include "mlx/mlx.h"
 
 typedef struct s_var
 {
 	void	*mlx;
 	void	*win;
-	void	*wall;
 	void	*glass;
-	void	*axe;
+	void	*rock;
+	void	*player;
+	void	*apple;
+	void	*exit;
 	char	**map;
-	int		axe_check;
+	int		apple_check;
 	int		exit_check;
 	int		player_check;
+	int		x;
+	int		y;
 }				t_var;
 
-// typedef struct s_map
-// {
-// 	char	*line1;
-// 	char	*line2;
-// 	char	*line3;
-// 	char	*line4;
-// 	char	*line5;
-// }				t_map;
+size_t	read_file(char *file, t_var *var);
