@@ -3,33 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   read_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 19:25:10 by sehjung           #+#    #+#             */
-/*   Updated: 2022/09/27 14:42:00 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/09/27 16:50:55 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	map_check(t_var *var)
+void	map_check(t_var *var, size_t len)
 {
 	size_t	i;
 	size_t	j;
+	char	**str;
 
 	i = 0;
-	while (var->map[i++])
+	str = var->map;
+	while (str[i])
 	{
 		j = 0;
-		while (var->map[i][j])
+		while (str[i][j] && j < len)
 		{
-			if(var->map[i][j] == 'E')
+			if(str[i][j] == 'E')
 				var->exit_check++;
-			else if (var->map[i][j] == 'C')
+			else if (str[i][j] == 'C')
 				var->apple_check++;
-			else if (var->map[i][j] == 'P')
+			else if (str[i][j] == 'P')
 				var->player_check++;
-			else if (var->map[i][j] != 0 && var->map[i][j] != 1)
+			else if (str[i][j] != 0 && str[i][j] != 1)
 			{
 				printf("Map ERROR!\n");
 				exit(-1);
@@ -52,14 +54,16 @@ int	str_check(t_var *var, char *str, size_t len, int line)
 	if (ft_strlen(str) - 1 != len)
 		return (0);
 	if (line == 0 || line == 4)
+	{
 		while(str[i] && i < len)
 			if (str[i++] != '1')
 				return (0);
-	else 
-		if (str[0] != '1' || str[len - 1] != '1')
-			return (0);
-	var->map[line] = str;
-	map_init(var, str);
+	}
+	else if (str[0] != '1' || str[len - 1] != '1')
+		return (0);
+	//var->map[line] = malloc (sizeof(char) * len + 1);
+	ft_strlcpy(var->map[line], str, len);
+	return (1);
 }
 
 size_t	read_file(char *file, t_var *var)
@@ -75,6 +79,7 @@ size_t	read_file(char *file, t_var *var)
 		printf("File Open ERROR !\n");
 		exit(-1);
 	}
+	var->map = malloc(sizeof(char) * 5);
 	str = get_next_line(fd);
 	len = ft_strlen(str) - 1;
 	line = 0;
@@ -84,6 +89,6 @@ size_t	read_file(char *file, t_var *var)
 		str = get_next_line(fd);
 		line++;
 	}
-	map_check(var);
+	map_check(var, len);
 	return (len);
 }
