@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 19:25:10 by sehjung           #+#    #+#             */
-/*   Updated: 2022/09/29 15:21:53 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/09/29 17:42:55 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ static void	str_check(t_var *var, char *str, size_t len, int line)
 	if (!var->map[line])
 		print_error(1);
 	ft_strlcpy(var->map[line], str, len + 1);
+	free(str);
 }
 
 size_t	read_file(char *file, t_var *var)
@@ -86,6 +87,7 @@ size_t	read_file(char *file, t_var *var)
 		str = get_next_line(fd);
 		line++;
 	}
+	fd = close(fd);
 	map_check(var, len);
 	if (var->apple_check <= 0 || var->exit_check != 1 || var->player_check != 1)
 		print_error(3);
