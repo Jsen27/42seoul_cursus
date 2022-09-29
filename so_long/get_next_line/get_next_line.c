@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 20:31:03 by sehjung           #+#    #+#             */
-/*   Updated: 2022/08/03 16:01:40 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/09/27 19:52:40 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include "../so_long.h"
 
 static char	*read_line(int fd, char *buf, char *backup)
 {
@@ -31,7 +32,7 @@ static char	*read_line(int fd, char *buf, char *backup)
 		temp = backup;
 		backup = (ft_strjoin(temp, buf));
 		if (!backup)
-			return (NULL);
+			print_error(1);
 		free (temp);
 		temp = NULL;
 		if (ft_strchr(buf, '\n'))
@@ -73,7 +74,7 @@ char	*get_next_line(int fd)
 		return (NULL);
 	buf = malloc(sizeof(char) * BUFFER_SIZE + 1);
 	if (!buf)
-		return (NULL);
+		print_error(1);
 	line = read_line(fd, buf, backup);
 	free(buf);
 	buf = NULL;

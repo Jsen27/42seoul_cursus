@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 14:44:31 by sehjung           #+#    #+#             */
-/*   Updated: 2022/09/27 15:19:43 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/09/27 21:36:36 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,6 @@ void	make_map(t_var *var, size_t len)
 		{
 			if(var->map[i][j] == '1')
 				mlx_put_image_to_window(var->mlx, var->win, var->rock, j * 16, i * 16);
-			else if (var->map[i][j] == '0')
-				mlx_put_image_to_window(var->mlx, var->win, var->glass, j * 16, i * 16);
 			else if (var->map[i][j] == 'P')
 				mlx_put_image_to_window(var->mlx, var->win, var->player, j * 16, i * 16);
 			else if (var->map[i][j] == 'E')
@@ -36,15 +34,18 @@ void	make_map(t_var *var, size_t len)
 			j++;
 		}
 		i++;
-	}	
+	}
 }
 
 void	put_image(t_var *var, size_t len)
 {
-	var->glass = mlx_xpm_file_to_image(var->mlx, "./images/galss.xpm", &var->x, &var->y);
+	var->glass = mlx_xpm_file_to_image(var->mlx, "./images/glass.xpm", &var->x, &var->y);
 	var->rock = mlx_xpm_file_to_image(var->mlx, "./images/rock.xpm", &var->x, &var->y);
 	var->exit = mlx_xpm_file_to_image(var->mlx, "./images/exit.xpm", &var->x, &var->y);
-	var->apple = mlx_xpm_file_to_image(var->apple, "./images/apple.xpm", &var->x, &var->y);
+	var->apple = mlx_xpm_file_to_image(var->mlx, "./images/apple.xpm", &var->x, &var->y);
 	var->player = mlx_xpm_file_to_image(var->mlx, "./images/player.xpm", &var->x, &var->y);
+	for(int i = 0; i < 5; i++)
+		for(int j = 0; j < len; j++)
+			mlx_put_image_to_window(var->mlx, var->win, var->glass, j * 16, i * 16);
 	make_map(var, len);
 }

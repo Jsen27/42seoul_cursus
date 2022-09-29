@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 20:07:21 by sehjung           #+#    #+#             */
-/*   Updated: 2022/09/27 15:31:45 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/09/27 22:22:38 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,20 @@
 #include <stdlib.h>
 #include "mlx/mlx.h"
 
-typedef struct s_var
+# define KEY_ESC		53
+# define KEY_W			13
+# define KEY_A			0
+# define KEY_S			1
+# define KEY_D			2
+# define X_EVENT_KEY_RELEASE		3
+
+typedef struct	s_point
+{
+	int	x;
+	int	y;
+}				t_point;
+
+typedef struct	s_var
 {
 	void	*mlx;
 	void	*win;
@@ -32,7 +45,10 @@ typedef struct s_var
 	int		player_check;
 	int		x;
 	int		y;
+	t_point	my_point;
 }				t_var;
 
 size_t	read_file(char *file, t_var *var);
 void	put_image(t_var *var, size_t len);
+void	print_error(int error_num);
+int	action(int keycode, t_var *var);
