@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 20:07:21 by sehjung           #+#    #+#             */
-/*   Updated: 2022/09/27 22:22:38 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/09/29 14:49:24 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,4 @@ typedef struct	s_var
 size_t	read_file(char *file, t_var *var);
 void	put_image(t_var *var, size_t len);
 void	print_error(int error_num);
-int	action(int keycode, t_var *var);
+int		move_action(int keycode, t_var *var);

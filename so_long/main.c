@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 19:17:58 by sehjung           #+#    #+#             */
-/*   Updated: 2022/09/27 22:21:23 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/09/29 14:59:13 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	main(int argc, char **argv)
 	var->mlx = mlx_init();
 	var->win = mlx_new_window(var->mlx, len * 16, 16 * 5, "so_long");
 	put_image(var, len);
-	mlx_hook(var->win, X_EVENT_KEY_RELEASE, 0, &action, 0);
+	mlx_hook(var->win, X_EVENT_KEY_RELEASE, 0, &move_action, var);
 	mlx_loop(var->mlx);
 
 	return (0);

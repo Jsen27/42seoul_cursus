@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 20:56:12 by sehjung           #+#    #+#             */
-/*   Updated: 2022/09/27 22:27:46 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/09/29 14:49:25 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,15 +48,15 @@ static void 	move_check(t_var *var, int x, int y)
 	}
 }
 
-int	action(int keycode, t_var *var)
+int	move_action(int keycode, t_var *var)
 {
 	if (keycode == KEY_D)
-		move_check(var, var->my_point.x + 1, var->my_point.y);
+		move_check(var, var->my_point.x + 16, var->my_point.y);
 	else if (keycode == KEY_A)
-		move_check(var, var->my_point.x - 1, var->my_point.y);
+		move_check(var, var->my_point.x - 16, var->my_point.y);
 	else if (keycode == KEY_S)
-		move_check(var, var->my_point.x, var->my_point.y + 1);
+		move_check(var, var->my_point.x, var->my_point.y + 16);
 	else if (keycode == KEY_W)
-		move_check(var, var->my_point.x, var->my_point.y - 1);
+		move_check(var, var->my_point.x, var->my_point.y - 16);
 	return (0);
 }
