@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   put_image.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 14:44:31 by sehjung           #+#    #+#             */
-/*   Updated: 2022/09/29 15:50:35 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/09/29 20:34:42 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,13 +39,24 @@ void	make_map(t_var *var, size_t len)
 
 void	put_image(t_var *var, size_t len)
 {
+	size_t	i;
+	size_t	j;
+
+	i = 0;
 	var->glass = mlx_xpm_file_to_image(var->mlx, "./images/glass.xpm", &var->x, &var->y);
 	var->rock = mlx_xpm_file_to_image(var->mlx, "./images/rock.xpm", &var->x, &var->y);
 	var->exit = mlx_xpm_file_to_image(var->mlx, "./images/exit.xpm", &var->x, &var->y);
 	var->apple = mlx_xpm_file_to_image(var->mlx, "./images/apple.xpm", &var->x, &var->y);
 	var->player = mlx_xpm_file_to_image(var->mlx, "./images/player.xpm", &var->x, &var->y);
-	for(int i = 0; i < 5; i++)
-		for(int j = 0; j < len; j++)
+	while (i < 5)
+	{
+		j = 0;
+		while (j < len)
+		{
 			mlx_put_image_to_window(var->mlx, var->win, var->glass, j * 16, i * 16);
+			j++;
+		}
+		i++;
+	}
 	make_map(var, len);
 }

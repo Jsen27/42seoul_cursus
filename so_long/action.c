@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 20:56:12 by sehjung           #+#    #+#             */
-/*   Updated: 2022/09/29 20:01:04 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/09/29 20:29:43 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ void	free_var(t_var *var)
 	mlx_destroy_image(var->mlx, var->apple);
 	mlx_destroy_image(var->mlx, var->exit);
 	mlx_destroy_window(var->mlx, var->win);
-	free(var->mlx);
 	while (var->map[i])
 		free(var->map[i++]);
 	free(var->map);
