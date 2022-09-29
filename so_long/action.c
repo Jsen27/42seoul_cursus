@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 20:56:12 by sehjung           #+#    #+#             */
-/*   Updated: 2022/09/29 14:49:25 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/09/29 15:36:36 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ static void 	move_check(t_var *var, int x, int y)
 	if (var->map[x][y] == '0')
 	{
 		mlx_put_image_to_window(var->mlx, var->win, var->glass, var->my_point.x, var->my_point.y);
-		mlx_put_image_to_window(var->mlx, var->win, var->player, x, y);
-		var->my_point.x = x;
-		var->my_point.y = y;
+		mlx_put_image_to_window(var->mlx, var->win, var->player, var->my_point.x + (x * 16), var->my_point.y + (y * 16));
+		var->my_point.x += x;
+		var->my_point.y += y;
 		printf("movement : %d\n", ++move);
 	}
 	else if (var->map[x][y] == 'C')
@@ -51,7 +51,7 @@ static void 	move_check(t_var *var, int x, int y)
 int	move_action(int keycode, t_var *var)
 {
 	if (keycode == KEY_D)
-		move_check(var, var->my_point.x + 16, var->my_point.y);
+		move_check(var, 1, 0);
 	else if (keycode == KEY_A)
 		move_check(var, var->my_point.x - 16, var->my_point.y);
 	else if (keycode == KEY_S)
