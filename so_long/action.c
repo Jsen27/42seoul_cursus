@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   action.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 20:56:12 by sehjung           #+#    #+#             */
-/*   Updated: 2022/09/29 15:36:36 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/09/29 16:04:52 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,19 @@ static void		end_game(int move)
 	exit(1);
 }
 
-static void 	move_check(t_var *var, int x, int y)
+static void 	move_check(t_var *var, int x, int y, int xx, int yy)
 {
 	static int	move;
 
-	if (var->map[x][y] == '0')
+	if (var->map[x][y] == '0' || var->map[x][y] == 'P')
 	{
-		mlx_put_image_to_window(var->mlx, var->win, var->glass, var->my_point.x, var->my_point.y);
-		mlx_put_image_to_window(var->mlx, var->win, var->player, var->my_point.x + (x * 16), var->my_point.y + (y * 16));
-		var->my_point.x += x;
-		var->my_point.y += y;
+		printf("이동 전 x : %d  y : %d\n", var->my_point.x, var->my_point.y);
+		mlx_put_image_to_window(var->mlx, var->win, var->glass, var->my_point.x * 16, var->my_point.y * 16);
+		mlx_put_image_to_window(var->mlx, var->win, var->player, (var->my_point.x * 16) + (xx * 16), (var->my_point.y * 16) + (yy * 16));
+		var->my_point.x += xx;
+		var->my_point.y += yy;
+		printf("이동 후 x : %d  y : %d\n", var->my_point.x, var->my_point.y);
+
 		printf("movement : %d\n", ++move);
 	}
 	else if (var->map[x][y] == 'C')
@@ -46,17 +49,25 @@ static void 	move_check(t_var *var, int x, int y)
 		if (var->apple_check == 0)
 			end_game(++move);
 	}
+	else
+		return ;
 }
 
 int	move_action(int keycode, t_var *var)
 {
+	/*for (int i = 0; i < 5; i++)
+	{
+		for (int j = 0; j < 13; j++)
+			printf("%c", var->map[i][j]);
+		printf("\n");
+	}*/
 	if (keycode == KEY_D)
-		move_check(var, 1, 0);
+		move_check(var, var->my_point.x + 1, var->my_point.y, 1, 0);
 	else if (keycode == KEY_A)
-		move_check(var, var->my_point.x - 16, var->my_point.y);
+		move_check(var, var->my_point.x - 1, var->my_point.y, -1, 0);
 	else if (keycode == KEY_S)
-		move_check(var, var->my_point.x, var->my_point.y + 16);
+		move_check(var, var->my_point.x, var->my_point.y + 1, 0, 1);
 	else if (keycode == KEY_W)
-		move_check(var, var->my_point.x, var->my_point.y - 16);
+		move_check(var, var->my_point.x, var->my_point.y - 1, 0, -1);
 	return (0);
 }
