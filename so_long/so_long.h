@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 20:07:21 by sehjung           #+#    #+#             */
-/*   Updated: 2022/10/03 16:35:05 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/10/03 20:11:34 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <mlx.h>
+# include "mlx/mlx.h"
 
 # define KEY_ESC					53
 # define KEY_W						13
@@ -40,7 +40,7 @@ typedef struct s_var
 	void	*glass;
 	void	*rock;
 	void	*player;
-	void	*apple;
+	void	*mushroom;
 	void	*exit;
 	char	**map;
 	int		apple_check;

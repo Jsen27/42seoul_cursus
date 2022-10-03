@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   action.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 20:56:12 by sehjung           #+#    #+#             */
-/*   Updated: 2022/10/03 16:14:33 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/10/03 20:10:49 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@ static void	just_move(t_var *var, int x, int y, int *move)
 	xx = x - var->my_point.x;
 	yy = y - var->my_point.y;
 	mlx_put_image_to_window(var->mlx, var->win, var->glass,
-		var->my_point.x * 16, var->my_point.y * 16);
+		var->my_point.x * 64, var->my_point.y * 64);
 	mlx_put_image_to_window(var->mlx, var->win, var->player,
-		(var->my_point.x * 16) + (xx * 16), (var->my_point.y * 16) + (yy * 16));
+		(var->my_point.x * 64) + (xx * 64), (var->my_point.y * 64) + (yy * 64));
 	var->my_point.x += xx;
 	var->my_point.y += yy;
 	*move += 1;
@@ -47,11 +47,11 @@ static void	apple_move(t_var *var, int x, int y, int *move)
 	yy = y - var->my_point.y;
 	var->map[y][x] = '0';
 	mlx_put_image_to_window(var->mlx, var->win, var->glass,
-		var->my_point.x * 16, var->my_point.y * 16);
+		var->my_point.x * 64, var->my_point.y * 64);
 	mlx_put_image_to_window(var->mlx, var->win, var->glass,
-		(var->my_point.x * 16) + (xx * 16), (var->my_point.y * 16) + (yy * 16));
+		(var->my_point.x * 64) + (xx * 64), (var->my_point.y * 64) + (yy * 64));
 	mlx_put_image_to_window(var->mlx, var->win, var->player,
-		(var->my_point.x * 16) + (xx * 16), (var->my_point.y * 16) + (yy * 16));
+		(var->my_point.x * 64) + (xx * 64), (var->my_point.y * 64) + (yy * 64));
 	var->my_point.x += xx;
 	var->my_point.y += yy;
 	var->apple_check--;

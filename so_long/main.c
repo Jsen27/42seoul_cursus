@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 19:17:58 by sehjung           #+#    #+#             */
-/*   Updated: 2022/10/03 15:49:06 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/10/03 20:08:52 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	free_var(t_var *var)
 	mlx_destroy_image(var->mlx, var->glass);
 	mlx_destroy_image(var->mlx, var->rock);
 	mlx_destroy_image(var->mlx, var->player);
-	mlx_destroy_image(var->mlx, var->apple);
+	mlx_destroy_image(var->mlx, var->mushroom);
 	mlx_destroy_image(var->mlx, var->exit);
 	mlx_destroy_window(var->mlx, var->win);
 	while (var->map[i])
@@ -58,7 +58,7 @@ int	main(int argc, char **argv)
 	var->player_check = 0;
 	len = read_file(argv[1], var);
 	var->mlx = mlx_init();
-	var->win = mlx_new_window(var->mlx, len * 16, 16 * 5, "so_long");
+	var->win = mlx_new_window(var->mlx, len * 64, 64 * 5, "so_long");
 	put_image(var, len);
 	mlx_hook(var->win, X_EVENT_KEY_RELEASE, 0, &move_action, var);
 	mlx_loop(var->mlx);
