@@ -18,7 +18,7 @@ all	:	$(NAME)
 
 $(NAME)	:	$(OBJS)
 			$(LIBFT)
-			arch -x86_64 $(CC) $(MLX_FLAGS) $(CFLAGS) -o $(NAME) $(OBJS) libft/libft.a
+			$(CC) $(MLX_FLAGS) $(CFLAGS) -o $(NAME) $(OBJS) libft/libft.a
 
 clean	:
 			$(RM) $(OBJS)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   action.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 20:56:12 by sehjung           #+#    #+#             */
-/*   Updated: 2022/10/03 20:10:49 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/10/03 20:31:22 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static void	end_game(int move, t_var *var)
 	printf("Congratulations!\n");
 	printf("Your Score : %dstep", move);
 	free_var(var);
-	system("leaks a.out");
 	exit(0);
 }
 
@@ -54,7 +53,7 @@ static void	apple_move(t_var *var, int x, int y, int *move)
 		(var->my_point.x * 64) + (xx * 64), (var->my_point.y * 64) + (yy * 64));
 	var->my_point.x += xx;
 	var->my_point.y += yy;
-	var->apple_check--;
+	var->mushroom_check--;
 	*move += 1;
 	printf("movement : %d\n", *move);
 }
@@ -68,7 +67,7 @@ static void	move_check(t_var *var, int x, int y)
 	else if (var->map[y][x] == 'C')
 		apple_move(var, x, y, &move);
 	else if (var->map[y][x] == 'E')
-		if (var->apple_check == 0)
+		if (var->mushroom_check == 0)
 			end_game(++move, var);
 }
 

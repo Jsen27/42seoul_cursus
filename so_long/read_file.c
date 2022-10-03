@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 19:25:10 by sehjung           #+#    #+#             */
-/*   Updated: 2022/10/03 15:55:52 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/10/03 20:30:37 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	map_check(t_var *var, size_t len)
 			if (var->map[i][j] == 'E')
 				var->exit_check++;
 			else if (var->map[i][j] == 'C')
-				var->apple_check++;
+				var->mushroom_check++;
 			else if (var->map[i][j] == 'P')
 			{
 				var->player_check++;
@@ -89,7 +89,7 @@ size_t	read_file(char *file, t_var *var)
 	}
 	fd = close(fd);
 	map_check(var, len);
-	if (var->apple_check <= 0 || var->exit_check != 1 || var->player_check != 1)
+	if (var->mushroom_check <= 0 || var->exit_check != 1 || var->player_check != 1)
 		print_error(3);
 	return (len);
 }

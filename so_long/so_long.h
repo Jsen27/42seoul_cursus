@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 20:07:21 by sehjung           #+#    #+#             */
-/*   Updated: 2022/10/03 20:11:34 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/10/03 20:30:37 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef struct s_var
 	void	*mushroom;
 	void	*exit;
 	char	**map;
-	int		apple_check;
+	int		mushroom_check;
 	int		exit_check;
 	int		player_check;
 	int		x;

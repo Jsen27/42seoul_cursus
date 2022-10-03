@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 19:17:58 by sehjung           #+#    #+#             */
-/*   Updated: 2022/10/03 20:08:52 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/10/03 20:30:37 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	main(int argc, char **argv)
 	var = malloc(sizeof(t_var));
 	if (!var)
 		print_error(1);
-	var->apple_check = 0;
+	var->mushroom_check = 0;
 	var->exit_check = 0;
 	var->player_check = 0;
 	len = read_file(argv[1], var);
