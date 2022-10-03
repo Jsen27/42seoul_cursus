@@ -6,31 +6,34 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 20:07:21 by sehjung           #+#    #+#             */
-/*   Updated: 2022/09/29 19:50:34 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/10/03 16:35:05 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "get_next_line/get_next_line.h"
-#include <fcntl.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <mlx.h>
+#ifndef SO_LONG_H
+# define SO_LONG_H
 
-# define KEY_ESC		53
-# define KEY_W			13
-# define KEY_A			0
-# define KEY_S			1
-# define KEY_D			2
+# include "libft/libft.h"
+# include "get_next_line/get_next_line.h"
+# include <fcntl.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <mlx.h>
+
+# define KEY_ESC					53
+# define KEY_W						13
+# define KEY_A						0
+# define KEY_S						1
+# define KEY_D						2
 # define X_EVENT_KEY_RELEASE		3
 
-typedef struct	s_point
+typedef struct s_point
 {
 	int	x;
 	int	y;
 }				t_point;
 
-typedef struct	s_var
+typedef struct s_var
 {
 	void	*mlx;
 	void	*win;
@@ -51,4 +54,7 @@ typedef struct	s_var
 size_t	read_file(char *file, t_var *var);
 void	put_image(t_var *var, size_t len);
 void	print_error(int error_num);
+void	free_var(t_var *var);
 int		move_action(int keycode, t_var *var);
+
+#endif

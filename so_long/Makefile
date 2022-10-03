@@ -1,5 +1,31 @@
+NAME = so_long
 
-all:
-	$(GETNEXTLINE)
-	arch -x86_64 gcc -L./mlx -lmlx -framework OpenGL -framework AppKit main.c put_image.c read_file.c action.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c libft/libft.a
-	./a.out
+CFLAGS = -Wall -Wextra -Werror
+MLX_FLAGS = -L./mlx -lmlx -framework OpenGL -framework AppKit
+
+LIBFT = make -C libft
+
+SRCS = 	action.c\
+		main.c\
+		put_image.c\
+		read_file.c\
+		get_next_line/get_next_line.c\
+		get_next_line/get_next_line_utils.c\
+
+OBJS = $(SRCS:.c=.o)
+
+all	:	$(NAME)
+
+$(NAME)	:	$(OBJS)
+			$(LIBFT)
+			$(CC) $(MLX_FLAGS) $(CFLAGS) -o $(NAME) $(OBJS) libft/libft.a
+
+clean	:
+			$(RM) $(OBJS)
+			make -C libft clean
+fclean	:	clean
+			$(RM) so_long libft/libft.a
+
+re	:	fclean all
+
+.PHONY	:	all clean fclean re

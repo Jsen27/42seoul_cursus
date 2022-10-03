@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 19:25:10 by sehjung           #+#    #+#             */
-/*   Updated: 2022/09/29 17:42:55 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/10/03 15:55:52 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	map_check(t_var *var, size_t len)
 		j = 0;
 		while (j < len)
 		{
-			if(var->map[i][j] == 'E')
+			if (var->map[i][j] == 'E')
 				var->exit_check++;
 			else if (var->map[i][j] == 'C')
 				var->apple_check++;
@@ -52,7 +52,7 @@ static void	str_check(t_var *var, char *str, size_t len, int line)
 		print_error(3);
 	if (line == 0 || line == 4)
 	{
-		while(str[i] && i < len)
+		while (str[i] && i < len)
 			if (str[i++] != '1')
 				print_error(3);
 	}
@@ -69,8 +69,8 @@ size_t	read_file(char *file, t_var *var)
 {
 	int		fd;
 	size_t	line;
-	char	*str;
 	size_t	len;
+	char	*str;
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
