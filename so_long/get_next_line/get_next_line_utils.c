@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 21:26:55 by sehjung           #+#    #+#             */
-/*   Updated: 2022/07/19 18:08:30 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/10/05 21:56:10 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	j = 0;
 	if (!s)
 		return (NULL);
-	temp = malloc(len + 1);
+	temp = calloc(len + 1 , sizeof(char));
 	if (!temp)
 		return (NULL);
 	while (s[i])
@@ -58,7 +58,7 @@ char	*ft_strdup(const char *s1)
 		len++;
 		i++;
 	}
-	temp = (char *)malloc(sizeof(char) * len + 1);
+	temp = calloc(len + 1, sizeof(char));
 	if (!temp)
 		return (0);
 	i = 0;
@@ -81,7 +81,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	j = 0;
 	if (!s1 || !s2)
 		return (NULL);
-	temp = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	temp = calloc(ft_strlen(s1) + ft_strlen(s2) + 1, sizeof(char));
 	if (!temp)
 		return (NULL);
 	while (s1[j])

@@ -29,3 +29,4 @@ fclean	:	clean
 re	:	fclean all
 
 .PHONY	:	all clean fclean re
+#cc -g -lmlx -framework OpenGL -framework AppKit -Wall -Wextra -Werror -o so_long action.c main.c put_image.c read_file.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c libft/libft.a

@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 19:17:58 by sehjung           #+#    #+#             */
-/*   Updated: 2022/10/05 18:47:55 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/10/05 22:04:25 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,19 +69,21 @@ int	main(int argc, char **argv)
 {
 	t_var	*var;
 	size_t	len;
+	size_t	height;
 
 	if (argc != 2)
 		print_error(0, NULL);
 	var = malloc(sizeof(t_var));
 	if (!var)
 		print_error(1, var);
+	height = get_height(argv[1]);
 	var->mushroom_check = 0;
 	var->exit_check = 0;
 	var->player_check = 0;
-	len = read_file(argv[1], var);
+	len = read_file(argv[1], var, height);
 	var->mlx = mlx_init();
-	var->win = mlx_new_window(var->mlx, len * 64, 64 * 5, "so_long");
-	put_image(var, len);
+	var->win = mlx_new_window(var->mlx, len * 64, 64 * height, "so_long");
+	put_image(var, len, height);
 	mlx_hook(var->win, X_EVENT_KEY_RELEASE, 0, &move_action, var);
 	mlx_hook(var->win, DESTROY, 0, &destory_game, var);
 	mlx_loop(var->mlx);

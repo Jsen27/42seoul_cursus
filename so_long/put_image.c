@@ -6,19 +6,19 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 14:44:31 by sehjung           #+#    #+#             */
-/*   Updated: 2022/10/03 20:26:37 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/10/05 21:27:42 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	make_map(t_var *var, size_t len)
+static void	make_map(t_var *var, size_t len, size_t height)
 {
 	size_t	i;
 	size_t	j;
 
 	i = 0;
-	while (i < 5)
+	while (i < height)
 	{
 		j = 0;
 		while (j < len)
@@ -41,7 +41,7 @@ void	make_map(t_var *var, size_t len)
 	}
 }
 
-void	put_image(t_var *var, size_t len)
+void	put_image(t_var *var, size_t len, size_t height)
 {
 	size_t	i;
 	size_t	j;
@@ -57,7 +57,7 @@ void	put_image(t_var *var, size_t len)
 			"./images/mushroom.xpm", &var->x, &var->y);
 	var->player = mlx_xpm_file_to_image(var->mlx,
 			"./images/player.xpm", &var->x, &var->y);
-	while (i < 5)
+	while (i < height)
 	{
 		j = -1;
 		while (++j < len)
@@ -65,5 +65,5 @@ void	put_image(t_var *var, size_t len)
 				var->win, var->glass, j * 64, i * 64);
 		i++;
 	}
-	make_map(var, len);
+	make_map(var, len, height);
 }

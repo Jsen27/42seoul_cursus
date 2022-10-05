@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 20:07:21 by sehjung           #+#    #+#             */
-/*   Updated: 2022/10/05 16:12:00 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/10/05 21:47:41 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,9 @@ typedef struct s_var
 	t_point	my_point;
 }				t_var;
 
-size_t	read_file(char *file, t_var *var);
-void	put_image(t_var *var, size_t len);
+size_t	get_height(char *file);
+size_t	read_file(char *file, t_var *var, size_t height);
+void	put_image(t_var *var, size_t len, size_t height);
 void	print_error(int error_num, t_var *var);
 void	free_var(t_var *var);
 int		move_action(int keycode, t_var *var);
