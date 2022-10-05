@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_file.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 19:25:10 by sehjung           #+#    #+#             */
-/*   Updated: 2022/10/03 20:30:37 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/10/03 21:17:44 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	map_check(t_var *var, size_t len)
 				var->my_point.y = i;
 			}
 			else if (var->map[i][j] != '0' && var->map[i][j] != '1')
-				print_error(3);
+				print_error(4, var);
 			j++;
 		}
 		i++;
@@ -47,20 +47,20 @@ static void	str_check(t_var *var, char *str, size_t len, int line)
 
 	i = 0;
 	if (line == 4 && len != ft_strlen(str))
-		print_error(3);
+		print_error(4, var);
 	if (line != 4 && len != ft_strlen(str) - 1)
-		print_error(3);
+		print_error(4, var);
 	if (line == 0 || line == 4)
 	{
 		while (str[i] && i < len)
 			if (str[i++] != '1')
-				print_error(3);
+				print_error(4, var);
 	}
 	else if (str[0] != '1' || str[len - 1] != '1')
-		print_error(3);
+		print_error(4, var);
 	var->map[line] = malloc(sizeof(char) * len);
 	if (!var->map[line])
-		print_error(1);
+		print_error(5, var);
 	ft_strlcpy(var->map[line], str, len + 1);
 	free(str);
 }
@@ -74,10 +74,10 @@ size_t	read_file(char *file, t_var *var)
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
-		print_error(2);
+		print_error(3, var);
 	var->map = malloc(sizeof(char *) * 5);
 	if (!var->map)
-		print_error(1);
+		print_error(2, var);
 	str = get_next_line(fd);
 	len = ft_strlen(str) - 1;
 	line = 0;
@@ -90,6 +90,6 @@ size_t	read_file(char *file, t_var *var)
 	fd = close(fd);
 	map_check(var, len);
 	if (var->mushroom_check <= 0 || var->exit_check != 1 || var->player_check != 1)
-		print_error(3);
+		print_error(4, var);
 	return (len);
 }

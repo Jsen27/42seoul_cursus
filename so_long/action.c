@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   action.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 20:56:12 by sehjung           #+#    #+#             */
-/*   Updated: 2022/10/03 20:31:22 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/10/03 21:11:50 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,6 @@ int	move_action(int keycode, t_var *var)
 	else if (keycode == KEY_W)
 		move_check(var, var->my_point.x, var->my_point.y - 1);
 	else if (keycode == KEY_ESC)
-		exit(1);
+		free_var(var);
 	return (0);
 }

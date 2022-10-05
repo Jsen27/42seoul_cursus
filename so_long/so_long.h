@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 20:07:21 by sehjung           #+#    #+#             */
-/*   Updated: 2022/10/03 20:30:37 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/10/03 21:15:56 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include "mlx/mlx.h"
 
 # define KEY_ESC					53
+# define DESTROY					17
 # define KEY_W						13
 # define KEY_A						0
 # define KEY_S						1
@@ -53,7 +54,7 @@ typedef struct s_var
 
 size_t	read_file(char *file, t_var *var);
 void	put_image(t_var *var, size_t len);
-void	print_error(int error_num);
+void	print_error(int error_num, t_var *var);
 void	free_var(t_var *var);
 int		move_action(int keycode, t_var *var);
 
