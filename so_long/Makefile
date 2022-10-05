@@ -1,7 +1,7 @@
 NAME = so_long
 
 CFLAGS = -Wall -Wextra -Werror
-MLX_FLAGS = -L./mlx -lmlx -framework OpenGL -framework AppKit
+MLX_FLAGS = -lmlx -framework OpenGL -framework AppKit
 
 LIBFT = make -C libft
 
@@ -18,7 +18,7 @@ all	:	$(NAME)
 
 $(NAME)	:	$(OBJS)
 			$(LIBFT)
-			$(CC) $(MLX_FLAGS) $(CFLAGS) -o $(NAME) $(OBJS) libft/libft.a
+			$(CC) -g $(MLX_FLAGS) $(CFLAGS) -o $(NAME) $(OBJS) libft/libft.a
 
 clean	:
 			$(RM) $(OBJS)

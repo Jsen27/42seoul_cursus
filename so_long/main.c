@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 19:17:58 by sehjung           #+#    #+#             */
-/*   Updated: 2022/10/03 21:21:38 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/10/05 18:47:55 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	free_var(t_var *var)
 		free(var->map[i++]);
 	free(var->map);
 	free(var);
-	exit(1);
+	exit(0);
 }
 
 void	print_error(int error_num, t_var *var)
@@ -56,7 +56,7 @@ void	print_error(int error_num, t_var *var)
 		free(var);
 	else if (error_num == 4 || error_num == 5)
 		map_error(var);
-	exit(1);
+	exit(-1);
 }
 
 int	destory_game(t_var *var)
