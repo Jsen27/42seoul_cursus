@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 19:25:10 by sehjung           #+#    #+#             */
-/*   Updated: 2022/10/06 16:22:57 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/10/06 20:53:07 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,9 @@ size_t	get_height(char *file)
 	while (str)
 	{
 		len++;
+		free(str);
 		str = get_next_line(fd);
 	}
-	free(str);
 	close(fd);
 	return (len);
 }
