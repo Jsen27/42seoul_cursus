@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 20:07:21 by sehjung           #+#    #+#             */
-/*   Updated: 2022/10/05 21:47:41 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/10/06 14:38:20 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include "get_next_line/get_next_line.h"
 # include <fcntl.h>
 # include <stdio.h>
-# include <stdlib.h>
 # include <mlx.h>
 
 # define KEY_ESC					53

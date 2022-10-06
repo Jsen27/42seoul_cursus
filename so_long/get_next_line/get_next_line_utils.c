@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 21:26:55 by sehjung           #+#    #+#             */
-/*   Updated: 2022/10/05 21:56:10 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/10/06 15:06:42 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	j = 0;
 	if (!s)
 		return (NULL);
-	temp = calloc(len + 1 , sizeof(char));
+	temp = ft_calloc(len + 1 , sizeof(char));
 	if (!temp)
 		return (NULL);
 	while (s[i])
@@ -58,7 +58,7 @@ char	*ft_strdup(const char *s1)
 		len++;
 		i++;
 	}
-	temp = calloc(len + 1, sizeof(char));
+	temp = ft_calloc(len + 1, sizeof(char));
 	if (!temp)
 		return (0);
 	i = 0;
@@ -81,7 +81,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	j = 0;
 	if (!s1 || !s2)
 		return (NULL);
-	temp = calloc(ft_strlen(s1) + ft_strlen(s2) + 1, sizeof(char));
+	temp = ft_calloc(ft_strlen(s1) + ft_strlen(s2) + 1, sizeof(char));
 	if (!temp)
 		return (NULL);
 	while (s1[j])

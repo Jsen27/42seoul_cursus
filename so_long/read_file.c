@@ -6,13 +6,13 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/23 19:25:10 by sehjung           #+#    #+#             */
-/*   Updated: 2022/10/05 22:20:21 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/10/06 16:22:57 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-static void	map_check(t_var *var, size_t len, size_t height)
+static void	map_init(t_var *var, size_t len, size_t height)
 {
 	size_t	i;
 	size_t	j;
@@ -41,7 +41,7 @@ static void	map_check(t_var *var, size_t len, size_t height)
 	}
 }
 
-static void	test(t_var *var, size_t len, int line, int height)
+static void	map_check(t_var *var, size_t len, int line, int height)
 {
 	size_t	i;
 
@@ -57,6 +57,8 @@ static void	test(t_var *var, size_t len, int line, int height)
 				print_error(4, var);
 	}
 	else if (var->map[line][0] != '1' || var->map[line][len - 1] != '1')
+		print_error(4, var);
+	if (len > 40 || height > 20)
 		print_error(4, var);
 }
 
@@ -75,6 +77,7 @@ size_t	get_height(char *file)
 		str = get_next_line(fd);
 	}
 	free(str);
+	close(fd);
 	return (len);
 }
 
@@ -96,9 +99,9 @@ size_t	read_file(char *file, t_var *var, size_t height)
 	len = ft_strlen(var->map[0]) - 1;
 	line = 0;
 	while (line < height)
-		test(var, len, line++, height);
-	fd = close(fd);
-	map_check(var, len, height);
+		map_check(var, len, line++, height);
+	close(fd);
+	map_init(var, len, height);
 	if (var->mushroom_check <= 0 || var->exit_check != 1
 		|| var->player_check != 1)
 		print_error(4, var);

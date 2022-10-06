@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 20:31:03 by sehjung           #+#    #+#             */
-/*   Updated: 2022/10/05 21:50:32 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/10/06 15:06:13 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ char	*get_next_line(int fd)
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	buf = malloc(sizeof(char) * BUFFER_SIZE + 1);
+	buf = ft_calloc(BUFFER_SIZE + 1, sizeof(char));
 	if (!buf)
 		print_error(1, NULL);
 	line = read_line(fd, buf, backup);

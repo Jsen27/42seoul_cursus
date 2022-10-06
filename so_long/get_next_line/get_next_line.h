@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 21:27:15 by sehjung           #+#    #+#             */
-/*   Updated: 2022/09/27 15:29:43 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/10/06 15:05:34 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # define BUFFER_SIZE 10
 # include <stdlib.h>
 # include <unistd.h>
+# include "../libft/libft.h"
 
 char	*get_next_line(int fd);
 char	*ft_strdup(const char *s1);
