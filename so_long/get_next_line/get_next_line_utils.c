@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 21:26:55 by sehjung           #+#    #+#             */
-/*   Updated: 2022/10/06 15:06:42 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/10/06 16:41:21 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 	j = 0;
 	if (!s)
 		return (NULL);
-	temp = ft_calloc(len + 1 , sizeof(char));
+	temp = ft_calloc(len + 1, sizeof(char));
 	if (!temp)
 		return (NULL);
 	while (s[i])
