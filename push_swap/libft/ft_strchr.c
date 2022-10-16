@@ -1,26 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/13 19:47:18 by sehjung           #+#    #+#             */
-/*   Updated: 2022/10/16 21:28:59 by sehjung          ###   ########.fr       */
+/*   Created: 2022/07/06 19:58:02 by sehjung           #+#    #+#             */
+/*   Updated: 2022/07/13 15:29:51 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+char	*ft_strchr(const char *s, int c)
 {
-	t_node	*a;
-	t_node	*b;
-	
-	a = malloc(sizeof(t_node));
-	b = malloc(sizeof(t_node));
-	if (!a || !b)
-		return (0);
-	node_init(a, argc, argv);
-	return (0);
+	int				i;
+	unsigned char	temp;
+
+	i = 0;
+	temp = (unsigned char) c;
+	while (s[i])
+	{
+		if (s[i] == temp)
+			return ((char *)s + i);
+		i++;
+	}
+	if (s[i] == temp)
+		return ((char *)s + i);
+	return (NULL);
 }

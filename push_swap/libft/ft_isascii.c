@@ -1,26 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isascii.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/13 19:47:18 by sehjung           #+#    #+#             */
-/*   Updated: 2022/10/16 21:28:59 by sehjung          ###   ########.fr       */
+/*   Created: 2022/07/06 16:29:42 by sehjung           #+#    #+#             */
+/*   Updated: 2022/07/11 14:50:34 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+int	ft_isascii(int c)
 {
-	t_node	*a;
-	t_node	*b;
-	
-	a = malloc(sizeof(t_node));
-	b = malloc(sizeof(t_node));
-	if (!a || !b)
+	if (c >= 0 && c <= 127)
+		return (1);
+	else
 		return (0);
-	node_init(a, argc, argv);
-	return (0);
 }

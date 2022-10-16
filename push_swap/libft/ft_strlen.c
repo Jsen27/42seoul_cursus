@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/13 19:47:18 by sehjung           #+#    #+#             */
-/*   Updated: 2022/10/16 21:28:59 by sehjung          ###   ########.fr       */
+/*   Created: 2022/07/06 16:53:28 by sehjung           #+#    #+#             */
+/*   Updated: 2022/07/12 17:33:04 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+size_t	ft_strlen(const char *s)
 {
-	t_node	*a;
-	t_node	*b;
-	
-	a = malloc(sizeof(t_node));
-	b = malloc(sizeof(t_node));
-	if (!a || !b)
-		return (0);
-	node_init(a, argc, argv);
-	return (0);
+	size_t	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
 }

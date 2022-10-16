@@ -1,26 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/13 19:47:18 by sehjung           #+#    #+#             */
-/*   Updated: 2022/10/16 21:28:59 by sehjung          ###   ########.fr       */
+/*   Created: 2022/07/08 21:08:11 by sehjung           #+#    #+#             */
+/*   Updated: 2022/07/13 17:20:42 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 {
-	t_node	*a;
-	t_node	*b;
-	
-	a = malloc(sizeof(t_node));
-	b = malloc(sizeof(t_node));
-	if (!a || !b)
-		return (0);
-	node_init(a, argc, argv);
-	return (0);
+	unsigned int	i;
+
+	if (!s || !f)
+		return ;
+	i = 0;
+	while (s[i])
+	{
+		f(i, &s[i]);
+		i++;
+	}
 }

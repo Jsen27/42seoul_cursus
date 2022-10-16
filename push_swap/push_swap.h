@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/13 19:47:18 by sehjung           #+#    #+#             */
-/*   Updated: 2022/10/16 21:28:59 by sehjung          ###   ########.fr       */
+/*   Created: 2022/10/16 20:59:10 by sehjung           #+#    #+#             */
+/*   Updated: 2022/10/16 21:28:33 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include "libft/libft.h"
 
-int	main(int argc, char **argv)
+typedef struct s_number t_number;
+
+typedef struct s_number
 {
-	t_node	*a;
-	t_node	*b;
-	
-	a = malloc(sizeof(t_node));
-	b = malloc(sizeof(t_node));
-	if (!a || !b)
-		return (0);
-	node_init(a, argc, argv);
-	return (0);
-}
+	int			val;
+	t_number	*prev;
+	t_number	*next;
+}				t_number;
+
+typedef struct s_node
+{
+	int			size;
+	t_number	*top;
+	t_number	*bottom;
+}				t_node;
+
+void	node_push(t_node *lst, int val);
+void	node_pop(t_node *lst);
+void	node_init(t_node *lst, int argc, char **argv);

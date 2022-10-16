@@ -1,26 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/13 19:47:18 by sehjung           #+#    #+#             */
-/*   Updated: 2022/10/16 21:28:59 by sehjung          ###   ########.fr       */
+/*   Created: 2022/07/08 16:13:20 by sehjung           #+#    #+#             */
+/*   Updated: 2022/07/15 20:04:50 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+char	*ft_strdup(const char *s1)
 {
-	t_node	*a;
-	t_node	*b;
-	
-	a = malloc(sizeof(t_node));
-	b = malloc(sizeof(t_node));
-	if (!a || !b)
+	char	*temp;
+	int		len;
+	int		i;
+
+	len = 0;
+	i = 0;
+	while (s1[i])
+	{
+		len++;
+		i++;
+	}
+	temp = (char *)malloc(sizeof(char) * len + 1);
+	if (!temp)
 		return (0);
-	node_init(a, argc, argv);
-	return (0);
+	i = 0;
+	while (i < len)
+	{
+		temp[i] = s1[i];
+		i++;
+	}
+	temp[i] = 0;
+	return (temp);
 }
