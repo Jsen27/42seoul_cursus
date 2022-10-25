@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 19:47:18 by sehjung           #+#    #+#             */
-/*   Updated: 2022/10/21 16:51:05 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/10/25 19:24:20 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,7 @@ int	main(int argc, char **argv)
 		return (0);
 	node_init(a, b, argc, argv);
 	node_check(a);
-	
-	
-	temp = a->bottom;
-	while (temp)
-	{
-		printf("%d ", temp->val);
-		temp = temp->next;
-	}
-	printf("\n");
+	stack_sort(a, b);
+
 	return (0);
 }

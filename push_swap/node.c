@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   node.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 21:28:01 by sehjung           #+#    #+#             */
-/*   Updated: 2022/10/21 16:24:12 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/10/25 21:33:16 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ void	node_push(t_node *lst, int val)
 		return ;
 	}
 	temp = lst->bottom;
-	while (temp->next != NULL)
+	while (temp)
 		temp = temp->next;
-	temp->next = malloc(sizeof(t_number));
-	temp->next->val = val;
-	temp->next->next = NULL;
+	temp = malloc(sizeof(t_number));
+	temp->val = val;
+	temp->next = NULL;
 	temp->prev = lst->top;
-	lst->top = temp->next;
+	lst->top = temp;
 	lst->size++;
 }
 
@@ -41,6 +41,8 @@ void	node_pop(t_node *lst)
 {
 	t_number	*temp;
 
+	if (lst->top->prev == NULL)
+		return ;
 	temp = lst->top;
 	lst->top->prev->next = NULL;
 	lst->top = lst->top->prev;

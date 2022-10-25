@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 15:53:32 by sehjung           #+#    #+#             */
-/*   Updated: 2022/10/20 20:00:07 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/10/25 20:34:50 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	re_rotate(t_node *lst)
 	t_number	*ttemp;
 	t_number	*btemp;
 
+	if (lst->top == lst->bottom)
+		return ;
 	ttemp = lst->bottom;
 	btemp = lst->bottom->next;
 	lst->bottom->prev = lst->top;
@@ -32,6 +34,8 @@ void	rotate(t_node *lst)
 	t_number	*ttemp;
 	t_number	*btemp;
 
+	if (lst->top->prev == NULL)
+		return ;
 	ttemp = lst->top->prev;
 	btemp = lst->top;
 	lst->top->next = lst->bottom;
@@ -46,6 +50,8 @@ void	push(t_node *to, t_node *from)
 {
 	int	val;
 
+	if (to->top == NULL)
+		return ;
 	val = to->top->val;
 	node_pop(to);
 	node_push(from, val);
@@ -72,6 +78,8 @@ void	swap(t_node *lst)
 	int	up;
 	int	down;
 
+	if (lst->top->prev == NULL)
+		return ;
 	up = lst->top->val;
 	down = lst->top->prev->val;
 	node_pop(lst);

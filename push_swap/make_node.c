@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   make_node.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 16:23:37 by sehjung           #+#    #+#             */
-/*   Updated: 2022/10/21 17:00:00 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/10/25 16:42:27 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
+#include <stdio.h>
 static void	arr_check(int *arr, int size)
 {
 	int	i;
@@ -55,6 +55,7 @@ void	node_check(t_node *lst)
 	{
 		arr[i] = temp->val;
 		temp = temp->next;
+		i++;
 	}
 	arr_check(arr, lst->size);
 }
