@@ -6,11 +6,36 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/15 20:47:27 by sehjung           #+#    #+#             */
-/*   Updated: 2022/08/15 20:47:29 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/10/21 16:47:16 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include "../push_swap.h"
+
+static void	checkdiff(char *str)
+{
+	size_t	i;
+	int		cnt;
+
+	i = 0;
+	cnt = 0;
+	while (str[i])
+	{
+		if (str[i] == '-' || str[i] == '+')
+		{
+			i++;
+			cnt++;
+			continue;
+		}
+		else if (str[i] >= '0' && str[i] <= '9')
+		{
+			i++;
+			continue;
+		}
+		print_error(1);
+	}
+}
 
 static size_t	checkblank(char *str)
 {
@@ -31,6 +56,7 @@ static size_t	checkblank(char *str)
 		}
 		break ;
 	}
+	checkdiff(&str[i]);
 	return (i);
 }
 
@@ -51,10 +77,12 @@ int	ft_atoi(const char *str)
 	{
 		ans = (ans * 10) + (str[i] - '0');
 		if (ans > 2147483647 && pm == 1)
-			return (-1);
+			print_error(1);
 		if (ans > 2147483648 && pm == -1)
-			return (0);
+			print_error(1);
 		i++;
 	}
+	if (str[i] != '\0')
+		print_error(1);
 	return (ans * pm);
 }

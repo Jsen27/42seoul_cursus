@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 20:59:10 by sehjung           #+#    #+#             */
-/*   Updated: 2022/10/20 19:59:30 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/10/21 16:46:14 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,3 +37,5 @@ void	swap(t_node *lst);
 void	push(t_node *to, t_node *from);
 void	rotate(t_node *lst);
 void	re_rotate(t_node *lst);
+int		print_error(int type);
+void	node_check(t_node *lst);
