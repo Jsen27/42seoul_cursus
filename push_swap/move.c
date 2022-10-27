@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 15:53:32 by sehjung           #+#    #+#             */
-/*   Updated: 2022/10/25 20:34:50 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/10/25 22:17:10 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,46 @@
 
 void	re_rotate(t_node *lst)
 {
-	t_number	*ttemp;
-	t_number	*btemp;
+	int val;
 
-	if (lst->top == lst->bottom)
-		return ;
-	ttemp = lst->bottom;
-	btemp = lst->bottom->next;
-	lst->bottom->prev = lst->top;
-	lst->top->next = lst->bottom;
-	lst->bottom->next->prev = NULL;
-	lst->bottom->next = NULL;
-	lst->top = ttemp;
-	lst->bottom = btemp;
+	val = lst->bottom->val;
+	node_popback(lst);
+	node_push(lst, val);
+	// t_number	*ttemp;
+	// t_number	*btemp;
+
+	// if (lst->top == lst->bottom)
+	// 	return ;
+	// ttemp = lst->bottom;
+	// btemp = lst->bottom->next;
+	// lst->bottom->prev = lst->top;
+	// lst->top->next = lst->bottom;
+	// lst->bottom->next->prev = NULL;
+	// lst->bottom->next = NULL;
+	// lst->top = ttemp;
+	// lst->bottom = btemp;
 }
 
 void	rotate(t_node *lst)
 {
-	t_number	*ttemp;
-	t_number	*btemp;
+	int	val;
 
-	if (lst->top->prev == NULL)
-		return ;
-	ttemp = lst->top->prev;
-	btemp = lst->top;
-	lst->top->next = lst->bottom;
-	lst->bottom->prev = lst->top;
-	lst->top->prev->next = NULL;
-	lst->top->prev = NULL;
-	lst->top = ttemp;
-	lst->bottom = btemp;
+	val = lst->top->val;
+	node_pop(lst);
+	node_pushback(lst, val);
+	// t_number	*ttemp;
+	// t_number	*btemp;
+	
+	// if (lst->top->prev == NULL)
+	// 	return ;
+	// ttemp = lst->top->prev;
+	// btemp = lst->top;
+	// lst->top->next = lst->bottom;
+	// lst->bottom->prev = lst->top;
+	// lst->top->prev->next = NULL;
+	// lst->top->prev = NULL;
+	// lst->top = ttemp;
+	// lst->bottom = btemp;
 }
 
 void	push(t_node *to, t_node *from)

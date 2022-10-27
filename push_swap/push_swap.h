@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 20:59:10 by sehjung           #+#    #+#             */
-/*   Updated: 2022/10/25 20:28:13 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/10/25 22:16:36 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,3 +42,5 @@ void	node_check(t_node *lst);
 void	find_pivot(t_node *lst, int *pivot_small, int *pivot_big);
 void	command_sort(t_node *a, t_node *b, int com);
 void	stack_sort(t_node *a, t_node *b);
+void	node_pushback(t_node *lst, int val);
+void	node_popback(t_node *lst);
