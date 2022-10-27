@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pivot.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 17:47:14 by sehjung           #+#    #+#             */
-/*   Updated: 2022/10/25 20:28:13 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/10/27 16:19:09 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ void	find_pivot(t_node *lst, int *pivot_small, int *pivot_big)
 	quick_sort(arr, 0, lst->size - 1);
 	*pivot_small = arr[(lst->size - 1) / 3];
 	*pivot_big = arr[((lst->size - 1) * 2) / 3];
-	i = 0;
-	printf("small = %d, big = %d size = %d\n", *pivot_small, *pivot_big, lst->size);
-	while (i < lst->size)
-		printf("%d\n", arr[i++]);
+	// i = 0;
+	// printf("small = %d, big = %d size = %d\n", *pivot_small, *pivot_big, lst->size);
+	// while (i < lst->size)
+	// 	printf("%d\n", arr[i++]);
 }

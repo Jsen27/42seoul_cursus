@@ -3,52 +3,120 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 18:49:02 by sehjung           #+#    #+#             */
-/*   Updated: 2022/10/27 13:37:17 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/10/27 17:16:40 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include<stdio.h>
 
-void	a_to_b(t_node *a, t_node *b, int pivot_small, int pivot_big)
+void	b_to_a(t_node *a, t_node *b, int pivot_small, int pivot_big)
 {
-	int	size;
+	int size;
+	int ra = 0, rb = 0;
 
-	size = a->size;
+	size = b->size;
 	while (size-- >= 0)
 	{
-		if (a->top->val < pivot_big)
+		if (b->top->val < pivot_small)
 		{
-			command_sort(a, b, 0);
-			if (b->size > 1)
-				if (b->top->val < pivot_small)
-					command_sort(a, b, 6);
+			rotate(b);
+			rb++;
 		}
 		else
-			command_sort(a, b, 5);
+		{
+			push(b, a);
+			if (a->size > 1)
+			{
+				if (a->top->val < pivot_big)
+					rotate(a);
+					ra++;
+			}
+		}
 	}
-	// if (a->top->val < pivot_big)
-	// {
-	// 	command_sort(a, b, 0);
-	// 	if (b->top->val < pivot_small)
-	// 		command_sort(a, b, 6);
-	// }
-	// else
-	// 	command_sort(a, b, 5);
+	while (ra || rb)
+	{
+		if (ra && rb)
+		{
+			re_rotate(a);
+			re_rotate(b);
+			ra--;
+			rb--;
+		}
+		else if (ra)
+		{
+			rotate(a);
+			ra--;
+		}
+		else if (rb)
+		{
+			rotate(b);
+			rb--;
+		}
+	}
 }
 
-#include<stdio.h>
+void	a_to_b(t_node *a, t_node *b, int r)
+{
+	int	size;
+	int ra = 0, rb = 0;
+	int pivot_small, pivot_big;
+
+	size = r;
+	find_pivot(a, &pivot_small, &pivot_big);
+	while (size-- >= 0)
+	{
+		if (a->top->val >= pivot_big)
+		{
+			if (a->size > 1)
+			{
+				rotate(a);
+				ra++;
+			}
+		}
+		else
+		{
+			push(a, b);
+			if (b->top->val >= pivot_small)
+				if (b->size > 1)
+				{
+					rotate(b);
+					rb++;
+				}
+		}
+	}
+	while (ra || rb)
+	{
+		if (ra && rb)
+		{
+			re_rotate(a);
+			re_rotate(b);
+			ra--;
+			rb--;
+		}
+		else if (ra)
+		{
+			rotate(a);
+			ra--;
+		}
+		else if (rb)
+		{
+			rotate(b);
+			rb--;
+		}
+	}
+
+}
+
 
 void	stack_sort(t_node *a, t_node *b)
 {
-	int	pivot_small;
-	int	pivot_big;
 	t_number *temp;
-	
-	find_pivot(a, &pivot_small, &pivot_big);
-	a_to_b(a, b, pivot_small, pivot_big);
+
+	a_to_b(a, b, a->size);
 	
 	printf("----------a--------\n");
 	temp = a->bottom;

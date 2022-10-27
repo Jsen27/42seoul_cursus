@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 20:59:10 by sehjung           #+#    #+#             */
-/*   Updated: 2022/10/25 22:16:36 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/10/27 17:13:42 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,3 +44,4 @@ void	command_sort(t_node *a, t_node *b, int com);
 void	stack_sort(t_node *a, t_node *b);
 void	node_pushback(t_node *lst, int val);
 void	node_popback(t_node *lst);
+void	a_to_b(t_node *a, t_node *b, int r);
