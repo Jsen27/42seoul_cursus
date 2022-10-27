@@ -3,60 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   sort.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 18:49:02 by sehjung           #+#    #+#             */
-/*   Updated: 2022/10/27 17:16:40 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/10/27 17:53:30 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include<stdio.h>
 
-void	b_to_a(t_node *a, t_node *b, int pivot_small, int pivot_big)
+void	push_retate(t_node *to, t_node *from, t_val *val, int r)
 {
-	int size;
-	int ra = 0, rb = 0;
-
-	size = b->size;
-	while (size-- >= 0)
-	{
-		if (b->top->val < pivot_small)
+	// r 몇개이상 ? 
+	if (to->top->val >= val->big)
+		if (to->size > 1)
 		{
-			rotate(b);
-			rb++;
+			rotate(to);
+			val->ra++;
 		}
-		else
-		{
-			push(b, a);
-			if (a->size > 1)
+	else
+	{
+		push(to, from);
+		val->pa++;
+		if (from->top->val >= val->small)
+			if (from->size > 1)
 			{
-				if (a->top->val < pivot_big)
-					rotate(a);
-					ra++;
+				rotate(from);
+				val->rb++;
 			}
-		}
 	}
-	while (ra || rb)
-	{
-		if (ra && rb)
-		{
-			re_rotate(a);
-			re_rotate(b);
-			ra--;
-			rb--;
-		}
-		else if (ra)
-		{
-			rotate(a);
-			ra--;
-		}
-		else if (rb)
-		{
-			rotate(b);
-			rb--;
-		}
-	}
+}
+
+void	val_init(t_node *lst, t_val *val)
+{
+	find_pivot(lst, val->small, val->big);
+	val->ra = 0;
+	val->pa = 0;
+	val->pb = 0;
+	val->rb = 0;
 }
 
 void	a_to_b(t_node *a, t_node *b, int r)
@@ -64,51 +49,36 @@ void	a_to_b(t_node *a, t_node *b, int r)
 	int	size;
 	int ra = 0, rb = 0;
 	int pivot_small, pivot_big;
+	t_val	val;
 
 	size = r;
-	find_pivot(a, &pivot_small, &pivot_big);
+	val_init(a, &val);
 	while (size-- >= 0)
+		push_retate(a, b, &val, r);
+		
+	while (val.ra || val.rb)
 	{
-		if (a->top->val >= pivot_big)
-		{
-			if (a->size > 1)
-			{
-				rotate(a);
-				ra++;
-			}
-		}
-		else
-		{
-			push(a, b);
-			if (b->top->val >= pivot_small)
-				if (b->size > 1)
-				{
-					rotate(b);
-					rb++;
-				}
-		}
-	}
-	while (ra || rb)
-	{
-		if (ra && rb)
+		if (val.ra && val.rb)
 		{
 			re_rotate(a);
 			re_rotate(b);
-			ra--;
-			rb--;
+			val.ra--;
+			val.rb--;
 		}
-		else if (ra)
+		else if (val.ra)
 		{
 			rotate(a);
-			ra--;
+			val.ra--;
 		}
-		else if (rb)
+		else if (val.rb)
 		{
 			rotate(b);
-			rb--;
+			val.rb--;
 		}
 	}
-
+	a_to_b (a, b, val.ra);
+	//b rb
+	//b pb - rb
 }
 
 

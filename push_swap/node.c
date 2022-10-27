@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   node.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 21:28:01 by sehjung           #+#    #+#             */
-/*   Updated: 2022/10/25 22:23:22 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/10/27 17:45:41 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,5 @@ void	node_pop(t_node *lst)
 	lst->size--;
 	if (lst->size != 0)
 		lst->top->next = NULL;
-	// temp = lst->top;
-	// lst->top->prev->next = NULL;
-	// lst->top = lst->top->prev;
-	// lst->size--;
 	free(temp);
 }
