@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 20:59:10 by sehjung           #+#    #+#             */
-/*   Updated: 2022/10/27 17:46:31 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/10/27 21:36:17 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,3 +54,13 @@ void	stack_sort(t_node *a, t_node *b);
 void	node_pushback(t_node *lst, int val);
 void	node_popback(t_node *lst);
 void	a_to_b(t_node *a, t_node *b, int r);
+void	val_init(t_node *lst, t_val *val);
+void	b_to_a(t_node *a, t_node *b, int r);
+void	three_a(t_node *a);
+void	three_b(t_node *a, t_node *b);
+int		find_max(t_node *lst);
+int		find_min(t_node *lst);
+int	find_mid_five(t_node *lst);
+void	two_all(t_node *a, t_node *b, int type);
+void	five_all(t_node *a, t_node *b, int r, int type);
+void	under_three(t_node *a, t_node *b, int r, int type);

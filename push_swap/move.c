@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 15:53:32 by sehjung           #+#    #+#             */
-/*   Updated: 2022/10/27 17:46:16 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/10/27 21:47:20 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void	re_rotate(t_node *lst)
 {
 	int val;
 
+	if (lst->bottom == NULL)
+		return ;
 	val = lst->bottom->val;
 	node_popback(lst);
 	node_push(lst, val);
@@ -38,6 +40,8 @@ void	rotate(t_node *lst)
 {
 	int	val;
 
+	if (lst->top == NULL)
+		return ;
 	val = lst->top->val;
 	node_pop(lst);
 	node_pushback(lst, val);

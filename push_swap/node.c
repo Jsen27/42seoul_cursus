@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   node.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 21:28:01 by sehjung           #+#    #+#             */
-/*   Updated: 2022/10/27 17:45:41 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/10/27 21:30:05 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void	node_popback(t_node *lst)
 	temp = lst->bottom;
 	lst->bottom = lst->bottom->next;
 	lst->bottom->prev = NULL;
+	lst->size--;
 	free(temp);
 }
 
