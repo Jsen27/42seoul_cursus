@@ -1,35 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   move_stack.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/06 22:12:38 by sehjung           #+#    #+#             */
-/*   Updated: 2022/11/09 16:23:08 by sehjung          ###   ########.fr       */
+/*   Created: 2022/11/09 16:32:08 by sehjung           #+#    #+#             */
+/*   Updated: 2022/11/09 16:33:58 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
-void	error_exit(long int *arr)
+void	mov_up(int *stack)
 {
-	if (arr)
-		free(arr);
-	write (2, "Error\n", 6);
-	exit(1);
+	int	i;
+
+	i = 0;
+	while (stack[i])
+	{
+		stack[i] = stack[i + 1];
+		i++;
+	}
 }
 
-int	main(int argc, char **argv)
+void	mov_down(int *stack)
 {
-	int			numbers;
-	int			*stack_a;
-	int			*stack_b;
-	long int	*long_arr;
+	int	i;
 
-	numbers = check_args(argc, argv);
-	long_arr = make_array(argv, numbers);
-	stack_a = make_stack(long_arr, numbers);
-	stack_b = calloc(numbers + 2, sizeof(int));
+	i = 0;
+	while (stack[i])
+		i++;
+	while (i > 0)
+	{
+		stack[i] = stack[i - 1];
+		i--;
+	}
 }

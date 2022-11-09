@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 14:40:15 by sehjung           #+#    #+#             */
-/*   Updated: 2022/11/09 14:40:37 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/11/09 16:14:09 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	check_overlap(long int *arr, int numbers)
 	}
 }
 
-static int str_to_longarr_minus(long int *arr, char *str, int i, int *j)
+static int	str_to_longarr_minus(long int *arr, char *str, int i, int *j)
 {
 	int	len;
 
@@ -93,18 +93,22 @@ static void	make_longarr(long int *arr, char *str, int *j)
 	}
 }
 
-long int	*make_array(char **argv,int numbers)
+long int	*make_array(char **argv, int numbers)
 {
 	long int	*arr;
 	int			i;
 	int			j;
 
-	i = 0;
+	i = 1;
 	j = 0;
 	arr = ft_calloc(numbers + 1, sizeof(long int));
-	while (argv[i++])
+	while (argv[i])
+	{
 		make_longarr(arr, argv[i], &j);
+		i++;
+	}
 	i = 0;
-	while (i < numbers)
-	check_overlap(arr, numbers);
+	while (i++ < numbers)
+		check_overlap(arr, numbers);
+	return (arr);
 }

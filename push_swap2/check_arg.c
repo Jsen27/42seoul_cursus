@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 14:31:00 by sehjung           #+#    #+#             */
-/*   Updated: 2022/11/09 14:37:41 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/11/09 16:18:31 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	check_string(char *str)
 {
 	int	i;
-	int numbers;
+	int	numbers;
 
 	i = 0;
 	numbers = 0;
@@ -23,14 +23,14 @@ static int	check_string(char *str)
 		i++;
 	while (str[i])
 	{
-		if ((str[i] < '0' || str[i] > '9') &&
-			(str[i] != ' ' && str[i] != '-'))
+		if ((str[i] < '0' || str[i] > '9')
+			&& (str[i] != ' ' && str[i] != '-'))
 			error_exit(NULL);
-		else if (str[i] == '-' && (str[i - 1] != ' '&& i
-			&& (str[i + 1] < '0' || str[i + 1] > '9')))
+		else if (str[i] == '-' && (str[i - 1] != ' ' && i
+				&& (str[i + 1] < '0' || str[i + 1] > '9')))
 			error_exit(NULL);
-		else if (str[i] == ' ' &&
-			(str[i + 1] != ' ' && str[i + 1]))
+		else if (str[i] == ' '
+			&& (str[i + 1] != ' ' && str[i + 1]))
 			numbers++;
 		i++;
 	}
@@ -40,9 +40,9 @@ static int	check_string(char *str)
 int	check_args(int argc, char **argv)
 {
 	int	i;
-	int numbers;
+	int	numbers;
 
-	i = 0;
+	i = 1;
 	numbers = 0;
 	if (argc < 2)
 		error_exit(NULL);
@@ -50,6 +50,7 @@ int	check_args(int argc, char **argv)
 	{
 		numbers += check_string(argv[i]);
 		numbers++;
+		i++;
 	}
 	return (numbers);
 }
