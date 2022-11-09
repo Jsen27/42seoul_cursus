@@ -1,41 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   under_three.c                                      :+:      :+:    :+:   */
+/*   sort_radix.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/27 19:39:36 by sehjung           #+#    #+#             */
-/*   Updated: 2022/10/27 21:11:22 by sehjung          ###   ########.fr       */
+/*   Created: 2022/11/09 21:40:33 by sehjung           #+#    #+#             */
+/*   Updated: 2022/11/09 21:59:11 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	two_all(t_node *a, t_node *b, int type)
+void	sort_radix(int *stack_a, int *stack_b, int numbers)
 {
-	if (type == 1)
-		swap(a);
-	else
-	{
-		if (b->top->val < b->top->prev->val)
-			swap(b);
-		push(b, a);
-		push(b, a);
-	}
-}
+	int	i;
+	int	j;
+	int	temp;
 
-void	under_three(t_node *a, t_node *b, int r, int type)
-{
-	if (r == 3)
+	i = 0;
+	while (check_sort(stack_a))
 	{
-		if (type == 1)
-			three_a(a);
-		else if (type == 2)
-			three_b(a, b);
+		j = 0;
+		while (j < numbers)
+		{
+			temp = stack_a[0];
+			if ((temp >> i) & 1)
+				ft_rotate(stack_a, 'a');
+			else
+				ft_push(stack_a, stack_b, 'b');
+			j++;
+		}
+		while (stack_b[0])
+			ft_push(stack_b, stack_a, 'a');
+		i++;
 	}
-	else if (r == 2)
-		two_all(a, b, type);
-	else if (r == 1 && type == 2)
-		push(b, a);
 }

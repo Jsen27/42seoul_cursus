@@ -5,62 +5,34 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/16 20:59:10 by sehjung           #+#    #+#             */
-/*   Updated: 2022/10/27 21:36:17 by sehjung          ###   ########.fr       */
+/*   Created: 2022/11/06 22:12:50 by sehjung           #+#    #+#             */
+/*   Updated: 2022/11/09 21:58:52 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include "libft/libft.h"
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
-typedef struct s_number t_number;
+# include <unistd.h>
+# include <stdlib.h>
+# include "libft/libft.h"
 
-typedef struct s_number
-{
-	int			val;
-	t_number	*prev;
-	t_number	*next;
-}				t_number;
+void		error_exit(long int *arr);
+void		mov_down(int *stack);
+void		mov_up(int *stack);
+void		ft_push(int *to, int *from, char type);
+void		ft_swap(int *stack, char type);
+void		ft_rotate(int *stack, char type);
+void		ft_re_rotate(int *stack, char type);
+int			*make_stack(long int *arr, int numbers);
+int			check_args(int argc, char **argv);
+void		sort_algorithm(int *stack_a, int *stack_b, int numbers);
+void		sort_min(int *stack_a, int *stack_b, int max);
+void		sort_reverse(int *stack_a, int *stack_b);
+void		sort_ten(int *stack_a, int *stack_b);
+void		sort_radix(int *stack_a, int *stack_b, int numbers);
+long int	*make_array(char **argv, int numbers);
+int			check_sort(int *stack_a);
+int			check_three(int *stack);
 
-typedef struct s_node
-{
-	int			size;
-	t_number	*top;
-	t_number	*bottom;
-}				t_node;
-
-typedef struct s_val
-{
-	int	ra;
-	int	pa;
-	int	pb;
-	int	rb;
-	int	small;
-	int	big;
-}				t_val;
-
-void	node_push(t_node *lst, int val);
-void	node_pop(t_node *lst);
-void	node_init(t_node *lst, t_node *b, int argc, char **argv);
-void	swap(t_node *lst);
-void	push(t_node *to, t_node *from);
-void	rotate(t_node *lst);
-void	re_rotate(t_node *lst);
-int		print_error(int type);
-void	node_check(t_node *lst);
-void	find_pivot(t_node *lst, int *pivot_small, int *pivot_big);
-void	stack_sort(t_node *a, t_node *b);
-void	node_pushback(t_node *lst, int val);
-void	node_popback(t_node *lst);
-void	a_to_b(t_node *a, t_node *b, int r);
-void	val_init(t_node *lst, t_val *val);
-void	b_to_a(t_node *a, t_node *b, int r);
-void	three_a(t_node *a);
-void	three_b(t_node *a, t_node *b);
-int		find_max(t_node *lst);
-int		find_min(t_node *lst);
-int	find_mid_five(t_node *lst);
-void	two_all(t_node *a, t_node *b, int type);
-void	five_all(t_node *a, t_node *b, int r, int type);
-void	under_three(t_node *a, t_node *b, int r, int type);
+#endif
