@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:54:41 by sehjung           #+#    #+#             */
-/*   Updated: 2022/11/09 17:01:09 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/11/09 18:04:23 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,9 @@ void	sort_algorithm(int *stack_a, int *stack_b, int numbers)
 		return ;
 	else if (numbers == 2)
 		ft_rotate(stack_a, 'a');
+	else if (numbers <= 5)
+		{
+			
+		}
 
 }
