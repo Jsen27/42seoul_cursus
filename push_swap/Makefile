@@ -1,6 +1,6 @@
 NAME =	push_swap
 
-CFLAGS =	-Wall -Wextra -Werror
+CFLAGS =	-Wall -Wextra -Werror -g
 
 LIBFT =	make -C libft
 
@@ -20,7 +20,7 @@ all	:	$(NAME)
 
 $(NAME)	:	$(OBJS)
 			$(LIBFT)
-			$(CC) $(CFLAGS) -o $(NAME) $(OBJS) libft/libft.a -g
+			$(CC) $(CFLAGS) -o $(NAME) $(OBJS) libft/libft.a
 
 clean	:
 			$(RM) $(OBJS)

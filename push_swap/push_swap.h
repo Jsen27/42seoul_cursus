@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 22:12:50 by sehjung           #+#    #+#             */
-/*   Updated: 2022/11/09 21:58:52 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/11/10 16:54:15 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void		sort_reverse(int *stack_a, int *stack_b);
 void		sort_ten(int *stack_a, int *stack_b);
 void		sort_radix(int *stack_a, int *stack_b, int numbers);
 long int	*make_array(char **argv, int numbers);
-int			check_sort(int *stack_a);
+int			check_sort(int *stack_a, int numbers);
 int			check_three(int *stack);
 
 #endif

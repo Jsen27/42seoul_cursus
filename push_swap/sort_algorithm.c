@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:54:41 by sehjung           #+#    #+#             */
-/*   Updated: 2022/11/09 21:58:48 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/11/10 16:54:40 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,12 @@ int	check_three(int *stack)
 		return (0);
 }
 
-int	check_sort(int *stack)
+int	check_sort(int *stack, int numbers)
 {
 	int	i;
 
 	i = 0;
-	while (stack[i])
+	while (i < numbers - 1)
 	{
 		if (stack[i] > stack[i + 1])
 			return (1);
@@ -54,7 +54,7 @@ int	check_sort(int *stack)
 
 void	sort_algorithm(int *stack_a, int *stack_b, int numbers)
 {
-	if (!check_sort(stack_a))
+	if (!check_sort(stack_a, numbers))
 		return ;
 	else if (numbers <= 10)
 	{

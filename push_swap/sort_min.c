@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 20:41:19 by sehjung           #+#    #+#             */
-/*   Updated: 2022/11/09 22:06:53 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/11/10 16:54:56 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	sort_min(int *stack_a, int *stack_b, int max)
 		else
 			ft_rotate(stack_a, 'a');
 	}
-	if (check_sort(stack_a))
+	if (check_sort(stack_a, max))
 		sort_three(stack_a);
 	if (stack_b[0] < stack_b[1])
 		ft_rotate(stack_b, 'b');

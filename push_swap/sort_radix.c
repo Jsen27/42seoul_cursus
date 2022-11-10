@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 21:40:33 by sehjung           #+#    #+#             */
-/*   Updated: 2022/11/09 21:59:11 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/11/10 16:54:07 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	sort_radix(int *stack_a, int *stack_b, int numbers)
 	int	temp;
 
 	i = 0;
-	while (check_sort(stack_a))
+	while (check_sort(stack_a, numbers))
 	{
 		j = 0;
 		while (j < numbers)
