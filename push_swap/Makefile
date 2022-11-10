@@ -20,7 +20,7 @@ all	:	$(NAME)
 
 $(NAME)	:	$(OBJS)
 			$(LIBFT)
-			$(CC) $(CFLAGS) -o $(NAME) $(OBJS) libft/libft.a
+			$(CC) $(CFLAGS) -o $(NAME) $(OBJS) libft/libft.a -g
 
 clean	:
 			$(RM) $(OBJS)

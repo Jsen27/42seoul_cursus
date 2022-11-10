@@ -63,7 +63,7 @@ endif
 all:		$(NAME)
 
 .c.o:
-		${CC} ${CFLAGS} -g -c $< -o ${<:.c=.o}
+		${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
 
 $(NAME):	$(OBJ_FILES)
 				ar crs $(NAME) $(OBJ_FILES)
