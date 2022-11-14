@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 14:40:15 by sehjung           #+#    #+#             */
-/*   Updated: 2022/11/14 19:31:50 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/11/14 20:40:28 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	check_overlap(long int *arr, int numbers)
 	int	j;
 
 	i = 0;
-	while (i < numbers - 1)
+	while (i < numbers)
 	{
 		j = 0;
 		while (j < i)

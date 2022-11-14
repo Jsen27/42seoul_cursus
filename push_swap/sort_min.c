@@ -6,11 +6,12 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 20:41:19 by sehjung           #+#    #+#             */
-/*   Updated: 2022/11/10 16:54:56 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/11/14 20:58:41 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+#include <stdio.h>
 
 void	sort_ten(int *stack_a, int *stack_b)
 {
@@ -50,7 +51,7 @@ void	sort_three(int *stack_a)
 		ft_re_rotate(stack_a, 'a');
 	}
 	else if (stack_a[0] == 3)
-		ft_re_rotate(stack_a, 'a');
+		ft_rotate(stack_a, 'a');
 	else if (stack_a[2] == 3)
 		ft_swap(stack_a, 'a');
 	else if (stack_a[2] == 1)
@@ -76,7 +77,7 @@ void	sort_min(int *stack_a, int *stack_b, int max)
 		else
 			ft_rotate(stack_a, 'a');
 	}
-	if (check_sort(stack_a, max))
+	if (check_sort(stack_a, 3))
 		sort_three(stack_a);
 	if (stack_b[0] < stack_b[1])
 		ft_rotate(stack_b, 'b');
