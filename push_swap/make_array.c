@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 14:40:15 by sehjung           #+#    #+#             */
-/*   Updated: 2022/11/09 16:14:09 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/11/14 19:31:50 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ static int	str_to_longarr_minus(long int *arr, char *str, int i, int *j)
 	int	len;
 
 	len = 0;
+	i++;
 	while (str[i] != ' ' && str[i])
 	{
 		len++;
@@ -47,7 +48,7 @@ static int	str_to_longarr_minus(long int *arr, char *str, int i, int *j)
 		i++;
 	}
 	arr[*j] *= -1;
-	if (arr[*j] < 2147483648)
+	if (arr[*j] < -2147483648)
 		error_exit(arr);
 	*j += 1;
 	if (!str[i])

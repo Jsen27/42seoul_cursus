@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 22:12:38 by sehjung           #+#    #+#             */
-/*   Updated: 2022/11/09 21:51:17 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/11/14 19:32:20 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,5 @@ int	main(int argc, char **argv)
 	long_arr = make_array(argv, numbers);
 	stack_a = make_stack(long_arr, numbers);
 	stack_b = calloc(numbers + 2, sizeof(int));
-	sort_algorithm(stack_a, stack_b, numbers);
+	sort_algorithm(stack_a, stack_b, numbers);	
 }

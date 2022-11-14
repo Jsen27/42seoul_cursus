@@ -72,11 +72,12 @@ bonus :
 			make WITH_BONUS=1 all
 
 clean:
-				$(RM) $(OBJS) $(OBJS_BONUS)
+			$(RM) $(OBJS) $(OBJS_BONUS)
 
 fclean:		clean
-				$(RM) $(NAME)
+			$(RM) $(NAME)
 
-re:			fclean $(NAME)
+re:			fclean
+			make all
 
 .PHONY:		bonus all clean fclean re

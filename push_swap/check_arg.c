@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 14:31:00 by sehjung           #+#    #+#             */
-/*   Updated: 2022/11/09 16:18:31 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/11/10 17:45:41 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,17 @@ static int	check_string(char *str)
 
 	i = 0;
 	numbers = 0;
-	while (str[i] == ' ')
+	while (str[i] && str[i] == ' ')
 		i++;
 	while (str[i])
 	{
-		if ((str[i] < '0' || str[i] > '9')
+		if ((str[i] < '0' || str [i] > '9')
 			&& (str[i] != ' ' && str[i] != '-'))
 			error_exit(NULL);
-		else if (str[i] == '-' && (str[i - 1] != ' ' && i
-				&& (str[i + 1] < '0' || str[i + 1] > '9')))
+		if (str[i] == '-' && ((str[i - 1] != ' ' && i)
+				|| (str[i + 1] < '0' || str [i + 1] > '9')))
 			error_exit(NULL);
-		else if (str[i] == ' '
-			&& (str[i + 1] != ' ' && str[i + 1]))
+		if (str[i] == ' ' && (str[i + 1] != ' ' && str[i + 1]))
 			numbers++;
 		i++;
 	}
@@ -44,7 +43,7 @@ int	check_args(int argc, char **argv)
 
 	i = 1;
 	numbers = 0;
-	if (argc < 2)
+	if (argc < 2 || !argv[1])
 		error_exit(NULL);
 	while (argv[i])
 	{
