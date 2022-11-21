@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 22:12:38 by sehjung           #+#    #+#             */
-/*   Updated: 2022/11/14 20:55:06 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/11/21 16:28:43 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,4 @@ int	main(int argc, char **argv)
 	stack_a = make_stack(long_arr, numbers);
 	stack_b = calloc(numbers + 2, sizeof(int));
 	sort_algorithm(stack_a, stack_b, numbers);
-	// for(int i = 0; i < numbers; i++)
-	// 	printf("%d\n", stack_a[i]);
 }
