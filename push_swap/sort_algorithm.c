@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:54:41 by sehjung           #+#    #+#             */
-/*   Updated: 2022/11/10 16:54:40 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/12/05 20:10:31 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	check_reversed(int *stack)
 	{
 		if (stack[i] < stack[i + 1])
 			return (0);
+		i++;
 	}
 	return (1);
 }
