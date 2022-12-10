@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   make_stack.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 14:42:05 by sehjung           #+#    #+#             */
-/*   Updated: 2022/11/09 16:14:42 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/12/10 16:07:07 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,11 @@ int	*make_stack(long int *arr, int numbers)
 
 	cnt = 0;
 	check = ft_calloc(numbers + 1, sizeof(int));
+	if (!check)
+		error_exit(arr, NULL);
 	stack_a = ft_calloc(numbers + 2, sizeof(int));
+	if (!stack_a)
+		error_exit(arr, check);
 	while (cnt++ < numbers)
 		arr_to_stack(arr, stack_a, numbers, check);
 	free(check);

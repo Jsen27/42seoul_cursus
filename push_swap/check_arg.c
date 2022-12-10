@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_arg.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 14:31:00 by sehjung           #+#    #+#             */
-/*   Updated: 2022/11/10 17:45:41 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/12/10 16:08:03 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ static int	check_string(char *str)
 	{
 		if ((str[i] < '0' || str [i] > '9')
 			&& (str[i] != ' ' && str[i] != '-'))
-			error_exit(NULL);
+			error_exit(NULL, NULL);
 		if (str[i] == '-' && ((str[i - 1] != ' ' && i)
 				|| (str[i + 1] < '0' || str [i + 1] > '9')))
-			error_exit(NULL);
+			error_exit(NULL, NULL);
 		if (str[i] == ' ' && (str[i + 1] != ' ' && str[i + 1]))
 			numbers++;
 		i++;
@@ -44,7 +44,7 @@ int	check_args(int argc, char **argv)
 	i = 1;
 	numbers = 0;
 	if (argc < 2 || !argv[1])
-		error_exit(NULL);
+		error_exit(NULL, NULL);
 	while (argv[i])
 	{
 		numbers += check_string(argv[i]);

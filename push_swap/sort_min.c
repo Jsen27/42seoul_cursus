@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   sort_min.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 20:41:19 by sehjung           #+#    #+#             */
-/*   Updated: 2022/11/14 20:58:41 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/12/10 15:54:15 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-#include <stdio.h>
 
 void	sort_ten(int *stack_a, int *stack_b)
 {

@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   sort_algorithm.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 16:54:41 by sehjung           #+#    #+#             */
-/*   Updated: 2022/12/05 20:10:31 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/12/10 16:07:12 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	check_reversed(int *stack)
+static int	check_reversed(int *stack)
 {
 	int	i;
 

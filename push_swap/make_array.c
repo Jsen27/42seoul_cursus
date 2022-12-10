@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   make_array.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 14:40:15 by sehjung           #+#    #+#             */
-/*   Updated: 2022/11/14 20:40:28 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/12/10 16:07:45 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	check_overlap(long int *arr, int numbers)
 		while (j < i)
 		{
 			if (arr[i] == arr[j])
-				error_exit(arr);
+				error_exit(arr, NULL);
 			j++;
 		}
 		i++;
@@ -41,7 +41,7 @@ static int	str_to_longarr_minus(long int *arr, char *str, int i, int *j)
 	{
 		len++;
 		if (len > 10)
-			error_exit(arr);
+			error_exit(arr, NULL);
 		arr[*j] += str[i] - '0';
 		if (str[i + 1] >= '0' && str[i + 1] <= '9')
 			arr[*j] *= 10;
@@ -49,7 +49,7 @@ static int	str_to_longarr_minus(long int *arr, char *str, int i, int *j)
 	}
 	arr[*j] *= -1;
 	if (arr[*j] < -2147483648)
-		error_exit(arr);
+		error_exit(arr, NULL);
 	*j += 1;
 	if (!str[i])
 		return (i - 1);
@@ -65,14 +65,14 @@ static int	str_to_longarr(long int *arr, char *str, int i, int *j)
 	{
 		len++;
 		if (len > 10)
-			error_exit(arr);
+			error_exit(arr, NULL);
 		arr[*j] += str[i] - '0';
 		if (str[i + 1] >= '0' && str[i + 1] <= '9')
 			arr[*j] *= 10;
 		i++;
 	}
 	if (arr[*j] > 2147483647)
-		error_exit(arr);
+		error_exit(arr, NULL);
 	*j += 1;
 	if (!str[i])
 		return (i - 1);
@@ -103,6 +103,8 @@ long int	*make_array(char **argv, int numbers)
 	i = 1;
 	j = 0;
 	arr = ft_calloc(numbers + 1, sizeof(long int));
+	if (!arr)
+		error_exit(NULL, NULL);
 	while (argv[i])
 	{
 		make_longarr(arr, argv[i], &j);

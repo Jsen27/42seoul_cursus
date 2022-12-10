@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/06 22:12:50 by sehjung           #+#    #+#             */
-/*   Updated: 2022/11/10 16:54:15 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/12/10 16:09:17 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdlib.h>
 # include "libft/libft.h"
 
-void		error_exit(long int *arr);
+void		error_exit(long int *arr, int *stack);
 void		mov_down(int *stack);
 void		mov_up(int *stack);
 void		ft_push(int *to, int *from, char type);
