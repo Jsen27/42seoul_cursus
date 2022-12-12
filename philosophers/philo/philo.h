@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 20:44:21 by sehjung           #+#    #+#             */
-/*   Updated: 2022/12/11 21:08:36 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/12/12 17:59:58 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,12 @@ typedef struct s_data
 	int				eat_time;
 	int				sleep_time;
 	int				must_eat_time;	
-	pthread_mutex_t mutex;
+	pthread_mutex_t *forks;
 	struct timeval	first_time;
 	struct timeval	now_time;
 }t_data;
 
 void	args_init(int argc, char **argv, t_data *data);
-int	ft_atoi(const char *str);
+int		ft_atoi(const char *str);
+void	error_exit(t_data *data, int error);
+

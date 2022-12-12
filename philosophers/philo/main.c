@@ -6,23 +6,22 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:30:39 by sehjung           #+#    #+#             */
-/*   Updated: 2022/12/11 21:08:48 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/12/12 18:10:45 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-
-// 홀수 짝수 인원 나눠서 진행
-
-void	*funt()
+void	error_exit(t_data *data, int error)
 {
-
-}
-
-void	error_exit(int error)
-{
-	
+	if (error == 0)
+		printf("Usage : ./philosophers number_of_philosophers time_to_die time_to_eat time_to_sleep [number_of_times_each_philosopher_must_eat]\n");
+	else if (error > 0)
+	{
+		printf("Init error !\n");
+		if (error == 2)
+			free(data);
+	}
 }
 
 int	main(int argc, char **argv)
