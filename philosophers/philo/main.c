@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:30:39 by sehjung           #+#    #+#             */
-/*   Updated: 2022/12/12 18:10:45 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/12/12 21:58:17 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,23 +20,24 @@ void	error_exit(t_data *data, int error)
 	{
 		printf("Init error !\n");
 		if (error == 2)
-			free(data);
+			free(data->forks);
 	}
+	exit(1);
 }
 
 int	main(int argc, char **argv)
 {
 	t_data	data;
+	t_philo *philo;
 
-
-	args_init(argc, argv, &data);
-
-
-
-
+	init_args(argc, argv, &data);
+	init_philo(&data, philo);
 
 
 
+
+
+	/*
 	int	i;
 	
 	i = 0;
@@ -52,5 +53,6 @@ int	main(int argc, char **argv)
 	sleep(3);
 	gettimeofday(&data.now_time, NULL);
 	printf("%ld:%d\n",data.now_time.tv_sec - data.first_time.tv_sec, data.now_time.tv_usec - data.first_time.tv_usec);
+	*/
 	return (0);
 }
