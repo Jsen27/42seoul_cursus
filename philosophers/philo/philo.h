@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 20:44:21 by sehjung           #+#    #+#             */
-/*   Updated: 2022/12/12 21:44:27 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/12/13 19:18:56 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,9 @@ typedef struct	s_data
 
 typedef struct	s_philo
 {
-	pthread_t	*philo;
+	pthread_t	pid;
 	t_data		*data;
+	int			num;
 	int			eat_cnt;
 	int			left;
 	int			right;
@@ -41,4 +42,6 @@ typedef struct	s_philo
 void	init_args(int argc, char **argv, t_data *data);
 int		ft_atoi(const char *str);
 void	error_exit(t_data *data, int error);
-void	init_philo(t_data *data, t_philo *philo);
+void	init_philo(t_data *data, t_philo **philo);
+void	*funt(t_philo *philo);
+void	start_philo(t_data *data, t_philo *philo);

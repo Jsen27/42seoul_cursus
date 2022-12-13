@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:30:39 by sehjung           #+#    #+#             */
-/*   Updated: 2022/12/12 21:58:17 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/12/13 21:12:59 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,8 @@ int	main(int argc, char **argv)
 	t_philo *philo;
 
 	init_args(argc, argv, &data);
-	init_philo(&data, philo);
-
-
-
+	init_philo(&data, &philo);
+	start_philo(&data, philo);
 
 
 	/*

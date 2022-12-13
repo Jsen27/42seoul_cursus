@@ -3,29 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
+/*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 20:44:02 by sehjung           #+#    #+#             */
-/*   Updated: 2022/12/12 21:57:15 by sehjung          ###   ########.fr       */
+/*   Updated: 2022/12/13 18:43:45 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	init_philo(t_data *data, t_philo *philo)
+void	init_philo(t_data *data, t_philo **philo)
 {
 	int	i;
 
 	i = 0;
-	philo = malloc(sizeof(pthread_t) * data->cnt);
+	*philo = malloc(sizeof(t_philo) * data->cnt);
 	if (!philo)
 		error_exit(data, 2);
 	while (i < data->cnt)
 	{
-		philo->data = data;
-		philo->eat_cnt = 0;
-		philo->left = i;
-		philo->right = (i + 1) % data->cnt;
+		(*philo)[i].data = data;
+		(*philo)[i].num = i;
+		(*philo)[i].eat_cnt = 0;
+		(*philo)[i].left = i;
+		(*philo)[i].right = (i + 1) % data->cnt;
 		i++;
 	}
 }
