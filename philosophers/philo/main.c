@@ -6,11 +6,17 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:30:39 by sehjung           #+#    #+#             */
-/*   Updated: 2022/12/13 21:12:59 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/12/15 18:09:33 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+double	print_time(t_data *data)
+{
+	gettimeofday(&data->now_time, NULL);
+	return (data->now_time.tv_usec - data->first_time.tv_usec);
+}
 
 void	error_exit(t_data *data, int error)
 {
@@ -33,7 +39,7 @@ int	main(int argc, char **argv)
 	init_args(argc, argv, &data);
 	init_philo(&data, &philo);
 	start_philo(&data, philo);
-
+	print_time(&data);
 
 	/*
 	int	i;

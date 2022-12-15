@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 20:44:21 by sehjung           #+#    #+#             */
-/*   Updated: 2022/12/13 19:18:56 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/12/15 18:10:16 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,3 +45,4 @@ void	error_exit(t_data *data, int error);
 void	init_philo(t_data *data, t_philo **philo);
 void	*funt(t_philo *philo);
 void	start_philo(t_data *data, t_philo *philo);
+double	print_time(t_data *data);

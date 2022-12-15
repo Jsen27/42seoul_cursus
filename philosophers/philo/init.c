@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 20:44:02 by sehjung           #+#    #+#             */
-/*   Updated: 2022/12/13 18:43:45 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/12/15 17:55:36 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,5 @@ void	init_args(int argc, char **argv, t_data *data)
 			error_mutex(data, &data->forks[i]);
 		i++;
 	}
+	gettimeofday(&data->first_time, NULL);
 }
