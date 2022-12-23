@@ -6,16 +6,23 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:30:39 by sehjung           #+#    #+#             */
-/*   Updated: 2022/12/15 18:09:33 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/12/23 20:13:20 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-double	print_time(t_data *data)
+long long	print_time(t_data *data)
 {
-	gettimeofday(&data->now_time, NULL);
-	return (data->now_time.tv_usec - data->first_time.tv_usec);
+	struct timeval		temp;
+	static long long	base_time;
+	if (base_time == 0)
+	{
+		gettimeofday(&temp, NULL);
+		base_time = temp.tv_sec * 1000 + temp.tv_usec / 1000;
+	}
+	gettimeofday(&temp, NULL);
+	return ((temp.tv_sec * 1000) + (temp.tv_usec / 1000) - base_time);
 }
 
 void	error_exit(t_data *data, int error)
@@ -39,8 +46,7 @@ int	main(int argc, char **argv)
 	init_args(argc, argv, &data);
 	init_philo(&data, &philo);
 	start_philo(&data, philo);
-	print_time(&data);
-
+	
 	/*
 	int	i;
 	

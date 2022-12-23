@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 20:44:02 by sehjung           #+#    #+#             */
-/*   Updated: 2022/12/15 17:55:36 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/12/23 20:16:10 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ void	init_args(int argc, char **argv, t_data *data)
 	data->eat_time = ft_atoi(argv[3]);
 	data->sleep_time = ft_atoi(argv[4]);
 	if (argc == 6)
-		data->must_eat_time = ft_atoi(argv[5]);
+		data->must_eat = ft_atoi(argv[5]);
 	else
-		data->must_eat_time = 0;
+		data->must_eat = 0;
 	data->forks = malloc(sizeof(pthread_mutex_t) * data->cnt);
 	if (!data->forks)
 		error_exit(data, 2);
@@ -68,5 +68,6 @@ void	init_args(int argc, char **argv, t_data *data)
 			error_mutex(data, &data->forks[i]);
 		i++;
 	}
-	gettimeofday(&data->first_time, NULL);
+	if (pthread_mutex_init(&data->print_m, NULL))
+		error_mutex(NULL,NULL); // 구현
 }

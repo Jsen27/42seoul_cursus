@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/12 18:10:22 by sehjung           #+#    #+#             */
-/*   Updated: 2022/12/15 18:24:01 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/12/23 20:34:29 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,36 @@
 
 void	eating(t_philo *philo)
 {
-	struct timeval	temp;
-	printf("%lfms %d is eating\n", print_time(&philo->data), philo->num);
-	while (1)
-	{
-		gettimeofday(&temp, NULL);
-		if (philo->data->now_time.tv_usec - temp.tv_usec >= philo->data->eat_time)
-			break;
-		usleep(1000);
-	}
-	printf("%lfms %d is sleeping\n", print_time(&philo->data), philo->num);
+	pthread_mutex_lock(&philo->data->forks[philo->left]);
+	print_stats(philo->data, "has taken a fork", philo->num + 1);
+	pthread_mutex_lock(&philo->data->forks[philo->right]);
+	print_stats(philo->data, "has taken a fork", philo->num + 1);
+	print_stats(philo->data, "is eating", philo->num + 1);
+	usleep(philo->data->eat_time * 1000);
+	philo->eat_cnt++;
+	pthread_mutex_unlock(&philo->data->forks[philo->left]);
+	pthread_mutex_unlock(&philo->data->forks[philo->right]);
+	if (philo->data->must_eat != 0 && philo->data->must_eat <= philo->eat_cnt)
+		return ;
+	print_stats(philo->data, "is sleeping", philo->num + 1);
+	usleep(philo->data->sleep_time * 1000);
 }
 
-void	*funt(t_philo *philo)
+void	*funt(void *arg)
 {
+	t_philo	*philo;
+
+	philo = arg;
+	if (philo->num % 2)
+		usleep(1000);
 	while (1)
 	{
-		if (!pthread_mutex_lock(&philo->data->forks[philo->left]))
-			printf("%lfms %d has taken a fork\n", print_time(philo->data), philo->num);
-		if (!pthread_mutex_lock(&philo->data->forks[philo->right]))
-			printf("%lfms %d has taken a fork\n", print_time(philo->data), philo->num);
 		eating(philo);
-		pthread_mutex_unlock(&philo->data->forks[philo->left]);
-		pthread_mutex_unlock(&philo->data->forks[philo->right]);
-		usleep(philo->data->sleep_time);
+		if (philo->eat_cnt >= philo->data->must_eat)
+			break ;
+		print_stats(philo->data, "is thinking", philo->num + 1);
 	}
+	return (0);
 }
 
 void	start_philo(t_data *data, t_philo *philo)
@@ -48,11 +53,19 @@ void	start_philo(t_data *data, t_philo *philo)
 	i = 0;
 	while (i < data->cnt)
 	{
-		pthread_create(&philo[i].pid, NULL, funt, &philo[i]);
-		sleep(1);
+		pthread_create(&philo[i].pid, NULL, funt, &(philo[i]));
 		i++;
 	}
 	i = 0;
 	while (i < data->cnt)
-		pthread_join(philo[i++].pid, NULL);
+	{
+		pthread_join(philo[i].pid, NULL);
+		i++;
+	}
+	i = 0;
+	while (i < data->cnt)
+	{
+		pthread_mutex_destroy(&data->forks[i]);
+		i++;
+	}
 }

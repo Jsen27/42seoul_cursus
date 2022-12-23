@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/15 20:47:27 by sehjung           #+#    #+#             */
-/*   Updated: 2022/12/11 20:58:41 by sehjung          ###   ########seoul.kr  */
+/*   Created: 2022/12/23 20:12:50 by sehjung           #+#    #+#             */
+/*   Updated: 2022/12/23 20:34:47 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,13 @@ static size_t	checkblank(char *str)
 		break ;
 	}
 	return (i);
+}
+
+void	print_stats(t_data *data, char *str, int n)
+{
+	pthread_mutex_lock(&data->print_m);
+	printf("%lldms %d %s\n", print_time(data), n, str);
+	pthread_mutex_unlock(&data->print_m);
 }
 
 int	ft_atoi(const char *str)
