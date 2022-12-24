@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/12 18:10:22 by sehjung           #+#    #+#             */
-/*   Updated: 2022/12/24 18:39:41 by sehjung          ###   ########seoul.kr  */
+/*   Created: 2022/12/13 15:23:01 by sehjung           #+#    #+#             */
+/*   Updated: 2022/12/24 20:49:32 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,18 +47,18 @@ int	eating(t_philo *philo)
 	print_stats(philo->data, "has taken a fork", philo->num + 1);
 	print_stats(philo->data, "is eating", philo->num + 1);
 	philo->last_eat = now_time();
-	clear_sleep(philo->data, philo->data->eat_time);
+	clear_sleep(philo->data->eat_time);
 	philo->eat_cnt++;
 	pthread_mutex_unlock(&philo->data->forks[philo->left]);
 	pthread_mutex_unlock(&philo->data->forks[philo->right]);
 	if (philo->data->must_eat != 0 && philo->data->must_eat == philo->eat_cnt)
 		return (1);
 	print_stats(philo->data, "is sleeping", philo->num + 1);
-	clear_sleep(philo->data, philo->data->sleep_time);
+	clear_sleep(philo->data->sleep_time);
 	return (0);
 }
 
-void	*funt(void *arg)
+void	*thread_philo(void *arg)
 {
 	t_philo	*philo;
 
@@ -76,14 +76,14 @@ void	*funt(void *arg)
 	}
 }
 
-void	start_philo(t_data *data, t_philo *philo)
+void	philosophers(t_data *data, t_philo *philo)
 {
 	int	i;
 
 	i = 0;
 	while (i < data->cnt)
 	{
-		pthread_create(&philo[i].pid, NULL, funt, &(philo[i]));
+		pthread_create(&philo[i].pid, NULL, thread_philo, &(philo[i]));
 		i++;
 	}
 	check_die(data, philo);

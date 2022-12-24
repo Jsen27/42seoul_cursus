@@ -6,16 +6,17 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 20:12:50 by sehjung           #+#    #+#             */
-/*   Updated: 2022/12/24 20:28:08 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/12/24 20:49:14 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-long long	now_time()
+long long	now_time(void)
 {
 	struct timeval		temp;
 	static long long	base_time;
+
 	if (base_time == 0)
 	{
 		gettimeofday(&temp, NULL);
@@ -25,7 +26,7 @@ long long	now_time()
 	return ((temp.tv_sec * 1000) + (temp.tv_usec / 1000) - base_time);
 }
 
-void	clear_sleep(t_data *data, long long wait_time)
+void	clear_sleep(long long wait_time)
 {
 	long long	target;
 
@@ -61,7 +62,7 @@ static size_t	checkblank(char *str)
 void	print_stats(t_data *data, char *str, int n)
 {
 	pthread_mutex_lock(&data->print_m);
-	printf("%lld %d %s\n", now_time(), n, str);
+	printf("%lldms %d %s\n", now_time(), n, str);
 	pthread_mutex_unlock(&data->print_m);
 }
 

@@ -6,11 +6,24 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 20:44:02 by sehjung           #+#    #+#             */
-/*   Updated: 2022/12/24 20:31:19 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/12/24 20:39:41 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+static int	error_mutex(t_data *data, pthread_mutex_t *forks)
+{
+	int	i;
+
+	i = 0;
+	while (&data->forks[i] != forks)
+	{
+		pthread_mutex_destroy(&data->forks[i]);
+		i++;
+	}
+	return (error_exit(data, 1));
+}
 
 int	init_philo(t_data *data, t_philo **philo)
 {
@@ -33,20 +46,7 @@ int	init_philo(t_data *data, t_philo **philo)
 	return (0);
 }
 
-static int	error_mutex(t_data *data, pthread_mutex_t *forks)
-{
-	int	i;
-
-	i = 0;
-	while (&data->forks[i] != forks)
-	{
-		pthread_mutex_destroy(&data->forks[i]);
-		i++;
-	}
-	return (error_exit(data, 1));
-}
-
-static int init_mutex(t_data *data)
+static int	init_mutex(t_data *data)
 {
 	int	i;
 
