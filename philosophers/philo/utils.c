@@ -6,11 +6,35 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 20:12:50 by sehjung           #+#    #+#             */
-/*   Updated: 2022/12/23 20:34:47 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/12/24 20:28:08 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+long long	now_time()
+{
+	struct timeval		temp;
+	static long long	base_time;
+	if (base_time == 0)
+	{
+		gettimeofday(&temp, NULL);
+		base_time = temp.tv_sec * 1000 + temp.tv_usec / 1000;
+	}
+	gettimeofday(&temp, NULL);
+	return ((temp.tv_sec * 1000) + (temp.tv_usec / 1000) - base_time);
+}
+
+void	clear_sleep(t_data *data, long long wait_time)
+{
+	long long	target;
+
+	target = wait_time + now_time();
+	while (target > now_time())
+	{
+		usleep(100);
+	}
+}
 
 static size_t	checkblank(char *str)
 {
@@ -37,7 +61,7 @@ static size_t	checkblank(char *str)
 void	print_stats(t_data *data, char *str, int n)
 {
 	pthread_mutex_lock(&data->print_m);
-	printf("%lldms %d %s\n", print_time(data), n, str);
+	printf("%lld %d %s\n", now_time(), n, str);
 	pthread_mutex_unlock(&data->print_m);
 }
 

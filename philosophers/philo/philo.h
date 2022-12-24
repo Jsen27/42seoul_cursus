@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 20:44:21 by sehjung           #+#    #+#             */
-/*   Updated: 2022/12/23 20:31:30 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/12/24 20:29:44 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,10 @@
 typedef struct	s_data
 {
 	int				cnt;
-	int				die_time;
-	int				eat_time;
-	int				sleep_time;
-	int				must_eat;	
+	long long				die_time;
+	long long				eat_time;
+	long long		sleep_time;
+	long long		must_eat;	
 	pthread_mutex_t *forks;
 	pthread_mutex_t print_m;
 }t_data;
@@ -35,14 +35,16 @@ typedef struct	s_philo
 	int			eat_cnt;
 	int			left;
 	int			right;
-	struct timeval	last_eat;
+	int			finish;
+	long long			last_eat;
 }t_philo;
 
-void	init_args(int argc, char **argv, t_data *data);
+int		init_args(int argc, char **argv, t_data *data);
 int		ft_atoi(const char *str);
-void	error_exit(t_data *data, int error);
-void	init_philo(t_data *data, t_philo **philo);
+int		error_exit(t_data *data, int error);
+int		init_philo(t_data *data, t_philo **philo);
 void	*funt(void *arg);
 void	start_philo(t_data *data, t_philo *philo);
-long long	print_time(t_data *data);
+long long	now_time();
 void	print_stats(t_data *data, char *str, int n);
+void	clear_sleep(t_data *data, long long time);
