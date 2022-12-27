@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 20:44:02 by sehjung           #+#    #+#             */
-/*   Updated: 2022/12/24 20:39:41 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/12/27 16:47:27 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,11 @@ static int	init_mutex(t_data *data)
 	int	i;
 
 	i = 0;
-	while (++i < data->cnt)
+	while (i < data->cnt)
 	{
 		if (pthread_mutex_init(&data->forks[i], NULL))
 			return (error_mutex(data, &data->forks[i]));
+		i++;
 	}
 	if (pthread_mutex_init(&data->print_m, NULL))
 	{

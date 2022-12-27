@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 15:23:01 by sehjung           #+#    #+#             */
-/*   Updated: 2022/12/24 20:49:32 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/12/27 17:15:42 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,14 +76,15 @@ void	*thread_philo(void *arg)
 	}
 }
 
-void	philosophers(t_data *data, t_philo *philo)
+int	philosophers(t_data *data, t_philo *philo)
 {
 	int	i;
 
 	i = 0;
 	while (i < data->cnt)
 	{
-		pthread_create(&philo[i].pid, NULL, thread_philo, &(philo[i]));
+		if (pthread_create(&philo[i].pid, NULL, thread_philo, &(philo[i])))
+			return (1);
 		i++;
 	}
 	check_die(data, philo);
@@ -93,4 +94,5 @@ void	philosophers(t_data *data, t_philo *philo)
 	i = 0;
 	while (i < data->cnt)
 		pthread_mutex_destroy(&data->forks[i++]);
+	return (0);
 }

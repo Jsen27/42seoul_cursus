@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 20:12:50 by sehjung           #+#    #+#             */
-/*   Updated: 2022/12/24 20:49:14 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/12/27 16:49:14 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static size_t	checkblank(char *str)
 void	print_stats(t_data *data, char *str, int n)
 {
 	pthread_mutex_lock(&data->print_m);
-	printf("%lldms %d %s\n", now_time(), n, str);
+	printf("%lld %d %s\n", now_time(), n, str);
 	pthread_mutex_unlock(&data->print_m);
 }
 

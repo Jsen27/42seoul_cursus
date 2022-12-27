@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 18:30:39 by sehjung           #+#    #+#             */
-/*   Updated: 2022/12/24 20:42:34 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/12/27 17:15:53 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int	main(int argc, char **argv)
 
 	if (init_args(argc, argv, &data) || init_philo(&data, &philo))
 		return (-1);
-	philosophers(&data, philo);
+	if (philosophers(&data, philo))
+		return (-1);
 	return (0);
 }
