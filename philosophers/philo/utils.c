@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 20:12:50 by sehjung           #+#    #+#             */
-/*   Updated: 2022/12/27 16:49:14 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/12/29 18:01:41 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,7 @@ int	ft_atoi(const char *str)
 			return (0);
 		i++;
 	}
+	if (str[i] != '\0')
+		return (0);
 	return (ans * pm);
 }

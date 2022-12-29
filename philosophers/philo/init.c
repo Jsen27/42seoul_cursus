@@ -6,11 +6,20 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 20:44:02 by sehjung           #+#    #+#             */
-/*   Updated: 2022/12/27 16:47:27 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/12/29 17:54:31 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+static int	error_stdin(t_data *data)
+{
+	if (data->cnt < 1 || data->die_time < 1 || data->eat_time < 1)
+		return (error_exit(data, 0));
+	if (data->sleep_time < 1)
+		return (error_exit(data, 0));
+	return (0);
+}
 
 static int	error_mutex(t_data *data, pthread_mutex_t *forks)
 {
@@ -73,6 +82,8 @@ int	init_args(int argc, char **argv, t_data *data)
 	data->die_time = ft_atoi(argv[2]);
 	data->eat_time = ft_atoi(argv[3]);
 	data->sleep_time = ft_atoi(argv[4]);
+	if (error_stdin(data))
+		return (1);
 	if (argc == 6)
 		data->must_eat = ft_atoi(argv[5]);
 	else
