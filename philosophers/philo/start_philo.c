@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 15:23:01 by sehjung           #+#    #+#             */
-/*   Updated: 2022/12/27 17:15:42 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/12/29 21:21:02 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	check_die(t_data *data, t_philo *philo)
 {
 	int	i;
 
-	while (1)
+	while (data->finish_check == 0)
 	{
 		i = 0;
 		while (i < data->cnt)
@@ -24,7 +24,8 @@ void	check_die(t_data *data, t_philo *philo)
 			if (now_time() - philo[i].last_eat > data->die_time)
 			{
 				print_stats(philo->data, "died", i + 1);
-				exit(1);
+				data->finish_check = 1;
+				return ;
 			}
 			i++;
 		}
@@ -65,15 +66,16 @@ void	*thread_philo(void *arg)
 	philo = arg;
 	if (philo->num % 2)
 		usleep(100);
-	while (1)
+	while (philo->data->finish_check == 0)
 	{
 		if (eating(philo))
 		{
 			philo->finish = 1;
-			return (0);
+			break ;
 		}
 		print_stats(philo->data, "is thinking", philo->num + 1);
 	}
+	return (0);
 }
 
 int	philosophers(t_data *data, t_philo *philo)
