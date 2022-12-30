@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 20:12:50 by sehjung           #+#    #+#             */
-/*   Updated: 2022/12/29 22:13:48 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/12/30 19:34:39 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ long long	now_time(void)
 	return ((temp.tv_sec * 1000) + (temp.tv_usec / 1000) - base_time);
 }
 
-void	clear_sleep(long long wait_time)
+void	clear_sleep(long long wait_time, t_data *data)
 {
 	long long	target;
 
 	target = wait_time + now_time();
-	while (target > now_time())
+	while (target > now_time() && !(data->finish_check))
 	{
 		usleep(100);
 	}
@@ -61,9 +61,12 @@ static size_t	checkblank(char *str)
 
 void	print_stats(t_data *data, char *str, int n)
 {
-	pthread_mutex_lock(&data->print_m);
-	printf("%lld %d %s\n", now_time(), n, str);
-	pthread_mutex_unlock(&data->print_m);
+	if (!data->finish_check)
+	{
+		pthread_mutex_lock(&data->print_m);
+		printf("%lld %d %s\n", now_time(), n, str);
+		pthread_mutex_unlock(&data->print_m);
+	}
 }
 
 int	ft_atoi(const char *str)

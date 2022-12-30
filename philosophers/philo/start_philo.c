@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 15:23:01 by sehjung           #+#    #+#             */
-/*   Updated: 2022/12/29 21:21:02 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/12/30 19:35:01 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,14 +48,14 @@ int	eating(t_philo *philo)
 	print_stats(philo->data, "has taken a fork", philo->num + 1);
 	print_stats(philo->data, "is eating", philo->num + 1);
 	philo->last_eat = now_time();
-	clear_sleep(philo->data->eat_time);
+	clear_sleep(philo->data->eat_time, philo->data);
 	philo->eat_cnt++;
 	pthread_mutex_unlock(&philo->data->forks[philo->left]);
 	pthread_mutex_unlock(&philo->data->forks[philo->right]);
 	if (philo->data->must_eat != 0 && philo->data->must_eat == philo->eat_cnt)
 		return (1);
 	print_stats(philo->data, "is sleeping", philo->num + 1);
-	clear_sleep(philo->data->sleep_time);
+	clear_sleep(philo->data->sleep_time, philo->data);
 	return (0);
 }
 
@@ -96,5 +96,7 @@ int	philosophers(t_data *data, t_philo *philo)
 	i = 0;
 	while (i < data->cnt)
 		pthread_mutex_destroy(&data->forks[i++]);
+	free(data->forks);
+	free(philo);
 	return (0);
 }
