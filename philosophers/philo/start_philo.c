@@ -3,14 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   start_philo.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 15:23:01 by sehjung           #+#    #+#             */
-/*   Updated: 2022/12/29 21:21:02 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2022/12/30 13:15:17 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void	end_thread(t_data *data, t_philo *philo)
+{
+	
+}
 
 void	check_die(t_data *data, t_philo *philo)
 {
@@ -93,8 +98,6 @@ int	philosophers(t_data *data, t_philo *philo)
 	i = 0;
 	while (i < data->cnt)
 		pthread_join(philo[i++].pid, NULL);
-	i = 0;
-	while (i < data->cnt)
-		pthread_mutex_destroy(&data->forks[i++]);
+	end_thread(data, philo);
 	return (0);
 }
