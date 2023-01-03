@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 20:44:02 by sehjung           #+#    #+#             */
-/*   Updated: 2022/12/30 19:23:39 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2023/01/03 17:33:03 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	init_philo(t_data *data, t_philo **philo)
 		(*philo)[i].left = i;
 		(*philo)[i].right = (i + 1) % data->cnt;
 		(*philo)[i].finish = 0;
+		(*philo)[i].last_eat = 0;
 		i++;
 	}
 	return (0);

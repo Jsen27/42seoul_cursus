@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 20:44:21 by sehjung           #+#    #+#             */
-/*   Updated: 2022/12/30 19:33:26 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2023/01/03 17:36:22 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,6 @@ int			philosophers(t_data *data, t_philo *philo);
 long long	now_time(void);
 void		print_stats(t_data *data, char *str, int n);
 void		clear_sleep(long long time, t_data *data);
+int			just_one_philo(t_philo *philo);
 
 #endif

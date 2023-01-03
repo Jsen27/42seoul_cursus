@@ -6,17 +6,28 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 15:23:01 by sehjung           #+#    #+#             */
-/*   Updated: 2022/12/30 19:37:13 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2023/01/03 17:46:57 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+int	just_one_philo(t_philo *philo)
+{
+	pthread_mutex_lock(&philo->data->forks[philo->left]);
+	print_stats(philo->data, "has taken a fork", philo->num + 1);
+	while (!(philo->data->finish_check))
+	{
+		usleep(100);
+	}
+	return (0);
+}
+
 void	check_die(t_data *data, t_philo *philo)
 {
 	int	i;
 
-	while (data->finish_check == 0)
+	while (!(data->finish_check))
 	{
 		i = 0;
 		while (i < data->cnt)
@@ -35,7 +46,10 @@ void	check_die(t_data *data, t_philo *philo)
 			if (philo[++i].finish == 0)
 				break ;
 			else if (i == data->cnt - 1)
+			{
+				data->finish_check = 1;
 				return ;
+			}
 		}
 	}
 }
@@ -66,6 +80,11 @@ void	*thread_philo(void *arg)
 	philo = arg;
 	if (philo->num % 2)
 		usleep(100);
+	if (philo->data->cnt == 1)
+	{
+		just_one_philo(philo);
+		return (0);
+	}
 	while (philo->data->finish_check == 0)
 	{
 		if (eating(philo))
