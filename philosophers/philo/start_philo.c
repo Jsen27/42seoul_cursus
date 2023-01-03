@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   start_philo.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 15:23:01 by sehjung           #+#    #+#             */
-/*   Updated: 2023/01/03 17:46:57 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2023/01/03 18:37:47 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ void	check_die(t_data *data, t_philo *philo)
 
 	while (!(data->finish_check))
 	{
-		i = 0;
-		while (i < data->cnt)
+		i = -1;
+		while (++i < data->cnt)
 		{
 			if (now_time() - philo[i].last_eat > data->die_time)
 			{
@@ -38,18 +38,14 @@ void	check_die(t_data *data, t_philo *philo)
 				data->finish_check = 1;
 				return ;
 			}
-			i++;
 		}
 		i = -1;
-		while (i < data->cnt)
+		while (++i < data->cnt)
 		{
-			if (philo[++i].finish == 0)
+			if (philo[i].finish == 0)
 				break ;
 			else if (i == data->cnt - 1)
-			{
 				data->finish_check = 1;
-				return ;
-			}
 		}
 	}
 }
