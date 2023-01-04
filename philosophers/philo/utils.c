@@ -6,33 +6,44 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 20:12:50 by sehjung           #+#    #+#             */
-/*   Updated: 2022/12/30 19:34:39 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2023/01/04 20:52:34 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-long long	now_time(void)
+long long	now_time(t_data *data)
 {
 	struct timeval		temp;
 	static long long	base_time;
+	long long			res;
 
+	pthread_mutex_lock(&data->monitor);
 	if (base_time == 0)
 	{
 		gettimeofday(&temp, NULL);
 		base_time = temp.tv_sec * 1000 + temp.tv_usec / 1000;
 	}
 	gettimeofday(&temp, NULL);
-	return ((temp.tv_sec * 1000) + (temp.tv_usec / 1000) - base_time);
+	res = ((temp.tv_sec * 1000) + (temp.tv_usec / 1000) - base_time);
+	pthread_mutex_unlock(&data->monitor);
+	return (res);
 }
 
 void	clear_sleep(long long wait_time, t_data *data)
 {
 	long long	target;
 
-	target = wait_time + now_time();
-	while (target > now_time() && !(data->finish_check))
+	target = wait_time + now_time(data);
+	while (target > now_time(data))
 	{
+		pthread_mutex_lock(&data->monitor);
+		if (data->finish_check)
+		{
+			pthread_mutex_unlock(&data->monitor);
+			break ;
+		}
+		pthread_mutex_unlock(&data->monitor);
 		usleep(100);
 	}
 }
@@ -61,10 +72,15 @@ static size_t	checkblank(char *str)
 
 void	print_stats(t_data *data, char *str, int n)
 {
-	if (!data->finish_check)
+	int	check;
+
+	pthread_mutex_lock(&data->monitor);
+	check = data->finish_check;
+	pthread_mutex_unlock(&data->monitor);
+	if (!(check))
 	{
 		pthread_mutex_lock(&data->print_m);
-		printf("%lld %d %s\n", now_time(), n, str);
+		printf("%lld %d %s\n", now_time(data), n, str);
 		pthread_mutex_unlock(&data->print_m);
 	}
 }

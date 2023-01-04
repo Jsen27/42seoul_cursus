@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 20:44:02 by sehjung           #+#    #+#             */
-/*   Updated: 2023/01/03 17:33:03 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2023/01/04 17:40:37 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int	init_philo(t_data *data, t_philo **philo)
 		(*philo)[i].right = (i + 1) % data->cnt;
 		(*philo)[i].finish = 0;
 		(*philo)[i].last_eat = 0;
+		pthread_mutex_init(&(*philo)[i].finish_check, NULL);
 		i++;
 	}
 	return (0);
@@ -68,6 +69,8 @@ static int	init_mutex(t_data *data)
 		i++;
 	}
 	if (pthread_mutex_init(&data->print_m, NULL))
+		return (error_mutex(data, &data->forks[data->cnt]));
+	if (pthread_mutex_init(&data->monitor, NULL))
 	{
 		pthread_mutex_destroy(&data->print_m);
 		return (error_mutex(data, &data->forks[data->cnt]));

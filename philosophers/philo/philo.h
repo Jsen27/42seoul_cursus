@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 20:44:21 by sehjung           #+#    #+#             */
-/*   Updated: 2023/01/03 19:59:56 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2023/01/04 21:04:43 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,20 @@ typedef struct s_data
 	long long		must_eat;
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print_m;
+	pthread_mutex_t	monitor;
 }t_data;
 
 typedef struct s_philo
 {
-	pthread_t	pid;
-	t_data		*data;
-	int			num;
-	int			eat_cnt;
-	int			left;
-	int			right;
-	int			finish;
-	long long	last_eat;
+	pthread_t		pid;
+	t_data			*data;
+	int				num;
+	int				eat_cnt;
+	int				left;
+	int				right;
+	int				finish;
+	long long		last_eat;
+	pthread_mutex_t	finish_check;
 }t_philo;
 
 int			init_args(int argc, char **argv, t_data *data);
@@ -49,9 +51,10 @@ int			error_exit(t_data *data, int error);
 int			init_philo(t_data *data, t_philo **philo);
 void		*thread_philo(void *arg);
 int			philosophers(t_data *data, t_philo *philo);
-long long	now_time(void);
+long long	now_time(t_data *data);
 void		print_stats(t_data *data, char *str, int n);
 void		clear_sleep(long long time, t_data *data);
-int			just_one_philo(t_philo *philo);
+void		*just_one_philo(void *philo);
+void		check_finish(t_data *data, t_philo *philo);
 
 #endif
