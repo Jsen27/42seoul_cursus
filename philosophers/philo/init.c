@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 20:44:02 by sehjung           #+#    #+#             */
-/*   Updated: 2023/01/04 17:40:37 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2023/01/05 17:06:15 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,12 @@ static int	init_mutex(t_data *data)
 		pthread_mutex_destroy(&data->print_m);
 		return (error_mutex(data, &data->forks[data->cnt]));
 	}
+	if (pthread_mutex_init(&data->die_m, NULL))
+	{
+		pthread_mutex_destroy(&data->monitor);
+		pthread_mutex_destroy(&data->print_m);
+		return (error_mutex(data, &data->forks[data->cnt]));
+	}
 	return (0);
 }
 
@@ -87,6 +93,7 @@ int	init_args(int argc, char **argv, t_data *data)
 	data->eat_time = ft_atoi(argv[3]);
 	data->sleep_time = ft_atoi(argv[4]);
 	data->finish_check = 0;
+	data->die_check = 0;
 	if (error_stdin(data))
 		return (1);
 	if (argc == 6)

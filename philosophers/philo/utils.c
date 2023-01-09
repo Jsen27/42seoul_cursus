@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 20:12:50 by sehjung           #+#    #+#             */
-/*   Updated: 2023/01/04 20:52:34 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2023/01/05 17:04:29 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,11 @@ void	print_stats(t_data *data, char *str, int n)
 	if (!(check))
 	{
 		pthread_mutex_lock(&data->print_m);
-		printf("%lld %d %s\n", now_time(data), n, str);
+		pthread_mutex_lock(&data->die_m);
+		check = data->die_check;
+		pthread_mutex_unlock(&data->die_m);
+		if (!check)
+			printf("%lld %d %s\n", now_time(data), n, str);
 		pthread_mutex_unlock(&data->print_m);
 	}
 }

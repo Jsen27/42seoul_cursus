@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/11 20:44:21 by sehjung           #+#    #+#             */
-/*   Updated: 2023/01/04 21:04:43 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2023/01/05 16:57:15 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct s_data
 {
 	int				cnt;
 	int				finish_check;
+	int				die_check;
 	long long		die_time;
 	long long		eat_time;
 	long long		sleep_time;
@@ -30,6 +31,7 @@ typedef struct s_data
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	print_m;
 	pthread_mutex_t	monitor;
+	pthread_mutex_t	die_m;
 }t_data;
 
 typedef struct s_philo

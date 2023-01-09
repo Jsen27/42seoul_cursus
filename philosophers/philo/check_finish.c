@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 17:35:41 by sehjung           #+#    #+#             */
-/*   Updated: 2023/01/04 20:52:00 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2023/01/05 17:04:30 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ static int	check_die(t_data *data, t_philo *philo)
 	if (now_time(data) - last_eat > die_time)
 	{
 		print_stats(philo->data, "died", i + 1);
+		pthread_mutex_lock(&data->die_m);
+		data->die_check = 1;
+		pthread_mutex_unlock(&data->die_m);
 		pthread_mutex_lock(&data->monitor);
 		data->finish_check = 1;
 		pthread_mutex_unlock(&data->monitor);
