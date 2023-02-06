@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/21 15:38:32 by chanwopa          #+#    #+#             */
-/*   Updated: 2023/01/29 21:54:20 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2023/02/01 00:02:21 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@
 # include <string.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-# include <errno.h>
 # include <termios.h>
 
 /*** define list start ***/
@@ -36,7 +35,6 @@
 /*** define list end ***/
 
 /*** struct list start ***/
-/* REDIR_IN, REDIR_OUT 을 0,1로 설정해서 redirection에 이용함 */
 typedef enum e_type
 {
 	REDIR_IN,
@@ -69,7 +67,6 @@ typedef struct s_dollar
 	char	*str;
 }	t_dollar;
 
-/* issubshell must be set NO when initializing main function */
 typedef struct s_info
 {
 	char	**envp;
@@ -89,7 +86,6 @@ typedef struct s_commandlist
 	t_list	*redirection;
 }	t_commandlist;
 
-/* 가장 최근 프로세스의 종료 상태를 저장하기 위한 전역변수 */
 typedef struct s_global
 {
 	int		global_exit_status;
@@ -110,11 +106,12 @@ int				get_commands_count(t_commandlist *commandlist);
 char			*get_heredoc_filename(int *fd);
 void			set_exit_status_signal(int status);
 int				input_only_spaces(char *input);
+int				syntax_redirect2(char *str);
 
 /* envp_utils.c */
 char			**set_envp(char **envp);
-void			change_envp(char *new, t_info *info);
-void			add_envp(char *new, t_info *info);
+void			change_envp(char *new_str, t_info *info);
+void			add_envp(char *new_str, t_info *info);
 void			delete_envp(char *del, t_info *info);
 
 /* execute_command.c */
@@ -158,8 +155,7 @@ void			sig_process(int sig);
 void			init_signal(void);
 
 /* error.c */
-void			print_error(char *command, char *input, \
-							char *message, int err_status);
+void			print_error(char *command, char *input, char *message);
 void			system_error(char *str1, char *str2, int error_code);
 
 /* free.c */
@@ -184,14 +180,19 @@ int				find_dollar(char *str);
 
 /* dollar_utils2.c */
 t_dollar		*join_and_free(t_dollar *lst, char *str);
-t_dollar	*set_dollar_exit(t_dollar *lst);
+t_dollar		*set_dollar_exit(t_dollar *lst);
 
-/*  exception_line.c */
+/* exception_line.c */
 char			*exception_line(char *line, int quote, int pipe);
+int				set_quote(char c, int quote);
+
+/* exception_redirect.c */
+char			*redirect_space(char *str, char *line, char c);
 
 /* exception_utils.c */
-int				syntax_pipe(char *line);
+int				syntax_pipe(char *str);
 int				syntax_redirect(char *line);
+char			redirect_quote(char c);
 
 /* parsing_redrect.c */
 t_list			*redirect_in(char **str, int i, char **envp);
@@ -204,8 +205,7 @@ char			*ft_strjoin_char(char *s1, char s2);
 t_token			*new_token(char *command, t_type type);
 t_commandlist	*lst_parse(char **str, t_commandlist *lst, char **envp, int j);
 t_commandlist	*parsing(char *line, char **envp);
-void	delete_minus(char *str);
-
+void			delete_minus(char *str);
 /*** function list end ***/
 
 #endif

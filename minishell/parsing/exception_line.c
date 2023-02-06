@@ -6,13 +6,13 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/15 17:16:53 by sehjung           #+#    #+#             */
-/*   Updated: 2023/01/29 19:57:18 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2023/02/01 14:07:02 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-static int	set_quote(char c, int quote)
+int	set_quote(char c, int quote)
 {
 	if (c == '\'')
 	{
@@ -35,43 +35,26 @@ static int	set_quote(char c, int quote)
 	return (quote);
 }
 
-static char	*redirect_space(char *str, char *line, char c)
-{
-	if (c == '>')
-	{
-		line--;
-		if (*line != '>' && *line != ' ')
-			str = ft_strjoin_char(str, ' ');
-		line++;
-		str = ft_strjoin_char(str, '>');
-		line++;
-		if (*line != '>' && *line != ' ')
-			str = ft_strjoin_char(str, ' ');
-	}
-	else if (c == '<')
-	{
-		line--;
-		if (*line != '<' && *line != ' ')
-			str = ft_strjoin_char(str, ' ');
-		line++;
-		str = ft_strjoin_char(str, '<');
-		line++;
-		if (*line != '<' && *line != ' ')
-			str = ft_strjoin_char(str, ' ');
-	}
-	return (str);
-}
-
 static char	*get_pipe(char *str, char *line, int *pipe)
 {
 	if (*pipe == 1)
+	{
+		if (str)
+			free(str);
 		return (NULL);
+	}
 	line--;
 	if (*line != ' ')
 		str = ft_strjoin_char(str, ' ');
 	line++;
 	str = ft_strjoin_char(str, '|');
 	line++;
+	if (*line == '\0')
+	{
+		if (str)
+			free(str);
+		return (NULL);
+	}
 	if (*line != ' ')
 		str = ft_strjoin_char(str, ' ');
 	*pipe = 1;
@@ -96,6 +79,8 @@ static char	*none_pipe(char *str, char *line, int quote, int *pipe)
 	}
 	else if ((*line == '>' || *line == '<') && quote == 0)
 		str = redirect_space(str, line, *line);
+	else if (quote != 0 && redirect_quote(*line))
+		str = ft_strjoin_char(str, redirect_quote(*line));
 	else
 	{
 		str = ft_strjoin_char(str, *line);
@@ -109,7 +94,7 @@ char	*exception_line(char *line, int quote, int pipe)
 	char	*str;
 
 	str = NULL;
-	if (syntax_redirect(line) || syntax_pipe(line))
+	if (syntax_redirect(line))
 		return (NULL);
 	while (*line)
 	{
@@ -122,7 +107,7 @@ char	*exception_line(char *line, int quote, int pipe)
 			return (NULL);
 		line++;
 	}
-	if (quote)
+	if (syntax_redirect2(str) || syntax_pipe(str) || quote)
 	{
 		free(str);
 		return (NULL);

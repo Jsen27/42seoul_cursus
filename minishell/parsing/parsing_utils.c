@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 19:02:14 by sehjung           #+#    #+#             */
-/*   Updated: 2023/01/29 17:53:52 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2023/02/01 14:03:16 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,12 @@ void	delete_minus(char *str)
 	{
 		if (str[i] == -11)
 			str[i] = '$';
+		else if (str[i] == -20)
+			str[i] = '<';
+		else if (str[i] == -21)
+			str[i] = '>';
+		else if (str[i] == -22)
+			str[i] = '|';
 		i++;
 	}
 }

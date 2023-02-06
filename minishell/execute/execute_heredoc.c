@@ -6,7 +6,7 @@
 /*   By: chanwopa <chanwopa@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/26 15:06:19 by chanwopa          #+#    #+#             */
-/*   Updated: 2023/01/27 20:44:35 by chanwopa         ###   ########seoul.kr  */
+/*   Updated: 2023/01/30 14:53:19 by chanwopa         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ static int	fork_redirection(int heredoc_count, int *fds, char **delims)
 		else if (WIFSIGNALED(status))
 		{
 			g_status.global_exit_status = WTERMSIG(status);
+			free_redirection_utils(fds, delims, heredoc_count);
 			return (FAIL);
 		}
 	}

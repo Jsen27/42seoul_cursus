@@ -6,7 +6,7 @@
 /*   By: chanwopa <chanwopa@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/16 16:37:09 by chanwopa          #+#    #+#             */
-/*   Updated: 2023/01/26 17:42:17 by chanwopa         ###   ########seoul.kr  */
+/*   Updated: 2023/01/30 20:15:03 by chanwopa         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ void	builtin_cd(t_list *list, t_info *info)
 	if (!command)
 		system_error("builtin_cd", "malloc error", 1);
 	if (!command[1])
-		print_error(command[0], "cd without directory invalid", NULL, NO);
+		print_error(command[0], "cd without directory invalid", NULL);
 	else
 	{
 		old_cwd = getcwd(NULL, 0);
 		if (chdir(command[1]) == -1)
-			print_error(command[0], command[1], NULL, YES);
+			print_error(command[0], command[1], "No such file or directory");
 		else
 			cd_change_envp(old_cwd, info);
 		free(old_cwd);

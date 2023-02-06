@@ -1,4 +1,4 @@
-CC = cc -g
+CC = cc
 CFLAGS = -Wall -Wextra -Werror
 NAME = minishell
 
@@ -28,6 +28,7 @@ PARS_FILE = ascii_change.c \
 			dollar_utils.c \
 			dollar_utils2.c \
 			exception_line.c \
+			exception_redirect.c \
 			exception_utils.c \
 			parsing_redirect.c \
 			parsing_utils.c \

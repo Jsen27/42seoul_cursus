@@ -6,7 +6,7 @@
 /*   By: chanwopa <chanwopa@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 17:07:50 by chanwopa          #+#    #+#             */
-/*   Updated: 2023/01/27 19:20:18 by chanwopa         ###   ########seoul.kr  */
+/*   Updated: 2023/01/30 20:17:46 by chanwopa         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	execute_redirect_in(char *filename)
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 	{
-		print_error(filename, NULL, NULL, YES);
+		print_error(filename, "cannot open file or directory", NULL);
 		return (FAIL);
 	}
 	else if (fd != STDIN_FILENO)
@@ -38,7 +38,7 @@ static int	execute_redirect_out(char *filename)
 	fd = open(filename, O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (fd < 0)
 	{
-		print_error(filename, NULL, NULL, YES);
+		print_error(filename, "cannot open file or directory", NULL);
 		return (FAIL);
 	}
 	else if (fd != STDOUT_FILENO)
@@ -57,7 +57,7 @@ static int	execute_redirect_append(char *filename)
 	fd = open(filename, O_WRONLY | O_CREAT | O_APPEND, 0644);
 	if (fd < 0)
 	{
-		print_error(filename, NULL, NULL, YES);
+		print_error(filename, "cannot open file or directory", NULL);
 		return (FAIL);
 	}
 	else if (fd != STDOUT_FILENO)

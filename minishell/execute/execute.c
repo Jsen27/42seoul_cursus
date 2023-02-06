@@ -6,7 +6,7 @@
 /*   By: chanwopa <chanwopa@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 16:29:21 by chanwopa          #+#    #+#             */
-/*   Updated: 2023/01/26 21:53:44 by chanwopa         ###   ########seoul.kr  */
+/*   Updated: 2023/02/01 21:54:12 by chanwopa         ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	execute(t_commandlist *commandlist, t_info *info)
 
 	g_status.global_exit_status = 0;
 	command_count = get_commands_count(commandlist);
-	if (command_count > 16 && check_heredoc_count(commandlist) > 16)
+	if (check_heredoc_count(commandlist) > 16)
 		system_error("maximum here-document count exceeded", NULL, 2);
 	if (command_count == 0)
 		return (0);

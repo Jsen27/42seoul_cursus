@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:46:51 by sehjung           #+#    #+#             */
-/*   Updated: 2023/01/29 21:52:10 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2023/02/01 14:10:59 by sehjung          ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ t_commandlist	*parsing(char *line, char **envp)
 
 	if (line[0] == '\0')
 		return (NULL);
-	str = exception_line(line, 0, 0);
+	str = exception_line(line, 0, 1);
 	if (!str)
 		return (NULL);
 	split_str = ft_split(str, ' ');
