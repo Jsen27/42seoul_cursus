@@ -1,0 +1,128 @@
+Assignment name  : micro_paint
+Expected files   : *.c *.h
+Allowed functions: fopen, fread, fscanf, fclose, write, malloc, calloc, realloc, free, memset, powf, sqrtf
+--------------------------------------------------------------------------------------
+
+Write a program that will read an "operation file" and print the result in the terminal
+"작업 파일"을 읽고 결과를 터미널에 인쇄하는 프로그램을 작성하십시오.
+
+Your program must take one argument, it will be the path to the "operation file"
+프로그램은 하나의 인수를 취해야 하며 "작업 파일"의 경로가 됩니다.
+If 0 or more than 1 argument is given to your program write "Error: argument" followed by a \n in STDOUT
+0개 또는 1개 이상의 인수가 프로그램에 제공되면 "오류: 인수" 뒤에 STDOUT에 \n을 씁니다.
+
+$> ./micro_paint | cat -e
+Error: argument$
+$> ./micro_paint do not fear mathematics | cat -e
+Error: argument$
+$> 
+
+If any problem occurs while you open and/or read the "operation file" write "Error: Operation file corrupted" followed by a \n in STDOUT
+"작업 파일"을 열거나 읽는 동안 문제가 발생하면 "오류: 작업 파일이 손상되었습니다"라고 쓰고 STDOUT에 \n을 입력합니다.
+
+The "operation file" will contains lines with one operation per line
+If a line is incorrect an error occurs.
+If an error has occured your program must return 1
+If no error has occured it must return 0
+The last line can be with or without a \n
+The lines must be read in order and therefore operations must be executed in the same order
+There must be at least one space between each variable in a line
+"작업 파일"에는 한 줄에 하나의 작업이 있는 줄이 포함됩니다.
+라인이 올바르지 않으면 오류가 발생합니다.
+오류가 발생하면 프로그램은 1을 반환해야 합니다.
+오류가 발생하지 않은 경우 0을 반환해야 합니다.
+마지막 줄은 \n을 포함하거나 포함하지 않을 수 있습니다.
+라인을 순서대로 읽어야 하므로 작업을 동일한 순서로 실행해야 합니다.
+라인의 각 변수 사이에는 최소한 하나의 공백이 있어야 합니다.
+
+WIDTH HEIGHT BACKGROUND_CHAR
+This line is always the first line of the file and it defines the zone where to draw. Your program should not display anything outside the draw zone. It must be there only once.
+- WIDTH: must be a int with 0 < WIDTH <= 300, the horizontal number of characters to use for the draw zone
+- HEIGHT: must be a int with 0 < HEIGHT <= 300, the vertical number of characters to use for the draw zone 
+- BACKGROUND_CHAR: any empty space will be filled with BACKGROUND_CHAR
+이 줄은 항상 파일의 첫 번째 줄이며 그릴 영역을 정의합니다. 프로그램은 그리기 영역 외부에 아무 것도 표시하지 않아야 합니다. 한 번만 있어야 합니다.
+- WIDTH: 그리기 영역에 사용할 가로 문자 수인 0 < WIDTH <= 300의 int여야 합니다.
+- HEIGHT: 그리기 영역에 사용할 세로 문자 수인 0 < HEIGHT <= 300의 int여야 합니다.
+- BACKGROUND_CHAR: 빈 공간은 BACKGROUND_CHAR로 채워집니다.
+
+r X Y WIDTH HEIGHT CHAR
+This operation will draw an empty rectangle, where only the border of the rectangle is drawn
+- r: the character r
+- X: any float, the horizontal position of the top left corner of the rectangle
+- Y: any float, the vertical position of the top left corner of the rectangle
+- WIDTH: a positive float but not 0, the width of the rectangle (horizontal)
+- HEIGHT: a positive float but not 0, the height of the rectangle (vertical)
+- CHAR: the char use to draw the rectangle
+이 작업은 사각형의 테두리만 그려지는 빈 사각형을 그립니다.
+- r: 문자 r
+- X: 임의의 부동, 직사각형의 왼쪽 상단 모서리의 수평 위치 
+- Y: 임의의 플로트, 직사각형의 왼쪽 상단 모서리의 세로 위치
+- WIDTH: 0이 아닌 양의 float, 사각형의 너비(가로)
+- HEIGHT: 0이 아닌 양수 float, 사각형의 높이(수직)
+- CHAR: 사각형을 그리는 데 사용되는 문자
+
+R X Y WIDTH HEIGHT CHAR
+This operation will draw a filled rectangle
+- R: the character R
+- X: any float, the horizontal position of the top left corner of the rectangle
+- Y: any float, the vertical position of the top left corner of the rectangle
+- WIDTH: a positive float but not 0, the width of the rectangle (horizontal)
+- HEIGHT: a positive float but not 0, the height of the rectangle (vertical)
+- CHAR: the char use to draw the rectangle
+이 작업은 채워진 사각형을 그립니다.
+- R: 문자 R
+- X: 임의의 부동, 직사각형의 왼쪽 상단 모서리의 수평 위치
+- Y: 임의의 플로트, 직사각형의 왼쪽 상단 모서리의 세로 위치
+- WIDTH: 0이 아닌 양의 float, 사각형의 너비(가로)
+- HEIGHT: 0이 아닌 양수 float, 사각형의 높이(수직)
+- CHAR: 사각형을 그리는 데 사용되는 문자
+
+The draw zone is divided in rectangles that can contain one character each (because we are in a terminal...), we will call them pixel
+To make everything easier, we will use only the top left corner of the pixel to know if that pixel is in a rectangle or not
+A pixel with a top left corner with a distance bigger or equal than 1 from the border of a rectangle is not part of an empty rectangle 
+A pixel with a top left corner with a distance lower than 1 from the border of a rectangle is part of an empty rectangle.
+그리기 영역은 각각 하나의 문자를 포함할 수 있는 사각형으로 나뉩니다(우리는 터미널에 있기 때문에...). 픽셀이라고 합니다.
+모든 작업을 더 쉽게 하기 위해 픽셀의 왼쪽 위 모서리만 사용하여 해당 픽셀이 사각형에 있는지 여부를 알 수 있습니다.
+사각형 테두리에서 1보다 크거나 같은 거리에 왼쪽 위 모서리가 있는 픽셀은 빈 사각형의 일부가 아닙니다.
+사각형 테두리에서 1보다 낮은 거리에 왼쪽 위 모서리가 있는 픽셀은 빈 사각형의 일부입니다.
+
+You should look at the image while reading the next few lines. It represents a terminal. We've set a draw zone of WIDTH 5 and HEIGHT 3.
+We've wrote different character to help you understand the following explanations.
+- If you want to draw the operation: r 2.5 1.5 1 1 X (the green rectangle)
+-- it means that the character 'D' in the image will be replaced by 'X' 
+다음 몇 줄을 읽으면서 이미지를 봐야 합니다. 터미널을 나타냅니다. WIDTH 5 및 HEIGHT 3의 그리기 영역을 설정했습니다.
+다음 설명을 이해하는 데 도움이 되도록 다른 문자를 썼습니다.
+- 작업을 그리려는 경우: r 2.5 1.5 1 1 X(녹색 사각형)
+-- 이미지의 문자 'D'가 'X'로 대체됨을 의미합니다.
+
+You should find our_micro_paint to help you test yours with some operation_file.example
+일부 operation_file.example로 테스트하는 데 도움이 되는 our_micro_paint를 찾아야 합니다.
+
+Hint:
+If a point is defined as (Xa, Ya)
+And a rectangle with a top left corner (Xtl, Ytl) and a bottom right corner (Xbr, Ybr)
+If Xtl <= Xa <= Xbr and Ytl <= Ya <= Ybr then the point is in the rectangle
+힌트:
+점을 (Xa, Ya)로 정의하면
+왼쪽 위 모서리(Xtl, Ytl)와 오른쪽 아래 모서리(Xbr, Ybr)가 있는 직사각형
+Xtl <= Xa <= Xbr이고 Ytl <= Ya <= Ybr이면 점이 직사각형에 있습니다.
+
+
+
+1. 구조체, 헤더
+map정보를 가져올 구조체 선언(전역변수로 만드는게 편함.) rectangle 정보를 가져올 구조체 선언.
+FILE 포인터와 f*함수 쓰기위해 stdio필요, write를 위해 unistd필요, malloc, free를 위해 stdlib 필요
+
+2. 예외
+argc가 2가 아닌 경우 Error: argument\n를 STDOUT으로 출력 후 1 return. file open에 실패, 
+맵에서 받아온 인자가 3개가 아닌경우, 0 < 맵의 가로, 세로 <= 300가 아닌 경우 Error: Operation file corrupted\n STDOUT으로 출력 후 1 return. 동적 할당 실패시 1 return.
+rectangle 정보를 받을 때 인자가 6개가 아니어서 while을 탈출했을 때, EOF(-1)을 만나서 탈출한게 아닌 경우, width, height가 0이하인 경우, rectangle type 문자가 r, R이 아닌 경우 Error: Operation file corrupted\n
+STDOUT으로 출력 후 1 return.
+
+3. 로직
+2중 반복을 돌면서 한 점 씩 그릴지 말지를 판단. 판단하는 함수는 is_in_rect x > r->x && x < (r->x + r->w) && y > r->y && y < (r->y + r->h) 가 아니면 0 반환.
+x - r->x < 1 || (r->x + r->w) - x < 1 || y - r->y < 1 || (r->y + r->h) - y < 1이면 2반환. 그렇지 않으면 1반환.
+is_in_rect의 반환 값에 대해, (r->type == 'r' && ret == 2) || (r->type == 'R' && ret)인 경우 그림을 그림.
+
+4. 주의
+fscanf를 쓸 때 2번째 인자 문자열에서 마지막에 개행추가를 해줘야함. 맵을 출력할 때 printf가 아닌 write로 출력해야함.
