@@ -1,127 +1,111 @@
-# include "mini_paint.h"
+#include <unistd.h>
+#include <math.h>
+#include <stdlib.h>
+#include <stdio.h>
 
 typedef struct s_info
 {
-	int		w;
-	int		h;
-	char	bg_char;
-}	t_info;
-t_info info;
+	int w;
+	int h;
+	char b;
+}				t_info;
 
-typedef struct s_circle
+typedef struct s_rad
 {
-	char	type;
-	float	x;
-	float	y;
-	float	r;
-	char	draw_char;
-}	t_circle;
+	char c;
+	float x;
+	float y;
+	float r;
+	char d;
+}				t_rad;
 
-int	ft_strlen(char *s)
+int ft_strlen(char *str)
 {
-	int	i;
+	int i = 0;
 
-	i = 0;
-	while (s[i])
-		++i;
-	return (i);
+	while (str[i])
+		i++;
+	return i;
 }
 
-void	ft_putstr(char *s)
+int print_error(char *str)
 {
-	write(1, s, ft_strlen(s));
+	write(1, str, ft_strlen(str));
+	write(1, "\n", 1);
+	return 1;
 }
 
-int	argc_error(void)
+int check_rad(t_rad *rad, float i, float j)
 {
-	ft_putstr("Error: argument\n");
-	return (1);
+	float temp;
+	temp = sqrtf(powf(j - rad->x, 2) + powf(i - rad->y, 2));
+	if (temp > rad->r)
+		return 0;
+	if (rad->r - temp < (float)1)
+		return 2;
+	return 1;
 }
 
-int	file_error(void)
+void mini_paint(t_info *info, t_rad *rad, char **map)
 {
-	ft_putstr("Error: Operation file corrupted\n");
-	return (1);
-}
+	int check;
 
-int	is_in_circle(t_circle *c, float x, float y)
-{
-	float	dist;
-
-	dist = sqrtf(powf(x - c->x, 2) + powf(y - c->y, 2));
-	if (dist > c->r)
-		return (0);
-	if ((c->r - dist) < (float)1)
-		return (2);
-	return (1);
-}
-
-void	mini_paint(char **map, t_circle *c)
-{
-	int	i, j, ret;
-
-	for (i=0;i<info.h;i++)
-	{
-		for (j=0;j<info.w;j++)
-		{
-			ret = is_in_circle(c, j, i);
-			if ((c->type == 'c' && ret == 2) || (c->type == 'C' && ret))
-				map[i][j] = c->draw_char;
+	for (int i = 0; i < info->h; i++){
+		for (int j = 0; j < info->w; j++){
+			check = check_rad(rad, i, j);
+			if ((rad->c == 'c' && check == 2) || (rad->c == 'C' && check))
+				map[i][j] = rad->d;
 		}
 	}
 }
 
-void	print_map(char **map)
+int main(int argc, char **argv)
 {
-	for (int i=0;i<info.h;i++)
-	{
-		for (int j=0;j<info.w;j++)
-			write(1, &map[i][j], 1);
-		write(1, "\n", 1);
-	}
-}
-
-int	main(int argc, char **argv)
-{
-	t_circle	c;
-	FILE		*f;
-	char		**map;
-	int			i, j, ret;
+	FILE *f;
+	t_info info;
+	t_rad rad;
+	char **map;
+	int ret;
 
 	if (argc != 2)
-		return (argc_error());
+		return print_error("Error: argument");
 	f = fopen(argv[1], "r");
 	if (f == NULL)
-		return (file_error());
-	if (fscanf(f, "%d %d %c\n", &info.w, &info.h, &info.bg_char) != 3)
-		return (file_error());
-	if (!(info.w > 0 && info.w <= 300 && info.h > 0 && info.h <= 300))
-		return (file_error());
+		return print_error("Error: Operation file corrupted");
+	if (fscanf(f, "%d %d %c\n", &info.w, &info.h, &info.b) != 3)
+		return print_error("Error: Operation file corrupted");
+	if (info.w <= 0 || info.w > 300 || info.h <= 0 || info.h > 300)
+		return print_error("Error: Operation file corrupted");
 	map = malloc(sizeof(char *) * (info.h + 1));
 	if (map == NULL)
-		return (1);
-	for (i=0;i<info.h;i++)
-	{
-		map[i] = malloc(info.w + 1);
+		return print_error("Error: Operation file corrupted");
+	for (int i = 0; i < info.h; i++){
+		map[i] = malloc(sizeof(char) * (info.w + 1));
 		if (map[i] == NULL)
-			return (1);
-		for (j=0;j<info.w;j++)
-			map[i][j] = info.bg_char;
-		map[i][j] = 0;
+			return print_error("Error: Operation file corrupted");
+		for (int j = 0; j < info.w; j++){
+			map[i][j] = info.b;
+		}
+		map[i][info.w] = 0;
 	}
-	map[i] = 0;
-	while ((ret = fscanf(f, "%c %f %f %f %c\n", &c.type, &c.x, &c.y, &c.r, &c.draw_char)) == 5)
+	map[info.h] = 0;
+	while ((ret = fscanf(f, "%c %f %f %f %c\n", &rad.c, &rad.x, &rad.y, &rad.r, &rad.d)) == 5)
 	{
-		if (c.r <= (float)0 || !(c.type == 'c' || c.type == 'C'))
-			return (file_error());
-		mini_paint(map, &c);
+		if (rad.r <= 0 || !(rad.c == 'c' || rad.c == 'C'))
+			return print_error("Error: Operation file corrupted");
+		mini_paint(&info, &rad, map);
 	}
 	if (ret != -1)
-		return (file_error());
-	print_map(map);
-	for (i=0;i<info.h;i++)
+		return print_error("Error: Operation file corrupted");
+	for (int i = 0; i < info.h; i++){
+		for (int j = 0; j < info.w; j++){
+			write(1, &map[i][j], 1);
+		}
+		write(1, "\n", 1);
+	}
+	for (int i = 0; i <= info.h; i++)
 		free(map[i]);
 	free(map);
 	fclose(f);
-	return (0);
+	return 0;
 }

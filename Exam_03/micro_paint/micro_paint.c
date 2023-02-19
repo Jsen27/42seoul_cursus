@@ -1,130 +1,109 @@
-#include "micro_paint.h"
+#include <stdlib.h>
+#include <unistd.h>
+#include <stdio.h>
 
 typedef struct s_info
 {
-	int		w;
-	int		h;
-	char	bg_c;
-}	t_info;
-t_info	info;
+	int w;
+	int h;
+	char b;
+}t_info;
 
-typedef struct s_rect
+typedef struct s_rec
 {
-	char	type;
-	float	x;
-	float	y;
-	float	w;
-	float	h;
-	char	draw_c;
-}	t_rect;
+	char r;
+	float x;
+	float y;
+	float w;
+	float h;
+	char c;
+}t_rec;
 
-int	ft_strlen(char *s)
+int ft_strlen(char *str)
 {
-	int	i;
+	int i = 0;
 
-	i = 0;
-	while (s[i])
-		++i;
-	return (i);
+	while (str[i])
+		i++;
+	return i;
 }
 
-void	ft_putstr(char *s)
+int	print_error(char *str)
 {
-	write(1, s, ft_strlen(s));
+	write(1, str, ft_strlen(str));
+	write(1, "\n", 1);
+	return 1;
 }
 
-int	file_error(void)
+int	check_rec(t_rec *rec, float i, float j)
 {
-	ft_putstr("Error: Operation file corrupted\n");
-	return (1);
+	if (j < rec->x || rec->x + rec->w < j
+		|| i < rec->y || rec->y + rec->h < i)
+		return 0;
+	if (j - rec->x < (float)1 || rec->x + rec->w - j < (float)1
+		|| i - rec->y < (float)1 || rec->y + rec->h - i < (float)1)
+		return 2;
+	return 1;
 }
 
-void	print_map(char **map)
+void	micro_paint(t_info *info, t_rec *rec, char **map)
 {
-	for (int i=0;i<info.h;i++)
+	int temp;
+
+	for(int i = 0; i < info->h; i++){
+		for(int j = 0; j < info->w; j++){
+			temp = check_rec(rec, i, j);
+			if ((rec->r == 'r' && temp == 2) || (rec->r == 'R' && temp))
+				map[i][j] = rec->c;
+		}
+	}
+}
+
+int main(int argc, char **argv)
+{
+	FILE *f;
+	t_info info;
+	t_rec rec;
+	char **map;
+	int ret;
+
+	if (argc != 2)
+		return print_error("Error: argument");
+	f = fopen(argv[1], "r");
+	if (!f)
+		return print_error("Error: Operation file corrupted");
+	if (fscanf(f, "%d %d %c\n", &info.w, &info.h, &info.b) != 3)
+		return print_error("Error: Operation file corrupted");
+	if (info.w <= 0 || info.w > 300 || info.h <= 0 || info.h > 300)
+		return print_error("Error: Operation file corrupted");
+	map = malloc(sizeof(char *) * (info.h + 1));
+	if (map == NULL)
+		return print_error("Error: Operation file corrupted");
+	for(int i = 0; i < info.h; i++){
+		map[i] = malloc(sizeof(char) * (info.w + 1));
+		if (map[i] == NULL)
+			return print_error("Error: Operation file corrupted");
+		for(int j = 0; j < info.w; j++)
+			map[i][j] = info.b;
+		map[i][info.w] = 0;
+	}
+	map[info.h] = 0;
+	while ((ret = fscanf(f, "%c %f %f %f %f %c\n", &rec.r, &rec.x, &rec.y, &rec.w, &rec.h, &rec.c)) == 6)
 	{
-		for (int j=0;j<info.w;j++)
+		if (!(rec.r == 'r' || rec.r == 'R') || rec.w <= 0 || rec.h <= 0)
+			return print_error("Error: Operation file corrupted");
+		micro_paint(&info, &rec, map);
+	}
+	if (ret != -1)
+		return print_error("Error: Operation file corrupted");
+	for (int i = 0; i < info.h; i++){
+		for (int j = 0; j < info.w; j++)
 			write(1, &map[i][j], 1);
 		write(1, "\n", 1);
 	}
-}
-
-int	is_in_rect(float x, float y, t_rect *r)
-{
-	if (((x < r->x || (r->x + r->w< x))
-		|| (y < r->y)) || (r->y + r->h < y))
-		return (0);
-	if (((x - r->x < (float)1) || ((r->x + r->w) - x < (float)1)) ||
-	((y - r->y < (float)1 || ((r->y + r->h) - y < (float)1))))
-		return (2);
-	return (1);
-}
-
-void	micro_paint(char **map, t_rect *r)
-{
-	int	i;
-	int	j;
-	int	ret;
-
-	i = 0;
-	while (i < info.h)
-	{
-		j = 0;
-		while (j< info.w)
-		{
-			ret = is_in_rect(j, i, r);
-			if ((r->type == 'r' && ret == 2) || (r->type == 'R' && ret))
-				map[i][j] = r->draw_c;
-			j++;
-		}
-		i++;
-	}
-}
-
-int	main(int argc, char **argv)
-{
-	FILE	*f;
-	t_rect	r;
-	char	**map;
-	int		i, j, ret;
-
-	if (argc != 2)
-	{
-		ft_putstr("Error: argument\n");
-		return (1);
-	}
-	f = fopen(argv[1], "r");
-	if (f == NULL)
-		return (file_error());
-	if (fscanf(f, "%d %d %c\n", &info.w, &info.h, &info.bg_c) != 3)
-		return (file_error());
-	if (!(info.w > 0 && info.w <= 300 && info.h > 0 && info.h <= 300))
-		return (file_error());
-	map = malloc(sizeof(char *) * (info.h + 1));
-	if (map == NULL)
-		return (1);
-	for (i=0;i<info.h;i++)
-	{
-		map[i] = malloc(info.w + 1);
-		if (map[i] == NULL)
-			return (1);
-		for (j=0;j<info.w;j++)
-			map[i][j] = info.bg_c;
-		map[i][j] = 0;
-	}
-	map[i] = 0;
-	while ((ret = fscanf(f, "%c %f %f %f %f %c\n", &r.type, &r.x, &r.y, &r.w, &r.h, &r.draw_c)) == 6)
-	{
-		if (r.w <= (float)0 || r.h <= (float)0 || !(r.type == 'r' || r.type == 'R'))
-			return (file_error());
-		micro_paint(map, &r);
-	}
-	if (ret != -1)
-		return (file_error());
-	print_map(map);
-	for (i=-0;i<info.h;i++)
+	for (int i = 0; i <= info.h; i++)
 		free(map[i]);
 	free(map);
 	fclose(f);
-	return (0);
+	return 0;
 }
