@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 18:59:40 by sehjung           #+#    #+#             */
-/*   Updated: 2023/03/08 21:00:35 by sehjung          ###   ########.fr       */
+/*   Updated: 2023/03/08 22:44:31 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,20 +20,16 @@ int main()
 	std::string input;
 	
 	while (1){
-		std::cout << "Press Enter Your Command   (Hint : ADD, SEARCH, EXIT)" << std::endl;
+		std::cout << GREEN "Press enter your command   (Hint : ADD, SEARCH, EXIT)" BLUE << std::endl;
 		std::cin >> input;
 		if (input == "ADD")
 			mybook.Addarray();
 		else if (input == "SEARCH")
-		{
-
-		}
+			mybook.Search_contact();
 		else if (input == "EXIT")
 			break;
 		else
-		{
-			
-		}
+			std::cout << RED << input << RED " is not command" NC << std::endl;
 	}
 	
 	return 0;

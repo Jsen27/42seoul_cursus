@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 19:02:18 by sehjung           #+#    #+#             */
-/*   Updated: 2023/03/08 21:06:58 by sehjung          ###   ########.fr       */
+/*   Updated: 2023/03/08 22:25:08 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,12 @@ class Contact
 		std::string lastname;
 		std::string nickname;
 		std::string number;
+		std::string secret;
 	
 	public:
-		Contact();
+		Contact(){};
 		void Addcontact();
+		std::string output(int flag);
 };
 
 # include "PhoneBook.hpp"
