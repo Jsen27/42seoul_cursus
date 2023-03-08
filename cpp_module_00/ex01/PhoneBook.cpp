@@ -1,4 +1,9 @@
-#include "main.hpp"
+#include "PhoneBook.hpp"
+
+PhoneBook::PhoneBook()
+{
+	this->idx = 0;
+}
 
 void PhoneBook::Addarray()
 {
