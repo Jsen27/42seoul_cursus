@@ -23,11 +23,11 @@ std::string	PhoneBook::print_wide(std::string str)
 
 void PhoneBook::print_all(int idx)
 {
-	std::cout << std::endl << YELLOW "first name : " << this->array[idx].output(0) << std::endl;
-	std::cout << "last name : " << this->array[idx].output(1) << std::endl;
-	std::cout << "nickname : " << this->array[idx].output(2) << std::endl;
-	std::cout << "phone number : " << this->array[idx].output(3) << std::endl;
-	std::cout << "darkest secret : " << this->array[idx].output(4) << std::endl << std::endl;
+	std::cout << std::endl << YELLOW "first name : " << this->array[idx].output(1) << std::endl;
+	std::cout << "last name : " << this->array[idx].output(2) << std::endl;
+	std::cout << "nickname : " << this->array[idx].output(3) << std::endl;
+	std::cout << "phone number : " << this->array[idx].output(4) << std::endl;
+	std::cout << "darkest secret : " << this->array[idx].output(5) << std::endl << std::endl;
 }
 
 void PhoneBook::Search_contact()

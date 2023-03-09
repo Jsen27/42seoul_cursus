@@ -1,12 +1,11 @@
-NAME =	phonebook
+NAME =	GlobalBanksters
 
 CXX = c++
 
 CXXFLAGS =	-Wall -Wextra -Werror -std=c++98
 
-SRCS =	main.cpp \
-		Contact.cpp \
-		PhoneBook.cpp \
+SRCS =	Account.cpp \
+		tests.cpp \
 
 OBJS =	$(SRCS:.cpp=.o)
 
@@ -19,7 +18,7 @@ clean	:
 			$(RM) $(OBJS)
 
 fclean	:	
-			$(RM) $(OBJS) phonebook
+			$(RM) $(OBJS) GlobalBanksters
 			
 re	:	fclean
 		make all

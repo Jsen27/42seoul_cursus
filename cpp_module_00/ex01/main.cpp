@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 18:59:40 by sehjung           #+#    #+#             */
-/*   Updated: 2023/03/08 22:44:31 by sehjung          ###   ########.fr       */
+/*   Updated: 2023/03/09 16:08:00 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ int main()
 		else
 			std::cout << RED << input << RED " is not command" NC << std::endl;
 	}
-	
+	std::cout << NC;
 	return 0;
 }

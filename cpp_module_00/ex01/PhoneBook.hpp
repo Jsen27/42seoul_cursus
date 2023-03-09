@@ -6,7 +6,7 @@
 /*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 18:59:55 by sehjung           #+#    #+#             */
-/*   Updated: 2023/03/08 22:34:38 by sehjung          ###   ########.fr       */
+/*   Updated: 2023/03/09 16:03:35 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,8 @@ class PhoneBook
 		PhoneBook();
 		void Addarray();
 		void Search_contact();
-		std::string	print_wide(std::string str);
 		void print_all(int idx);
-		~PhoneBook(){};
+		std::string	print_wide(std::string str);
 };
-
 
 # endif
