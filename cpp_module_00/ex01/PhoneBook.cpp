@@ -3,22 +3,25 @@
 PhoneBook::PhoneBook()
 {
 	this->idx = 0;
+	this->total = 0;
 }
 
 void PhoneBook::Addarray()
 {
 	if (this->idx == 8)
 		this->idx = 0;
+	if (this->total < 8)
+		this->total++;
 	array[this->idx].Addcontact();
 	this->idx++;
 }
 
-std::string	PhoneBook::print_wide(std::string str)
+void	PhoneBook::print_wide(std::string str)
 {
 	if (str.size() > 10)
-		return (str.substr(0, 9) + '.');
+		std::cout << str.substr(0, 9) + '.';
 	else
-		return (std::string(10 - str.size(), ' ') + str);
+		std::cout << std::setw(10) << str;
 }
 
 void PhoneBook::print_all(int idx)
@@ -32,29 +35,39 @@ void PhoneBook::print_all(int idx)
 
 void PhoneBook::Search_contact()
 {
-	int idx = 0, input = 0;
+	int idx = 0;
+	std::string input;
 
 	if (this->idx == 0)
 		std::cout << RED "Your PhoneBook is empty" << std::endl;
 	else{
 		std::cout << YELLOW "     index|first name| last name|  nickname" << std::endl;
-		while (idx < this->idx){
-			std::cout << "         " << idx << '|';
-			std::cout << this->print_wide(this->array[idx].output(1)) << '|';
-			std::cout << this->print_wide(this->array[idx].output(2)) << '|';
-			std::cout << this->print_wide(this->array[idx].output(3)) << std::endl;
+		while (idx < this->total){
+			std::cout << std::setw(10) << idx << '|';
+			print_wide(this->array[idx].output(1)); std::cout << '|';
+			print_wide(this->array[idx].output(2)); std::cout << '|';
+			print_wide(this->array[idx].output(3)); std::cout << std::endl;
 			idx++;
 		}
 		while (1){
 			std::cout << std::endl << GREEN "Please enter the number you want" BLUE << std::endl;
-			std::cin >> input;
-			if (input > this->idx - 1 || input < 0)
-				std::cout << std::endl << RED "Wrong number" << std::endl;
-			else
+			input = ft_getline();
+			try
 			{
-				print_all(input);
-				return ;
+				idx = std::stoi(input);
 			}
-		}		
+			catch (const std::exception &e)
+			{
+				idx = -1;
+			}
+			if (idx >= 0 && idx < this->total)
+			{
+				print_all(idx);
+				break;
+			}
+			else
+				std::cout << std::endl << RED "Wrong number" << std::endl;
+
+		}
 	}	
 }

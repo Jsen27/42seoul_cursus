@@ -3,15 +3,15 @@
 void Contact::Addcontact()
 {
 	std::cout << GREEN "Please enter your first name" BLUE << std::endl;
-	std::cin >> this->firstname;
+	this->firstname = ft_getline();
 	std::cout << GREEN "Please enter your last name" BLUE << std::endl;
-	std::cin >> this->lastname;
+	this->lastname = ft_getline();
 	std::cout << GREEN "Please enter your nick name" BLUE << std::endl;
-	std::cin >> this->nickname;
+	this->nickname = ft_getline();
 	std::cout << GREEN "Please enter your number" BLUE << std::endl;
-	std::cin >> this->number;
+	this->number = ft_getline();
 	std::cout << GREEN "Please enter your darkest secret" BLUE << std::endl;
-	std::cin >> this->secret;
+	this->secret = ft_getline();
 	std::cout << YELLOW "Save contact success !" << std::endl;
 }
 
