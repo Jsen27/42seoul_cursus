@@ -3,6 +3,7 @@
 void Zombie::set_name(std::string name, char idx)
 {
 	this->name = name + idx;
+	std::cout << "set name " << this->name << " zombie !" << std::endl;
 }
 
 Zombie* zombieHorde(int N, std::string name)
