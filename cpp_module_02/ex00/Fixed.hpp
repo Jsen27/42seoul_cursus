@@ -12,10 +12,13 @@ class Fixed
 	public:
 		Fixed();
 		Fixed(const Fixed &ref);
-		Fixed& operator=(const Fixed &ref);
-		~Fixed();
+		
 		int getRawBits() const;
-		void setRawBits(int const raw);	
+		void setRawBits(int const raw);
+		
+		Fixed& operator=(const Fixed &ref);
+		
+		~Fixed();
 };
 
 #endif
