@@ -53,9 +53,10 @@ int Fixed::toInt() const
 	return this->value >> this->bit;
 }
 
-std::ostream& Fixed::operator <<(std::ostream& ost, const Fixed& ref)
+std::ostream& operator<<(std::ostream &os, const Fixed &ref)
 {
-
+	os << ref.toFloat();
+	return os;
 }
 
 
