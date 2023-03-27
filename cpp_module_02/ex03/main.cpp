@@ -15,6 +15,7 @@ int main()
 	std::cout << "Point c X = " << c.getX() << ", Y = " << c.getY() << std::endl;
 	std::cout << "Point p X = " << p.getX() << ", Y = " << p.getY() << std::endl;
 	std::cout << "Point p2 X = " << p2.getX() << ", Y = " << p2.getY() << std::endl;
+	
 	if (bsp(a, b, c, p))
 		std::cout << "p is in the triangle" << std::endl;
 	else
@@ -23,6 +24,7 @@ int main()
 		std::cout << "p2 is in the triangle" << std::endl;
 	else
 		std::cout << "p2 is out of the triangle" << std::endl;
+		
 	return 0;
 }
 
