@@ -7,14 +7,20 @@ class ClapTrap
 {
 private:
 	std::string name;
-	int hit;
-	int energy;
-	int damage;
+	unsigned int hit;
+	unsigned int energy;
+	unsigned int damage;
 
 public:
-	void attack(const std::string& target);
+	ClapTrap();
+	ClapTrap(const std::string name);
+	ClapTrap(const ClapTrap &ref);
+	ClapTrap& operator=(const ClapTrap &ref);
+	void attack(const std::string &target);
 	void takeDamage(unsigned int amount);
 	void beRepaired(unsigned int amount);
+	void setDamage(unsigned int amount);
+	~ClapTrap();
 };
 
 #endif
