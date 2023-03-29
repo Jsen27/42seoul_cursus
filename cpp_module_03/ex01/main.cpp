@@ -1,12 +1,12 @@
-#include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
 int main()
 {
-	ClapTrap kim("kim");
-	ClapTrap lee("lee");
+	ScavTrap kim("kim");
+	ScavTrap lee("lee");
 
-	kim.setDamage(5); // kim damage 5
-	lee.setDamage(9); // lee damage 9
+	kim.guardGate();
+
 	kim.attack("lee"); // kim -> lee attack
 	lee.takeDamage(kim.getDamage());
 	lee.attack("kim"); // lee -> kim attack
@@ -15,7 +15,7 @@ int main()
 	lee.attack("kim"); // lee -> kim attack
 	kim.takeDamage(lee.getDamage());
 	kim.attack("lee"); // kim -> lee attack
-	lee.takeDamage(kim.getDamage()); // lee died
+	lee.takeDamage(kim.getDamage()); 
 	lee.beRepaired(99999);
 
 	return 0;

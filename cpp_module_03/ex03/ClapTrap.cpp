@@ -1,6 +1,6 @@
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap() : name("no_name"), hit(10), energy(10), damage(0)
+ClapTrap::ClapTrap() : name("noname"), hit(10), energy(10), damage(0)
 {
 	std::cout << "Default constructor called" << std::endl;
 }
