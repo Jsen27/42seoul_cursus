@@ -4,9 +4,10 @@
 int main()
 {
 	FragTrap kim("kim");
-	FragTrap lee("lee");
+	ScavTrap lee("lee");
 
 	kim.highFivesGuys();
+	lee.guardGate();
 
 	kim.attack("lee"); // kim -> lee attack
 	lee.takeDamage(kim.getDamage());

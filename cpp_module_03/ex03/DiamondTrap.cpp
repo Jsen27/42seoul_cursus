@@ -36,9 +36,9 @@ DiamondTrap& DiamondTrap::operator=(const DiamondTrap &ref)
 void DiamondTrap::attack(const std::string &target)
 {
 	if (this->hit == 0 || energy == 0)
-		std::cout << "DiamondTrap " << this->name << " can't move" << std::endl;
+		std::cout << "ScavTrap " << this->name << " can't move" << std::endl;
 	else{
-		std::cout << "DiamondTrap " << this->name << " attacks " << target << ", causing " << this->damage << " points of damage!" << std::endl;
+		std::cout << "ScavTrap " << this->name << " attacks " << target << ", causing " << this->damage << " points of damage!" << std::endl;
 		this->energy--;
 	}
 }
