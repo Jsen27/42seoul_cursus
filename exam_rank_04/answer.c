@@ -4,11 +4,11 @@
 
 /*not needed in exam, but necessary if you want to use this tester:
 https://github.com/Glagan/42-exam-rank-04/blob/master/microshell/test.sh*/
-// #ifdef TEST_SH
-// # define TEST		1
-// #else
-// # define TEST		0
-// #endif
+#ifdef TEST_SH
+# define TEST		1
+#else
+# define TEST		0
+#endif
 
 int	ft_putstr_fd2(char *str, char *arg)
 {
@@ -46,7 +46,7 @@ int	main(int argc, char *argv[], char *env[])
 		argv = &argv[i + 1];	//the new argv start after the ; or |
 		i = 0;
 		//count until we have all informations to execute the next child;
-		while (argv[i] && strcmp(argv[i], ";") && strcmp(argv[i], "|"))
+		while (argv[i] && strcmp(argv[i], ";") != 0 && strcmp(argv[i], "|") != 0)
 			i++;
 		if (strcmp(argv[0], "cd") == 0) //cd
 		{
@@ -89,8 +89,9 @@ int	main(int argc, char *argv[], char *env[])
 			}
 		}
 	}
+
 	close(tmp_fd);
-	// if (TEST)		// not needed in exam, but necessary if you want to use this tester:
-	// 	while (1);	// https://github.com/Glagan/42-exam-rank-04/blob/master/microshell/test.sh
+	if (TEST)		// not needed in exam, but necessary if you want to use this tester:
+		while (1);	// https://github.com/Glagan/42-exam-rank-04/blob/master/microshell/test.sh
 	return (0);
 }

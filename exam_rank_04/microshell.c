@@ -2,12 +2,19 @@
 #include <string.h>
 #include <sys/wait.h>
 
+#ifdef TEST_SH
+# define TEST		1
+#else
+# define TEST		0
+#endif
+
 int ft_putstr(char *str, char *arg)
 {
 	while (*str)
 		write(2, str++, 1);
-	while (*arg)
-		write(2, arg++, 1);
+	if (arg)
+		while (*arg)
+			write(2, arg++, 1);
 	write(2, "\n", 1);
 	return 1;
 }
@@ -36,7 +43,7 @@ int main(int argc, char **argv, char **env)
 		i = 0;
 		while (argv[i] && strcmp(argv[i], "|") && strcmp(argv[i], ";"))
 			i++;
-		if (strcmp(argv[i], "cd") == 0)
+		if (strcmp(argv[0], "cd") == 0)
 		{
 			if (i != 2)
 				ft_putstr("error: cd: bad arguments", NULL);
@@ -77,8 +84,8 @@ int main(int argc, char **argv, char **env)
 			}
 		}
 	}
-	while(1)
-	;
 	close(tmp_fd);
+	if(TEST)
+		while(1);
 	return 0;
 }
