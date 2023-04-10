@@ -11,9 +11,9 @@ subject.fr.txt
 test.sh
 
 /bin/cat microshell.c
-#include <sys/wait.h>
 #include <unistd.h>
 #include <string.h>
+#include <sys/wait.h>
 
 int ft_putstr(char *str, char *arg)
 {
@@ -38,17 +38,17 @@ int ft_execve(char **argv, int i, int tmp_fd, char **env)
 int main(int argc, char **argv, char **env)
 {
 	int i;
-	int tmp_fd;
 	int fd[2];
+	int tmp_fd;
 	(void)argc;
-	
+
 	i = 0;
 	tmp_fd = dup(0);
-	while (argv[i] && argv[i + 1])
+	while(argv[i] && argv[i + 1])
 	{
 		argv = &argv[i + 1];
 		i = 0;
-		while (argv[i] && strcmp(argv[i], "|") && strcmp(argv[i], ";"))
+		while (argv[i] && strcmp(argv[i], "|") != 0 && strcmp(argv[i], ";") != 0)
 			i++;
 		if (strcmp(argv[0], "cd") == 0)
 		{
@@ -67,7 +67,7 @@ int main(int argc, char **argv, char **env)
 			else
 			{
 				close(tmp_fd);
-				while(waitpid(-1, NULL, WUNTRACED) == -1)
+				while(waitpid(-1, NULL, WUNTRACED) != -1)
 					;
 				tmp_fd = dup(0);
 			}
