@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstlast_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
+/*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/18 14:25:40 by sehjung           #+#    #+#             */
-/*   Updated: 2022/07/18 14:25:40 by sehjung          ###   ########.fr       */
+/*   Created: 2022/11/14 16:43:58 by youngwch          #+#    #+#             */
+/*   Updated: 2022/11/15 16:16:13 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include"libft.h"
 
 t_list	*ft_lstlast(t_list *lst)
 {
-	if (lst == NULL)
-		return (NULL);
-	while (lst->next != NULL)
-		lst = lst->next;
+	if (lst == 0)
+		return (0);
+	while (lst -> next)
+		lst = lst -> next;
 	return (lst);
 }

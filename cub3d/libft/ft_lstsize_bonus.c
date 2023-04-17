@@ -3,24 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
+/*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/18 14:26:07 by sehjung           #+#    #+#             */
-/*   Updated: 2022/07/18 14:26:07 by sehjung          ###   ########.fr       */
+/*   Created: 2022/11/14 16:35:59 by youngwch          #+#    #+#             */
+/*   Updated: 2022/11/15 16:13:28 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include"libft.h"
 
 int	ft_lstsize(t_list *lst)
 {
 	int	i;
 
-	i = 0;
-	while (lst != NULL)
+	if (lst == 0)
+		return (0);
+	i = 1;
+	while (lst->next)
 	{
-		lst = lst->next;
-		i++;
+		lst = lst -> next;
+		i ++;
 	}
 	return (i);
 }

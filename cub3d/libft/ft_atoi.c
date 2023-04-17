@@ -3,58 +3,53 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
+/*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/15 20:47:27 by sehjung           #+#    #+#             */
-/*   Updated: 2022/08/15 20:47:29 by sehjung          ###   ########.fr       */
+/*   Created: 2022/11/10 09:58:06 by youngwch          #+#    #+#             */
+/*   Updated: 2022/11/16 10:36:50 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include"libft.h"
 
-static size_t	checkblank(char *str)
+static long long	reculsive_atoi(const char *str, int digit,
+	int place_value, int sign)
 {
-	size_t	i;
+	long long	ret_ll;
 
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '\t' || str[i] == '\n' || str[i] == '\v')
-		{
-			i++;
-			continue ;
-		}
-		else if (str[i] == '\f' || str[i] == '\r' || str[i] == ' ')
-		{
-			i++;
-			continue ;
-		}
-		break ;
-	}
-	return (i);
+	if (digit == 0)
+		return (0);
+	ret_ll = reculsive_atoi(str, digit - 1, place_value * 10, sign)
+		+ ((*(str + digit - 1) - '0') * place_value);
+	return (ret_ll);
+}
+
+static int	find_digit(const char *str)
+{
+	int	index;
+
+	index = 0;
+	while (*(str + index) >= '0' && *(str + index) <= '9')
+		index ++;
+	return (index);
 }
 
 int	ft_atoi(const char *str)
 {
-	size_t	i;
-	int		pm;
-	long	ans;
+	int			sign;
+	int			digit;
+	long long	result;
 
-	i = checkblank((char *)str);
-	pm = 1;
-	ans = 0;
-	if (str[i] == '-')
-		pm *= -1;
-	if (str[i] == '-' || str[i] == '+')
-		i++;
-	while (str[i] >= '0' && str[i] <= '9')
+	sign = 1;
+	while ((*(str) >= 9 && *(str) <= 13) || *(str) == ' ')
+		str ++;
+	if (*(str) == '-' || *(str) == '+')
 	{
-		ans = (ans * 10) + (str[i] - '0');
-		if (ans > 2147483647 && pm == 1)
-			return (-1);
-		if (ans > 2147483648 && pm == -1)
-			return (0);
-		i++;
+		if (*(str) == '-')
+			sign = -1;
+		str ++;
 	}
-	return (ans * pm);
+	digit = find_digit(str);
+	result = reculsive_atoi(str, digit, 1, sign);
+	return (sign * result);
 }

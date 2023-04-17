@@ -3,30 +3,49 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
+/*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/08 15:28:32 by sehjung           #+#    #+#             */
-/*   Updated: 2022/07/12 15:57:30 by sehjung          ###   ########.fr       */
+/*   Created: 2022/11/09 19:27:10 by youngwch          #+#    #+#             */
+/*   Updated: 2022/11/14 15:49:56 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include"libft.h"
 
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+static int	check_needle(const char *hey, const char *nee, size_t i, size_t len)
+{
+	int	needle_index;
+
+	needle_index = 0;
+	while (*(hey + i) != '\0' && i < len)
+	{
+		if (*(hey + i) != *(nee + needle_index))
+		{
+			break ;
+		}
+		if (*(nee + needle_index + 1) == '\0')
+			return (1);
+		i ++;
+		needle_index ++;
+	}
+	return (0);
+}
+
+char	*ft_strnstr(const char *heystack, const char *needle, size_t len)
 {
 	size_t	i;
-	size_t	needle_len;
 
+	if (*needle == '\0')
+		return ((char *)heystack);
 	i = 0;
-	needle_len = ft_strlen(needle);
-	if (!needle_len)
-		return ((char *)haystack);
-	while (haystack[i] && len >= needle_len)
+	while (*(heystack + i) != '\0' && i < len)
 	{
-		if (!ft_strncmp((char *)haystack + i, (char *)needle, needle_len))
-			return ((char *)haystack + i);
-		i++;
-		len--;
+		if (*(heystack + i) == *needle)
+		{
+			if (check_needle(heystack, needle, i, len) == 1)
+				return ((char *)heystack + i);
+		}
+		i ++;
 	}
-	return (NULL);
+	return (0);
 }

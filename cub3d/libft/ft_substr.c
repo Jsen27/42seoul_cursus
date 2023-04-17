@@ -3,47 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
+/*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/08 16:57:59 by sehjung           #+#    #+#             */
-/*   Updated: 2022/07/19 18:04:26 by sehjung          ###   ########.fr       */
+/*   Created: 2022/11/10 19:58:13 by youngwch          #+#    #+#             */
+/*   Updated: 2022/11/16 09:07:44 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-static int	lencheck(char const *s, unsigned int start, size_t len)
-{
-	if ((ft_strlen(s) - start) < len)
-		return ((ft_strlen(s) - start));
-	else
-		return (len);
-}
+#include"libft.h"
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*temp;
-	size_t	i;
+	size_t	str_length;
+	size_t	sub_length;
+	size_t	tmp;
+	char	*sub_ptr;
 
-	i = 0;
-	if (!s)
-		return (NULL);
-	if (start >= ft_strlen(s))
+	str_length = 0;
+	while (*(s + str_length))
+		str_length ++;
+	sub_length = 0;
+	while (sub_length + start < str_length && sub_length < len)
+		sub_length ++;
+	sub_ptr = malloc(sizeof(char) * (sub_length + 1));
+	if (sub_ptr == 0)
+		return (0);
+	*(sub_ptr + sub_length) = '\0';
+	tmp = 0;
+	while (tmp < sub_length)
 	{
-		temp = malloc(1);
-		if (!temp)
-			return (NULL);
-		temp[0] = 0;
-		return (temp);
+		*(sub_ptr + tmp) = *(s + start + tmp);
+		tmp ++;
 	}
-	temp = (char *)malloc(sizeof(char) * (lencheck(s, start, len) + 1));
-	if (!temp)
-		return (NULL);
-	while (i < len && s[start + i])
-	{
-		temp[i] = s[start + i];
-		i++;
-	}
-	temp[i] = 0;
-	return (temp);
+	return (sub_ptr);
 }

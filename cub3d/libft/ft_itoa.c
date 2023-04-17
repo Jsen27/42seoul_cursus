@@ -3,59 +3,66 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
+/*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/08 20:42:21 by sehjung           #+#    #+#             */
-/*   Updated: 2022/07/15 20:04:17 by sehjung          ###   ########.fr       */
+/*   Created: 2022/11/13 11:22:20 by youngwch          #+#    #+#             */
+/*   Updated: 2022/12/20 11:17:42 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include"libft.h"
 
-static size_t	ft_numlen(long nb)
+static int	count_digit(int n)
 {
-	size_t	len;
+	int	digit;
 
-	len = 0;
-	if (nb == 0)
+	digit = 0;
+	if (n == 0)
 		return (1);
-	if (nb < 0)
+	while (n != 0)
 	{
-		len++;
-		nb *= -1;
+		digit ++;
+		n = n / 10;
 	}
-	while (nb > 0)
+	return (digit);
+}
+
+static void	reculsive_assign(char *ptr, int digit, int n)
+{
+	long long	num;
+
+	num = n;
+	if (num < 0 && num > -10)
 	{
-		nb /= 10;
-		len++;
+		*(ptr + digit - 1) = num * -1 + '0';
+		*ptr = '-';
+		return ;
 	}
-	return (len);
+	if (digit == 0)
+		return ;
+	*(ptr + digit - 1)
+		= ((num >= 0) * num % 10 + (num < 0) * num % 10 * -1) + '0';
+	reculsive_assign(ptr, digit - 1, num / 10);
+	return ;
 }
 
 char	*ft_itoa(int n)
 {
-	long	nb;
-	int		len;
-	char	*str;
+	int		digit;
+	char	*retptr;
 
-	nb = n;
-	len = (ft_numlen(nb));
-	str = (char *)malloc(sizeof(char) * (len + 1));
-	if (!str)
+	digit = count_digit(n);
+	if (n < 0)
+		digit ++;
+	retptr = (char *)malloc(sizeof(char) * (digit + 1));
+	if (retptr == 0)
 		return (0);
-	if (nb == 0)
-		str[0] = '0';
-	if (nb < 0)
+	*(retptr + digit) = '\0';
+	if (n == 0)
 	{
-		str[0] = '-';
-		nb *= -1;
+		*retptr = '0';
+		return (retptr);
 	}
-	str[len] = 0;
-	len--;
-	while (nb > 0)
-	{
-		str[len--] = nb % 10 + '0';
-		nb /= 10;
-	}
-	return (str);
+	reculsive_assign(retptr, digit, n);
+	return (retptr);
 }

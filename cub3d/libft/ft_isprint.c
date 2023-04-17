@@ -3,19 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isprint.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
+/*   By: youngwch <youngwch@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/06 16:33:26 by sehjung           #+#    #+#             */
-/*   Updated: 2022/07/11 14:50:39 by sehjung          ###   ########.fr       */
+/*   Created: 2022/11/07 15:01:15 by youngwch          #+#    #+#             */
+/*   Updated: 2022/11/07 17:01:13 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include"libft.h"
 
 int	ft_isprint(int c)
 {
-	if (c >= 32 && c <= 126)
+	if (c >= ' ' && c <= '~')
 		return (1);
-	else
-		return (0);
+	return (0);
 }

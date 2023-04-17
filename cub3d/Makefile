@@ -1,13 +1,21 @@
 NAME = cub3d
 
-CFLAGS = -Wall -Wextra -Werror
-MLX_FLAGS = -Lmlx -lmlx -framework Metal -framework Metalkit
+CFLAGS = -fsanitize=address -Wall -Wextra -Werror
+MLX_FLAGS = -lmlx -framework OpenGL -framework AppKit -g
 
 LIBFT = make -C libft
 
-SRCS = 	main.c \
-		get_next_line/get_next_line.c \
-		get_next_line/get_next_line_utils.c \
+SRCS = 	draw_camera.c \
+		event.c \
+		parsing/get_map.c \
+		parsing/get_util.c \
+		parsing/get_file.c \
+		parsing/get_element.c \
+		load_texture.c \
+		main.c \
+		raycasting.c \
+		set_camera.c \
+		init_info.c \
 
 OBJS = $(SRCS:.c=.o)
 

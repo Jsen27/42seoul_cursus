@@ -3,37 +3,31 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
+/*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/08 16:13:20 by sehjung           #+#    #+#             */
-/*   Updated: 2022/07/15 20:04:50 by sehjung          ###   ########.fr       */
+/*   Created: 2022/11/10 17:51:14 by youngwch          #+#    #+#             */
+/*   Updated: 2022/11/14 10:18:40 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include"libft.h"
 
 char	*ft_strdup(const char *s1)
 {
-	char	*temp;
-	int		len;
-	int		i;
+	int		length;
+	char	*retptr;
 
-	len = 0;
-	i = 0;
-	while (s1[i])
-	{
-		len++;
-		i++;
-	}
-	temp = (char *)malloc(sizeof(char) * len + 1);
-	if (!temp)
+	length = 0;
+	while (*(s1 + length))
+		length ++;
+	retptr = (char *)malloc(sizeof(char) * (length + 1));
+	if (retptr == 0)
 		return (0);
-	i = 0;
-	while (i < len)
+	*(retptr + length) = '\0';
+	while (length >= 0)
 	{
-		temp[i] = s1[i];
-		i++;
+		*(retptr + length) = *(const char *)(s1 + length);
+		length --;
 	}
-	temp[i] = 0;
-	return (temp);
+	return (retptr);
 }

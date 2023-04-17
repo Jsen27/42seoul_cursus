@@ -3,100 +3,95 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
+/*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/08 20:15:31 by sehjung           #+#    #+#             */
-/*   Updated: 2022/08/14 20:08:24 by sehjung          ###   ########.fr       */
+/*   Created: 2022/11/13 09:40:28 by youngwch          #+#    #+#             */
+/*   Updated: 2022/11/14 16:18:36 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include"libft.h"
 
-static char	**freeall(char **str, int word)
+static int	get_word_length(char const *s, char c)
 {
-	int	i;
+	int	length;
 
-	i = 0;
-	while (i < word)
-		free(str[i++]);
-	free(str);
-	return (NULL);
+	length = 0;
+	while (*(s + length))
+	{
+		if (*(s + length) == c)
+			return (length);
+		length ++;
+	}
+	return (length);
 }
 
-static int	count_word(const char *str, char charset)
+static int	count_word(char const *s, char c)
 {
-	int	i;
-	int	cnt;
+	int	word_count;
 
-	i = 0;
-	cnt = 0;
-	while (str[i])
+	word_count = 0;
+	while (*(s))
 	{
-		if (str[i] == charset)
-			i++;
-		else
+		if (get_word_length(s, c))
 		{
-			cnt++;
-			while (str[i] && str[i] != charset)
-				i++;
+			word_count ++;
+			s = s + get_word_length(s, c);
 		}
-	}
-	return (cnt);
-}
-
-static void	copy_str(char *arr, const char *str, char charset)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] != charset && str[i])
-	{
-		arr[i] = str[i];
-		i++;
-	}
-	arr[i] = '\0';
-}
-
-static char	**real_split(char **arr, char const *str, char charset)
-{
-	int	word;
-	int	i;
-	int	j;
-
-	word = 0;
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == charset)
-			i++;
 		else
-		{
-			j = 0;
-			while (str[i + j] != charset && str[i + j])
-				j++;
-			arr[word] = (char *)malloc(sizeof(char) * (j + 1));
-			if (!arr[word])
-				return (freeall(arr, word));
-			copy_str(arr[word], str + i, charset);
-			i += j;
-			word++;
-		}
+			s ++;
 	}
-	return (arr);
+	return (word_count);
+}
+
+static int	alloc_assign_ptr(char **retptr, char const *s, char c)
+{
+	int	word_count;
+	int	tmp;
+
+	word_count = 0;
+	while (*s)
+	{
+		if (get_word_length(s, c))
+		{
+			*(retptr + word_count)
+				= (char *)malloc(get_word_length(s, c) + 1);
+			if (*(retptr + word_count) == 0)
+				return (word_count);
+			tmp = -1;
+			while (++ tmp < get_word_length(s, c))
+				*(*(retptr + word_count) + tmp) = *(s + tmp);
+			*(*(retptr + word_count) + tmp) = '\0';
+			s = s + get_word_length(s, c);
+			word_count ++;
+		}
+		else
+			s ++;
+	}
+	return (word_count);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char	**arr;
-	int		word;
+	int		word_counting;
+	char	**retptr;
+	int		allocated_ptr_length;
 
-	if (!s)
-		return (NULL);
-	word = count_word(s, c);
-	arr = (char **)malloc(sizeof(char *) * (word + 1));
-	if (!arr)
-		return (NULL);
-	arr[word] = 0;
-	arr = real_split(arr, s, c);
-	return (arr);
+	word_counting = count_word(s, c);
+	retptr = (char **)malloc(sizeof(char *) * (word_counting + 1));
+	if (retptr == 0)
+		return (0);
+	*(retptr + word_counting) = 0;
+	allocated_ptr_length = alloc_assign_ptr(retptr, s, c);
+	if (allocated_ptr_length != count_word(s, c))
+	{
+		while (allocated_ptr_length >= 0)
+		{
+			free(*(retptr + allocated_ptr_length));
+			allocated_ptr_length --;
+		}
+		free(retptr);
+		return (0);
+	}
+	return (retptr);
 }
