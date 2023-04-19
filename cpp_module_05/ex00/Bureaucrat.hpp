@@ -13,6 +13,7 @@ public:
 	Bureaucrat();
 	Bureaucrat(const Bureaucrat& ref);
 	Bureaucrat &operator=(const Bureaucrat& ref);
+	void test();
 	~Bureaucrat();
 };
 
