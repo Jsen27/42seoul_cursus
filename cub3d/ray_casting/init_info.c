@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init_info.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 21:26:36 by sehjung           #+#    #+#             */
-/*   Updated: 2023/04/17 21:41:06 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2023/04/18 12:15:23 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
-//벽에 충돌했을떄 벽 뚫려 보이는 문제
-//처음 시작할때도 마찬가지
+#include "../cub3d.h"
 
 static void	init_buf(t_info *info)
 {
@@ -34,14 +32,14 @@ static void	init_buf(t_info *info)
 
 static void	direction_we(char direction, t_info *info)
 {
-	if (direction == 'W')
+	if (direction == 'E')
 	{
 		info->dir_x = 0.0;
 		info->dir_y = 1.0;
 		info->plane_x = 0.66;
 		info->plane_y = 0.0;
 	}
-	else if (direction == 'E')
+	else if (direction == 'W')
 	{
 		info->dir_x = 0.0;
 		info->dir_y = -1.0;

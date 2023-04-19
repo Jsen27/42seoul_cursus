@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   set_camera.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 21:05:40 by sehjung           #+#    #+#             */
-/*   Updated: 2023/04/17 21:07:36 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2023/04/18 14:54:44 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 static void	find_wall(t_info *info, t_camera *cam)
 {
-	while (cam->hit == 0)// 처음 만나는 벽을 찾을때까지 계속 이동하면서 찾음
+	while (cam->hit == 0)
 	{
 		if (cam->sidedist_x < cam->sidedist_y)
 		{

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   load_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 19:59:14 by sehjung           #+#    #+#             */
-/*   Updated: 2023/04/17 20:02:26 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2023/04/18 11:30:16 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 static void	load_image(t_info *info, int texture[][64], char *path, t_img *img)
 {

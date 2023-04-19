@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   draw_camera.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 19:55:30 by sehjung           #+#    #+#             */
-/*   Updated: 2023/04/17 19:56:47 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2023/04/18 11:30:19 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../cub3d.h"
 
 static void	draw_texture(t_info *info, t_camera *cam, int x)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: youngwch <youngwch@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/17 19:48:19 by sehjung           #+#    #+#             */
-/*   Updated: 2023/04/17 21:29:54 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2023/04/18 14:54:21 by youngwch         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,46 +17,51 @@
 # include <math.h>
 # include <stdio.h>
 # include <stdlib.h>
-# include <string.h>
-# include "key_macos.h"
 # include <unistd.h>
 # include <fcntl.h>
 # include "libft/libft.h"
 
-# define X_EVENT_KEY_PRESS 2
-# define X_EVENT_KEY_EXIT 17
 # define TEXWIDTH 64
 # define TEXHEIGHT 64
 # define MAPWIDTH 24
 # define MAPHEIGHT 24
 # define WIDTH 640
 # define HEIGHT 480
+# define K_A 0
+# define K_S 1
+# define K_D 2
+# define K_W 13
+# define K_AR_L 123
+# define K_AR_R 124
+# define K_ESC 53
+# define X_EVENT_KEY_PRESS 2
+# define X_EVENT_KEY_EXIT 17
 
 typedef struct s_camera
 {
-	double	camera_x;//평면카메라
-	double	raydir_x;//카메라 방향벡터
+	double	camera_x;
+	double	raydir_x;
 	double	raydir_y;
-	int		map_x;//플레이어 좌표 (부딪힌 벽의 좌표를 저장할 때 사용)
+	int		map_x;
 	int		map_y;
-	double	sidedist_x;//처음 만나는 벽의 거리
+	double	sidedist_x;
 	double	sidedist_y;
-	double	deltadist_x;//다음 만나는 벽의 거리
+	double	deltadist_x;
 	double	deltadist_y;
-	double	perwalldist;//어안렌즈 현상 보정
-	int		step_x;//벽이 있는지 검사 할 방향 (광선의 방향에 따라 이동방향(음or양)을 담음)
+	double	perwalldist;
+	int		step_x;
 	int		step_y;
-	int		hit;//벽에 부딪히면 1, 아니면 0 flag
-	int		side;//y축에 수직이면 1(-), x축에 수직이면 0(ㅣ) flag
-	int		lineheight;//벽의 높이
-	int		wallstart;//벽의 시작점과 끝점
+	int		hit;
+	int		side;
+	int		lineheight;
+	int		wallstart;
 	int		wallend;
-	int		texnum;//텍스쳐
-	double	wall_x;//벽의 X축부터 광선이 부딪힌 곳의 거리
-	int		tex_x;//텍스쳐끝에서 광선까지의 픽셀 거리
+	int		texnum;
+	double	wall_x;
+	int		tex_x;
 	int		tex_y;
-	double	tex_pos;//텍스쳐에서 어떤 색상을 가져올지에 대한 y좌표
-	double	step;//텍스쳐의 원래 크기를 실제 벽의 크기로 나눈 값
+	double	tex_pos;
+	double	step;
 }	t_camera;
 
 typedef struct s_element
@@ -116,5 +121,9 @@ void	get_map(int fd, t_info *info);
 void	get_file(char *map_path, t_info *info);
 void	my_error(void);
 void	init_info(char direction, t_info *info);
+void	parse_rgb(char *str, int *color_store);
+void	check_str_count(char **p_str, int count);
+void	get_texture_path(t_element *e, char *str, int *flag);
+void	check_world_map(char **map);
 
 #endif
