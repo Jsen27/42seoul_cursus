@@ -6,11 +6,12 @@
 class Bureaucrat
 {
 private:
-	const std::string name;
-	int grade;
+	const std::string _name;
+	int _grade;
 
 public:
 	Bureaucrat();
+	Bureaucrat(const std::string name, const int grade);
 	Bureaucrat(const Bureaucrat& ref);
 	Bureaucrat &operator=(const Bureaucrat& ref);
 	void test();

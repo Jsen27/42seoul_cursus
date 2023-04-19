@@ -7,7 +7,7 @@ Bureaucrat::Bureaucrat()
 
 void Bureaucrat::test()
 {
-	std::cout<<this->name<<std::endl;
+	std::cout<<this->_name<<std::endl;
 }
 
 Bureaucrat::~Bureaucrat()
