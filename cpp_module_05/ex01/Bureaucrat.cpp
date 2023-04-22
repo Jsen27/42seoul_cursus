@@ -32,7 +32,7 @@ const std::string Bureaucrat::getName() const
 	return this->name_;
 }
 
-const int Bureaucrat::getGrade() const
+int Bureaucrat::getGrade() const
 {
 	return this->grade_;
 }
@@ -51,6 +51,19 @@ void Bureaucrat::decreaseGrade()
 		throw Bureaucrat::GradeTooLowException();
 	this->grade_++;
 	std::cout << "demote" << *this << std::endl;
+}
+
+void Bureaucrat::signForm(Form &form)
+{
+	try
+	{
+		form.beSigned(*this);
+		std::cout << name_ << " signed " << form.getName() << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << name_ << " couldn't sign " << form.getName() << " because " << e.what() << std::endl;
+	}
 }
 
 const char * Bureaucrat::GradeTooHighException::what() const throw()
