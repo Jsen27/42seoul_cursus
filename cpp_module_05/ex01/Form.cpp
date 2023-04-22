@@ -7,7 +7,7 @@ Form::Form() : name_("default"), sign_(false), grade_sign_(150), grade_execute_(
 
 Form::Form(const std::string name, const int sign, const int execute) : name_(name), sign_(false), grade_sign_(sign), grade_execute_(execute)
 {
-	std::cout << "Default constructor for Form class has been created with " << this->name_ << std::endl;
+	std::cout << "constructor for Form class has been created with " << this->name_ << std::endl;
 	if (sign < 1 || execute < 1)
 		throw Form::GradeTooHighException();
 	else if (sign > 150 || execute > 150)
@@ -37,7 +37,7 @@ const std::string Form::getName() const
 	return this->name_;
 }
 
-int Form::getSign() const
+bool Form::getSign() const
 {
 	return this->sign_;
 }
@@ -54,29 +54,35 @@ int Form::getGradeExecute() const
 
 void Form::beSigned(const Bureaucrat &ref)
 {
-	if (ref.getGrade() <= this->getGradeSign())
-		this->sign_ = true;
-	else
+	if (ref.getGrade() > this->getGradeSign())
+	{
+		std::cerr << ref.getName() << " couldn't sign " << this->getName() << " because ";
 		throw Form::GradeTooLowException();
+	}
+	if (this->sign_ == false)
+	{
+		this->sign_ = true;
+		std::cout << ref.getName() << " signed " << this->getName() << std::endl;
+	}
+	else
+		std::cout << this->getName() << " Form is already signed" << std::endl;
 }
 
 const char * Form::GradeTooHighException::what() const throw()
 {
-	return "Too high . . .";
+	return "too high . . .";
 }
 
 const char * Form::GradeTooLowException::what() const throw()
 {
-	return "Too low . . .";
+	return "too low . . .";
 }
-
 
 std::ostream &operator<<(std::ostream &os, const Form &ref)
 {
 	os << "Name: " << ref.getName() << ", ";
-	os << "Signed: " << ref.getSign() << ", ";
+	os << "Signed: " << std::boolalpha << ref.getSign() << ", ";
 	os << "Grade required to sign: " << ref.getGradeSign() << ", ";
     os << "Grade required to execute: " << ref.getGradeExecute();
 	return os;
 }
-

@@ -7,7 +7,7 @@ Bureaucrat::Bureaucrat() : name_("default"), grade_(150)
 
 Bureaucrat::Bureaucrat(const std::string name, const int grade) : name_(name), grade_(grade)
 {
-	std::cout << "Default constructor for Bureaucrat class has been created with " << this->name_ << " and " << this->grade_ << " grade" << std::endl;	
+	std::cout << "constructor for Bureaucrat class has been created with " << this->name_ << " and " << this->grade_ << " grade" << std::endl;	
 	if (grade < 1)
 		throw Bureaucrat::GradeTooHighException();
 	else if (grade > 150)
@@ -55,12 +55,12 @@ void Bureaucrat::decreaseGrade()
 
 const char * Bureaucrat::GradeTooHighException::what() const throw()
 {
-	return "Too high . . .";
+	return "too high . . .";
 }
 
 const char * Bureaucrat::GradeTooLowException::what() const throw()
 {
-	return "Too low . . .";
+	return "too low . . .";
 }
 
 Bureaucrat::~Bureaucrat()

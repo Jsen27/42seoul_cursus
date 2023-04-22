@@ -22,7 +22,7 @@ public:
 	Form& operator=(const Form& ref);
 
 	const std::string getName() const;
-	int getSign() const;
+	bool getSign() const;
 	int getGradeSign() const;
 	int getGradeExecute() const;
 
