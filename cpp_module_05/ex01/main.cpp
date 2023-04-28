@@ -7,7 +7,6 @@ int main()
 		Form paper("paper", 150, 150);
 		try
 		{
-
 			std::cout << king << std::endl;
 			std::cout << paper << std::endl;
 			king.signForm(paper);
