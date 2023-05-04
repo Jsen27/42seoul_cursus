@@ -27,7 +27,7 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat& ref)
 	return *this;
 }
 
-std::string Bureaucrat::getName() const
+const std::string Bureaucrat::getName() const
 {
 	return this->name_;
 }
@@ -51,6 +51,11 @@ void Bureaucrat::decreaseGrade()
 		throw Bureaucrat::GradeTooLowException();
 	this->grade_++;
 	std::cout << "demote" << *this << std::endl;
+}
+
+void Bureaucrat::signForm(AForm &form)
+{
+	form.beSigned(*this);
 }
 
 const char * Bureaucrat::GradeTooHighException::what() const throw()

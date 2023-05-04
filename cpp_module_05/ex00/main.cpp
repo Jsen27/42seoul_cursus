@@ -2,6 +2,7 @@
 
 int main()
 {
+	std::cout << "***********************Test 1***********************" << std::endl;
 	{
 		try
 		{
@@ -13,6 +14,8 @@ int main()
 			std::cerr << e.what() << std::endl;
 		}
 	}
+
+	std::cout << "***********************Test 2***********************" << std::endl;
 
 	{
 		try

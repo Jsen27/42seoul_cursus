@@ -14,8 +14,8 @@ public:
 	Bureaucrat(const std::string name, const int grade);
 	Bureaucrat(const Bureaucrat& ref);
 	Bureaucrat &operator=(const Bureaucrat& ref);
-	const std::string getName() const;
-	const int getGrade() const;
+	std::string getName() const;
+	int getGrade() const;
 	void increaseGrade();
 	void decreaseGrade();
 
