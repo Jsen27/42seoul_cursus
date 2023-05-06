@@ -1,10 +1,11 @@
-NAME =	a.out
+NAME =	convert
 
 CXX = c++
 
 CXXFLAGS =	-Wall -Wextra -Werror -std=c++98 -pedantic
 
 SRCS =	main.cpp \
+		ScalarConverter.cpp \
 
 OBJS =	$(SRCS:.cpp=.o)
 
@@ -17,7 +18,7 @@ clean	:
 			$(RM) $(OBJS)
 
 fclean	:	
-			$(RM) $(OBJS) a.out
+			$(RM) $(OBJS) convert
 			
 re	:	fclean
 		make all

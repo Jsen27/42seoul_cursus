@@ -2,20 +2,27 @@
 #define SCALARCONVERTER_HPP_
 
 #include <iostream>
-#include <cmath> // floor
-#include <cstdlib> // strtod
-#include <locale> // isprint
+#include <cmath>
+#include <cstdlib>
+#include <cctype>
+#include <iomanip>
 
 class ScalarConverter
 {
-private:
-	double value_;
-	bool flag_;
 public:
-	ScalarConverter(const std::string str);
+	ScalarConverter();
 	ScalarConverter(const ScalarConverter& ref);
 	ScalarConverter& operator=(const ScalarConverter& ref);
 	~ScalarConverter();
+	
+	static void convert(const std::string str);
+
+	static void convertChar(const double value, bool flag);
+	static void convertInt(const int value, bool flag);
+	static void convertfloat(const float value, bool flag);
+	static void convertDouble(const double value, bool flag);
+
 };
 
 #endif
+
