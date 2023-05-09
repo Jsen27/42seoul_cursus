@@ -1,8 +1,8 @@
 #ifndef SERIALIZER_HPP_
 #define SERIALIZER_HPP_
 
-#include <iostream>
 #include <stdint.h>
+#include <iostream>
 
 struct Data
 {

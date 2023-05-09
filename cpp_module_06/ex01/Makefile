@@ -1,4 +1,4 @@
-NAME =	convert
+NAME =	a.out
 
 CXX = c++
 
@@ -18,7 +18,7 @@ clean	:
 			$(RM) $(OBJS)
 
 fclean	:	
-			$(RM) $(OBJS) convert
+			$(RM) $(OBJS) a.out
 			
 re	:	fclean
 		make all
