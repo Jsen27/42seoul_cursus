@@ -2,7 +2,10 @@
 
 Serializer::Serializer(){}
 
-Serializer::Serializer(const Serializer& ref){}
+Serializer::Serializer(const Serializer& ref)
+{
+	(void)ref;
+}
 
 Serializer& Serializer::operator=(const Serializer& ref)
 {

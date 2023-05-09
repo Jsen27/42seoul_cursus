@@ -15,18 +15,6 @@ ScalarConverter& ScalarConverter::operator=(const ScalarConverter& ref)
 
 ScalarConverter::~ScalarConverter(){}
 
-void ScalarConverter::convert(const std::string str)
-{
-	char *end = NULL;
-	double value = std::strtod(str.c_str(), &end);
-	bool flag = (strlen(end) == 0 || (strlen(end) == 1 && end[0] == 'f' && str[str.length() - 1] == 'f'));
-
-	convertChar(value, flag);
-	convertInt(static_cast<int>(value), flag);
-	convertfloat(static_cast<float>(value), flag);
-	convertDouble(value, flag);
-}
-
 void ScalarConverter::convertChar(const double value, bool flag)
 {
     std::cout << "Char: ";
@@ -72,4 +60,16 @@ void ScalarConverter::convertDouble(const double value, bool flag)
         std::cout << "impossible" << std::endl;
     else
 		std::cout << std::fixed << std::setprecision(1) << value << std::endl;
+}
+
+void ScalarConverter::convert(const std::string str)
+{
+	char *end = NULL;
+	double value = std::strtod(str.c_str(), &end);
+	bool flag = (strlen(end) == 0 || (strlen(end) == 1 && end[0] == 'f' && str[str.length() - 1] == 'f'));
+
+	convertChar(value, flag);
+	convertInt(static_cast<int>(value), flag);
+	convertfloat(static_cast<float>(value), flag);
+	convertDouble(value, flag);
 }
