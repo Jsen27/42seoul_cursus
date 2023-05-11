@@ -29,7 +29,7 @@ void ScalarConverter::convertChar(const double value, bool flag)
 void ScalarConverter::convertInt(const int value, bool flag)
 {
 	std::cout << "Int: ";
-	if (value < -std::numeric_limits<int>::max() || value > std::numeric_limits<int>::max()
+	if (value < -std::numeric_limits<int>::max() - 1 || value > std::numeric_limits<int>::max()
 		|| flag == false)
 		std::cout << "impossible" << std::endl;
 	else

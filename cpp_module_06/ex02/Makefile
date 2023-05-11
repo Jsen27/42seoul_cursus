@@ -1,11 +1,10 @@
-NAME =	serializer
+NAME =	generate
 
 CXX = c++
 
 CXXFLAGS =	-Wall -Wextra -Werror -std=c++98 -pedantic
 
 SRCS =	main.cpp \
-		Serializer.cpp \
 
 OBJS =	$(SRCS:.cpp=.o)
 
@@ -18,7 +17,7 @@ clean	:
 			$(RM) $(OBJS)
 
 fclean	:	
-			$(RM) $(OBJS) serializer
+			$(RM) $(OBJS) generate
 			
 re	:	fclean
 		make all
