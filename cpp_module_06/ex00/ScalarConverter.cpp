@@ -15,7 +15,7 @@ ScalarConverter& ScalarConverter::operator=(const ScalarConverter& ref)
 
 ScalarConverter::~ScalarConverter(){}
 
-void ScalarConverter::convertChar(const double value, bool flag)
+void ScalarConverter::convertChar(const long double value, bool flag)
 {
     std::cout << "Char: ";
     if (flag == true && std::isprint(static_cast<int>(value)) && !std::isnan(value))
@@ -26,30 +26,30 @@ void ScalarConverter::convertChar(const double value, bool flag)
         std::cout << "Non displayable" << std::endl;
 }
 
-void ScalarConverter::convertInt(const int value, bool flag)
+void ScalarConverter::convertInt(const long double value, bool flag)
 {
 	std::cout << "Int: ";
-	if (value < -std::numeric_limits<int>::max() - 1 || value > std::numeric_limits<int>::max()
-		|| flag == false)
+	if (value < std::numeric_limits<int>::lowest() || value > std::numeric_limits<int>::max()
+		|| flag == false || std::isinf(value) || std::isnan(value))
 		std::cout << "impossible" << std::endl;
 	else
-		std::cout << value << std::endl;
+		std::cout << static_cast<int>(value) << std::endl;
 }
 
-void ScalarConverter::convertfloat(const float value, bool flag)
+void ScalarConverter::convertfloat(const long double value, bool flag)
 {
 	std::cout << "Float: ";
-    if (value < -std::numeric_limits<float>::max())
+    if (value < std::numeric_limits<float>::lowest())
         std::cout << "-inff" << std::endl;
     else if (value > std::numeric_limits<float>::max())
         std::cout << "inff" << std::endl;
     else if (flag == false)
         std::cout << "impossible" << std::endl;
     else
-        std::cout << std::fixed << std::setprecision(1) << value << "f" << std::endl;
+        std::cout << std::fixed << std::setprecision(1) << static_cast<float>(value) << "f" << std::endl;
 }
 
-void ScalarConverter::convertDouble(const double value, bool flag)
+void ScalarConverter::convertDouble(const long double value, bool flag)
 {
 	std::cout << "Double: ";
     if (value < -std::numeric_limits<double>::max())
@@ -59,17 +59,17 @@ void ScalarConverter::convertDouble(const double value, bool flag)
     else if (flag == false)
         std::cout << "impossible" << std::endl;
     else
-		std::cout << std::fixed << std::setprecision(1) << value << std::endl;
+		std::cout << std::fixed << std::setprecision(1) << static_cast<double>(value) << std::endl;
 }
 
 void ScalarConverter::convert(const std::string str)
 {
 	char *end = NULL;
-	double value = std::strtod(str.c_str(), &end);
+	long double value = std::strtold(str.c_str(), &end);
 	bool flag = (strlen(end) == 0 || (strlen(end) == 1 && end[0] == 'f' && str[str.length() - 1] == 'f'));
 
 	convertChar(value, flag);
-	convertInt(static_cast<int>(value), flag);
-	convertfloat(static_cast<float>(value), flag);
+	convertInt(value, flag);
+	convertfloat(value, flag);
 	convertDouble(value, flag);
 }

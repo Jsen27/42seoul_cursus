@@ -15,10 +15,10 @@ public:
 	ScalarConverter& operator=(const ScalarConverter& ref);
 	~ScalarConverter();
 	
-	static void convertChar(const double value, bool flag);
-	static void convertInt(const int value, bool flag);
-	static void convertfloat(const float value, bool flag);
-	static void convertDouble(const double value, bool flag);
+	static void convertChar(const long double value, bool flag);
+	static void convertInt(const long double value, bool flag);
+	static void convertfloat(const long double value, bool flag);
+	static void convertDouble(const long double value, bool flag);
 
 	static void convert(const std::string str);
 };
