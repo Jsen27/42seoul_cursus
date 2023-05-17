@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_texture_path.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sehjung <sehjung@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: sehjung <sehjung@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 09:56:41 by youngwch          #+#    #+#             */
-/*   Updated: 2023/04/19 17:20:10 by sehjung          ###   ########seoul.kr  */
+/*   Updated: 2023/05/17 21:06:22 by sehjung          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static int	check_color(t_element *e, char **p_element, int *flag)
 		&& ft_strlen(p_element[0]) == 1 && !flag[4])
 	{
 		flag[4] = 1;
-		parse_rgb(p_element[1], e->ecil_color);
+		parse_rgb(p_element[1], e->ceil_color);
 		return (1);
 	}
 	else if (!ft_strncmp(p_element[0], "C", 1)
