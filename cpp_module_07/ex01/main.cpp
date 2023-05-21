@@ -7,10 +7,10 @@ int main()
 
 	for (int i = 0; i < 5; i++)
 		array[i] = i + 1;
-	::iter(array, 5, print);
+	iter(array, 5, print);
 	
 	char str[6] = "apple";
-	::iter(str, 5, print);
+	iter(str, 5, print);
 
 	return 0;
 }
