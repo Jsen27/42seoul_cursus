@@ -20,8 +20,9 @@ public:
 	void addNumber(const int num);
 	size_t longestSpan();
 	size_t shortestSpan();
+	void addFullNumber();
 
-	int getNumber()const;
+	int getNumber(const size_t num);
 };
 
 #endif

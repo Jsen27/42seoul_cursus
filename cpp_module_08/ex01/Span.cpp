@@ -54,3 +54,16 @@ size_t Span::shortestSpan()
 	}
 	return static_cast<size_t>(result);
 }
+
+void Span::addFullNumber()
+{
+	if (size_ == vec_.size())
+		throw std::runtime_error("The maximum number of elements has already been saved.");
+	for (size_t i = vec_.size(); i < size_; i++)
+		vec_.push_back(i);		
+}
+
+int Span::getNumber(const size_t num)
+{
+	return vec_.at(num);
+}
