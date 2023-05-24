@@ -58,7 +58,7 @@ int main()
 			++it;
 		}
 		std::list<int> s(lst);
-	}	
+	}
 	
 	return 0;
 }
