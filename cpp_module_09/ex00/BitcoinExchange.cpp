@@ -1,6 +1,11 @@
 #include "BitcoinExchange.hpp"
 
-void BitcoinExchange::checkCsv()
+bool BitcoinExchange::checkDate(const std::string& date)
+{
+	
+}
+
+void BitcoinExchange::checkCsvFile()
 {
 	std::ifstream csv("data.csv");
 	std::string read;
@@ -16,6 +21,7 @@ void BitcoinExchange::checkCsv()
 	while(std::getline(csv, read)){
 		if (read != "data,exchange_rate"){
 			date_size = read.find(',');
+			
 			std::istringstream(read.substr(date_size + 1, read.length())) >> value;
 			bitcoinData[read.substr(0, date_size)] = value;
 		}
