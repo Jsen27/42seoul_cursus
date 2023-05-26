@@ -18,8 +18,10 @@ public:
 	BitcoinExchange& operator=(const BitcoinExchange& ref);
 	~BitcoinExchange();
 
-	bool checkDate(const std::string &date);
-	void checkCsvFile();
+	bool checkValue(const std::string& value);
+	bool checkDate(const std::string& date);
+	void parseCsvFile();
+	void checkInputFile(char* file);
 };
 
 
