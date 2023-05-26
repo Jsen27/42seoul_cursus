@@ -19,9 +19,15 @@ public:
 	~BitcoinExchange();
 
 	bool checkValue(const std::string& value);
-	bool checkDate(const std::string& date);
-	void parseCsvFile();
+	bool checkDataDate(const std::string& date);
+	void insertDataMap();
+
 	void checkInputFile(char* file);
+
+	void checkInputDate(const std::string& date);
+	void exchange(std::string file);
+
+	void bitcoin(char* file);
 };
 
 
