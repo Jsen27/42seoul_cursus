@@ -23,8 +23,10 @@ public:
 	void insertDataMap();
 
 	void checkInputFile(char* file);
+	bool checkInputDate(const std::string& date);
+	bool checkInputValue(const std::string& value);
+	void printBitcoin(std::string date, float value);
 
-	void checkInputDate(const std::string& date);
 	void exchange(std::string file);
 
 	void bitcoin(char* file);

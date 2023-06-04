@@ -9,6 +9,7 @@ BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& ref) {(void) 
 BitcoinExchange::~BitcoinExchange()
 {
 	//구현 해야함
+	//map discribtor
 }
 
 bool BitcoinExchange::checkValue(const std::string& value)
@@ -82,7 +83,7 @@ void BitcoinExchange::insertDataMap()
 			date_size = read.find(',');
 			if (checkDataDate(read.substr(0, date_size)) == false)
 				throw std::runtime_error("Error: invalid date in the csv file");
-			if (checkValue(read.substr(date_size + 1, read.length() - date_size)));
+			if (checkValue(read.substr(date_size + 1, read.length() - date_size)) == false)
 				throw std::runtime_error("Error: invalid exchange rate in the csv file");
 			std::istringstream(read.substr(date_size + 1, read.length())) >> value;
 			bitcoinData.insert(std::make_pair(read.substr(0, date_size), value));
@@ -100,49 +101,110 @@ void BitcoinExchange::checkInputFile(char* file)
 		throw std::runtime_error("Error: failed to open input file");
 	if (std::getline(fs, str).eof())
 		throw std::runtime_error("Error: empty input file");
-	if (!str.compare("date | value"))
+	if (str.compare("date | value") != 0)
 		throw std::runtime_error("Error: invalid format in the input file");
 	fs.close();
 }
 
-void BitcoinExchange::checkInputDate(const std::string& date)
+bool BitcoinExchange::checkInputDate(const std::string& date)
 {
 	std::istringstream iss(date);
 	std::string read;
 	int year, month, day;
 	int flag = 0;
 
-	if (date.find('-', date.length() - 1) != std::string::npos)
-		throw std::runtime_error("Error: incorrect date formate => " + date);
-	
+	if (date.find('-', date.length() - 1) != std::string::npos){
+		std::cout << "Error: incorrect date formate => " << date << std::endl;
+		return false;
+	}
 	while (std::getline(iss, read, '-')) {
 		if (flag == 0) {
 			std::istringstream(read) >> year;
-			if (year < 2009 || year > 2022)
-				throw std::runtime_error("Error: invalid year => " + date);
+			if (year < 2009 || year > 2022){
+				std::cout << "Error: invalid year => " << date << std::endl;
+				return false;
+			}
 		}
 		if (flag == 1) {
 			std::istringstream(read) >> month;
-			if (month < 1 || month > 12)
-				throw std::runtime_error("Error: invalid month => " + date);
+			if (month < 1 || month > 12){
+				std::cout << "Error: invalid month => " << date << std::endl;
+				return false;
+			}
 		}
 		if (flag == 2) {
 			std::istringstream(read) >> day;
-			if (day < 1 || day > 31) 
-				throw std::runtime_error("Error: bad input => " + date);
+			if (day < 1 || day > 31){
+				std::cout << "Error: bad input => " << date << std::endl;
+				return false;
+			}
 		}
-		if (day == 31 && (month == 4 || month == 6 || month == 9 || month == 11))
-			throw std::runtime_error("Error: incorrect days => " + date);
+		if (day == 31 && (month == 4 || month == 6 || month == 9 || month == 11)){
+			std::cout << "Error: incorrect days => " << date << std::endl;
+			return false;
+		}
 		if (year % 4 == 0 && (year % 100 != 0 || year % 400 == 0)) {
-			if (day > 29 && month == 2)
-			throw std::runtime_error("Error: incorrect days => " + date);
-		} else if (day > 28 && month == 2)
-			throw std::runtime_error("Error: incorrect days => " + date);
-		
+			if (day > 29 && month == 2){
+				std::cout << "Error: incorrect days => " << date << std::endl;
+				return false;
+			}
+		} else if (day > 28 && month == 2){
+			std::cout << "Error: incorrect days => " << date << std::endl;
+			return false;
+		}		
 		flag++;
 	}
-	if (flag != 3)
-		throw std::runtime_error("Error : Wrong format => " + date);
+	if (flag != 3){
+		std::cout << "Error: Wrong format => " << date << std::endl;
+		return false;
+	}
+	return true;
+}
+
+bool BitcoinExchange::checkInputValue(const std::string& value)
+{
+	char* end = nullptr;
+	double dvalue = strtod(value.c_str(), &end);
+
+	if (value.find('.') == 0 || value.find('.', value.length() - 1) != std::string::npos){
+		std::cout << "Error: not a number." << std::endl;
+		return false;
+	}
+	if (dvalue == 0 && !std::isdigit(value[0])){
+		std::cout << "Error: not a number." << std::endl;
+		return false;
+	}
+	if (*end && std::strcmp(end, "f")){
+		std::cout << "Error: not a number." << std::endl;
+		return false;
+	}
+	if (dvalue < 0){
+		std::cout << "Error: not a positive number." << std::endl;
+		return false;
+	}
+	if (value.length() > 10 || (value.length() == 10 && dvalue > 2147483647)){
+		std::cout << "Error: too large a number." << std::endl;
+		return false;
+	}
+	return true;
+}
+
+void BitcoinExchange::printBitcoin(std::string date, float value)
+{
+	std::map<std::string, float>::const_iterator iter = bitcoinData.find(date);
+	float result = 0;
+
+	if (iter == bitcoinData.end()){
+		iter = bitcoinData.lower_bound(date);
+		if (iter == bitcoinData.begin()){
+			std::cout << "Error: Invalid date." << std::endl;
+			return ;	
+		}
+		iter--;
+	} 
+	result = iter->second * value;
+	
+	std::cout << date << " => " << value << " = " << result << std::endl;
 }
 
 void BitcoinExchange::exchange(std::string file)
@@ -154,15 +216,30 @@ void BitcoinExchange::exchange(std::string file)
 
 	while (std::getline(formats, str, ' ')){
 		if (flag == 0){
-			checkInputDate(str);
+			if (checkInputDate(str) == false)
+				return ;
 			date = str;
 		}
-		else if (flag == 1 && str != "|")
-			throw std::runtime_error("Error: bad input => " + file);
-		else if (flag == 2){
-
+		else if (flag == 1 && str != "|"){
+			std::cout << "Error: bad input => " << file << std::endl;
+			return ;
 		}
+		else if (flag == 2){
+			if (checkInputValue(str) == false)
+				return ;
+			value = std::strtod(str.c_str(), nullptr);
+			if (value > 1000){
+				std::cout << "Error: too large a number." << std::endl;
+				return ;
+			}
+		}
+		flag++;
 	}
+	if (flag != 3){
+		std::cout << "Error: bad input => " << file << std::endl;
+		return ;
+	}
+	printBitcoin(date, value);
 }
 
 void BitcoinExchange::bitcoin(char* file)
