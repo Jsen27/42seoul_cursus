@@ -215,6 +215,8 @@
 		int client_fd;
 		int res;
 
+		(void)res;
+
 		for (int i = _last_iter_read; i < _new_events; i++)
 		{
 			client_fd = _evList[i].ident;
