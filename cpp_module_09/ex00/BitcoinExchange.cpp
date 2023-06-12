@@ -2,15 +2,19 @@
 
 BitcoinExchange::BitcoinExchange(){}
 
-BitcoinExchange::BitcoinExchange(const BitcoinExchange& ref) {(void) ref;}
-
-BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& ref) {(void) ref; return *this;}
-
-BitcoinExchange::~BitcoinExchange()
+BitcoinExchange::BitcoinExchange(const BitcoinExchange& ref)
 {
-	//구현 해야함
-	//map discribtor
+	bitcoinData.insert(ref.bitcoinData.begin(), ref.bitcoinData.end());
 }
+
+BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& ref)
+{
+	if (&ref != this)
+		bitcoinData.insert(ref.bitcoinData.begin(), ref.bitcoinData.end());
+	return *this;
+}
+
+BitcoinExchange::~BitcoinExchange() {}
 
 bool BitcoinExchange::checkValue(const std::string& value)
 {
