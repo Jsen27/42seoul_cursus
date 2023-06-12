@@ -1,11 +1,11 @@
-NAME =	RPN
+NAME =	PmergeMe
 
 CXX = c++
 
 CXXFLAGS =	-Wall -Wextra -Werror -std=c++98 -pedantic
 
 SRCS =	main.cpp \
-		RPN.cpp \
+		PmergeMe.cpp \
 
 OBJS =	$(SRCS:.cpp=.o)
 
@@ -18,7 +18,7 @@ clean	:
 			$(RM) $(OBJS)
 
 fclean	:	
-			$(RM) $(OBJS) RPN
+			$(RM) $(OBJS) PmergeMe
 			
 re	:	fclean
 		make all

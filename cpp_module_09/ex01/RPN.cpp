@@ -43,24 +43,34 @@ void RPN::start(char* argv)
 	std::string oper = "+-*/";
 	double tmp;
 	char c;
+	int flag = 0;
 
 	
 	for (size_t i = 0; i < len; i++){
-		if (argv[i] == ' ')
+		if (argv[i] == ' '){
+			flag = 0;
 			continue;
+		}
 		ssSet(ss, argv[i]);
-		if (ss >> tmp)
+		if (ss >> tmp){
+			if (tmp >= 10 || flag == 1){
+				std::cout << "Error !" << std::endl;
+				return;
+			}
 			_rpn.push(tmp);
+			flag = 1;
+		}
 		else{
 			ssSet(ss, argv[i]);
 			if (ss >> c){
 				if (oper.find(c) != std::string::npos){
-					if (_rpn.size() >= 2)
+					if (_rpn.size() >= 2 && flag == 0)
 						_rpn.push(calcurator(c));
 					else{
 						std::cout << "Error !" << std::endl;
 						return;
 					}
+					flag = 1;
 				}
 				else{
 					std::cout << "Error !" << std::endl;

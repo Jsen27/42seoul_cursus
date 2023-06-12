@@ -2,8 +2,12 @@
 
 int main(int argc, char** argv)
 {
+	if (argc != 2){
+		std::cout << "Usage ex) ./RPN \"5 5 +\"" << std::endl;
+		return -1;
+	}
+
 	RPN rpn;
-	(void)argc;
 	rpn.start(argv[1]);
 
 
