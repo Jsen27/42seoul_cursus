@@ -76,5 +76,5 @@ void PmergeMe::vectorSort()
 	for (size_t i = 0; i < _vec.size(); i++)
 		std::cout << _vec[i] << " ";
 	std::cout << std::endl;
-	std::cout << "Time to process a range of " << _vec.size() << " elements with std::vector :" << endTime - startTime << std::endl;
+	std::cout << "Time to process a range of " << std::setw(4) << _vec.size() << " elements with std::vector :" << endTime - startTime << "ms" << std::endl;
 }
