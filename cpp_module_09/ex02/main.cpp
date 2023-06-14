@@ -1,5 +1,12 @@
 #include "PmergeMe.hpp"
 
+void printVector(std::vector<int>& vec)
+{
+	for (size_t i = 0; i < vec.size() - 1; i++)
+		std::cout << vec[i] << " ";
+	std::cout << std::endl;
+}
+
 bool validateInput(std::string s)
 {
 	char *ptr = NULL;
@@ -39,9 +46,12 @@ int main(int argc, char** argv)
 	}
 
 	PmergeMe merge(vec);
+	std::cout << "Before: ";
+	printVector(vec);
+	vec.clear();
 
 	merge.vectorSort();
-
+	merge.dequeSort();
 
 	return 0;
 }

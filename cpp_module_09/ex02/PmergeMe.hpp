@@ -23,6 +23,11 @@ public:
 	void insertSortVector(int left, int right);
 	void mergeInsertSortVector(int left, int right, int pivot);
 	void vectorSort();
+
+	void mergeSortDeque(int left, int mid, int right);
+	void insertSortDeque(int left, int right);
+	void mergeInsertSortDeque(int left, int right, int pivot);
+	void dequeSort();
 };
 
 #endif
