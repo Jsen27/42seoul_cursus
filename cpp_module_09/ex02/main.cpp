@@ -2,7 +2,7 @@
 
 void printVector(std::vector<int>& vec)
 {
-	for (size_t i = 0; i < vec.size() - 1; i++)
+	for (size_t i = 0; i < vec.size(); i++)
 		std::cout << vec[i] << " ";
 	std::cout << std::endl;
 }
