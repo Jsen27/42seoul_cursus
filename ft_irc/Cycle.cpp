@@ -14,6 +14,7 @@ int    commander(std::string buffer, int j, int mes, Server &serv)
         ss >> tmp;
         whatIveDone += " " + tmp;
     }
+	std::cout << "Command: " << command << std::endl;
     std::cout << "Command: " << whatIveDone << std::endl;
     if (mes == 2 && command != "PASS")
     {
