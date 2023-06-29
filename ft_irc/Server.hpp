@@ -34,7 +34,7 @@ class Server
 		std::map<std::string, std::list<User> > _sbirri;
 		std::list<Channel> _channels;
 		std::list<std::string> _bestemmie;
-		std::string 	_nameServer = "IRCslav";
+		std::string 	_nameServer;
 	public:
 		Server(int port, std::string pass);
 		~Server();
@@ -53,10 +53,10 @@ class Server
 		Channel& getChanFromName(std::string name);
 		int	isChanReal(std::string channel);
 		int isUserReal(std::string user);
-		void printSbirri();
+		void printManager();
 		void	ft_send_all_chan(Server slav, Channel ch, std::string msg);
 		void	ft_check_channel(Channel& ch);
-		void	ft_no_sbirro_coglio(int j, Channel& ch, std::string mode);
+		void	ft_no_manager_catch(int j, Channel& ch, std::string mode);
 		void	generateBestemmieFromFile();
 		void    printBestemmie();
 		std::string    &randomBestemmia();

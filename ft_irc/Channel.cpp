@@ -1,6 +1,14 @@
 #include "Channel.hpp"
 
-Channel::Channel(std::string &name) : _name(name)
+Channel::Channel()
+: _name("empty"), _topic("Welcome to the channel!"), _pwOn(0), _invOn(0), _topicOn(0), _empty(0),
+	_limitOn(0), _limit(50), _stop(0)
+{
+}
+
+Channel::Channel(std::string &name)
+: _name(name), _topic("Welcome to the channel!"), _pwOn(0), _invOn(0), _topicOn(0), _empty(0),
+	_limitOn(0), _limit(50), _stop(0)
 {
 }
 
@@ -18,9 +26,9 @@ std::list<User>& Channel::getListUsers()
 	return (_users);
 }
 
-std::list<User>& Channel::getSbirri()
+std::list<User>& Channel::getManager()
 {
-	return (_sbirri);
+	return (_manager);
 }
 
 std::list<User>& Channel::getInvited()
@@ -65,9 +73,9 @@ void Channel::setInvited(User &invited)
 	_invited.push_back(invited);
 }
 
-void Channel::setSbirri(User &sbirri)
+void Channel::setManager(User &manager)
 {
-	_sbirri.push_back(sbirri);
+	_manager.push_back(manager);
 }
 
 void Channel::setTopic(std::string& topic)
@@ -124,9 +132,9 @@ int	Channel::isUserIn(std::string user)
 	return (0);
 }
 
-int	Channel::isUserSbirro(std::string user)
+int	Channel::isUserManager(std::string user)
 {
-    for (std::list<User>::iterator it = _sbirri.begin(); it != _sbirri.end(); it++)
+    for (std::list<User>::iterator it = _manager.begin(); it != _manager.end(); it++)
     {
                 if (it->getNickname() == user)
                     return (1);
@@ -152,28 +160,28 @@ void Channel::remove_User(Channel ch, std::string user)
 		if (finder->getNickname() == user)
 		{
 			ch.getListUsers().erase(finder);
-			std::cout << "Utente rimosso dal canale!" << std::endl;
+			std::cout << "User removed from channel!" << std::endl;
 			break ;
 		}
 	}
 	if (finder == ch.getListUsers().end())
-		std::cout << "L'utente non esiste nel canale!" << std::endl;
+		std::cout << "User does not exist in channel!" << std::endl;
 }
 
-void Channel::removeSbirro(std::string sbirro)
+void Channel::removeManager(std::string manager)
 {
-	std::list<User>::iterator finder = _sbirri.begin();
-	for(; finder != _sbirri.end(); finder++)
+	std::list<User>::iterator finder = _manager.begin();
+	for(; finder != _manager.end(); finder++)
 	{
-		if (finder->getNickname() == sbirro)
+		if (finder->getNickname() == manager)
 		{
-			_sbirri.erase(finder);
-			std::cout << "Utente rimosso dagli sbirri del canale!" << std::endl;
+			_manager.erase(finder);
+			std::cout << "User removed by channel manager!" << std::endl;
 			break ;
 		}
 	}
-	if (finder == _sbirri.end())
-	 	std::cout << "L'utente è già un comune cittadino del canale!" << std::endl;
+	if (finder == _manager.end())
+	 	std::cout << "Already not a channel manager!" << std::endl;
 }
 
 void Channel::removeInvited(std::string invited)
@@ -184,12 +192,12 @@ void Channel::removeInvited(std::string invited)
 		if (finder->getNickname() == invited)
 		{
 			_invited.erase(finder);
-			std::cout << "Utente rimosso dagli invitati del canale!" << std::endl;
+			std::cout << "The user has been removed from the channel invites!" << std::endl;
 			break ;
 		}
 	}
 	if (finder == _invited.end())
-	 	std::cout << "L'utente non è stato invitato nel canale!" << std::endl;
+	 	std::cout << "The user has not been invited to the channel!" << std::endl;
 }
 
 int	Channel::isInvOn()

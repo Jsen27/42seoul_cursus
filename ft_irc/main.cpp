@@ -9,8 +9,8 @@ void sig_handler(int signo)
 		std::map<int, User>::iterator it = slav.getList().begin();
 		std::map<int, User>::iterator ite = slav.getList().end();
 		std::cout << std::endl;
-		std::cout << "Server chiuso!" << std::endl;
-		for(int i = 0; it != ite, i < slav.getList().size(); it++, i++)
+		std::cout << "Server close!" << std::endl;
+		for(int i = 0; it != ite && i < slav.getList().size(); it++, i++)
 		{
 			slav.sendData((*it).first, "DISCONNECTED\r\n");
 			close((*it).first);

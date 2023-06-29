@@ -1,6 +1,7 @@
 #include "Server.hpp"
 
-Server::Server(int port, std::string pass) : _port(port), _password(pass){}
+Server::Server(int port, std::string pass) : _port(port), _password(pass), _nameServer("IRCslav")
+{}
 
 Server::~Server(){}
 
@@ -153,7 +154,7 @@ std::string receiveData(int sockfd)
     return receivedData;
 }
 
-void    Server::printSbirri()
+void    Server::printManager()
 {
     std::cout << "Lista sbirri: " << std::endl;
     for (std::map<std::string, std::list<User> >::iterator it = _sbirri.begin(); it != _sbirri.end(); it++)
@@ -168,7 +169,7 @@ void    Server::printSbirri()
 
 Channel& Server::getChanFromName(std::string channel)
 {
-    static Channel empty(empty);
+    static Channel empty;
     for (std::list<Channel>::iterator it = _channels.begin(); it != _channels.end(); it++)
     {
         if (it->getName() == channel)
@@ -234,10 +235,10 @@ void	Server::ft_check_channel(Channel& ch)
 {
     if(ch.getListUsers().size() == 1)
     {
-        ch.setSbirri((*ch.getListUsers().begin()));
+        ch.setManager((*ch.getListUsers().begin()));
         std::string msg = ":IRCserv MODE "  + ch.getName() + " +o " + (ch.getListUsers().begin()->getNickname()) + "\r\n";
         ft_send_all_chan((*this), ch, msg);
-        std::cout << "L'utente " << (ch.getListUsers().begin()->getNickname()) << " ora è uno sbirro!" << std::endl;
+        std::cout << "User " << (ch.getListUsers().begin()->getNickname()) << " is now a moderator!" << std::endl;
     }
     else if (ch.getListUsers().size() == 0)
     {
@@ -254,7 +255,7 @@ void	Server::ft_check_channel(Channel& ch)
 
 void	Server::bot_canali(Server slav, int j)
 {
-    std::string msg = "Fiodena Lista canali: ";
+	std::string msg = "Channel List: ";
     for (std::list<Channel>::iterator it = _channels.begin(); it != _channels.end(); it++)
     {
         if (it->isUserIn(_clientSock[j].getNickname()) || !(it->isPwOn()) || !(it->isInvOn()))
@@ -265,46 +266,47 @@ void	Server::bot_canali(Server slav, int j)
 }
 
 
-void	Server::ft_no_sbirro_coglio(int j, Channel& ch, std::string mode)
+
+void Server::ft_no_manager_catch(int j, Channel& ch, std::string mode)
 {
-    if (mode == "+k")
-    {
-        std::string msg = "IRCserv Non sei uno sbirro, non puoi impostare una password!\r\n";
-        sendData(j, msg);
-    }
-    else if (mode == "-k")
-    {
-        std::string msg = "IRCserv Non sei uno sbirro, non puoi togliere la password!\r\n";
-        sendData(j, msg);
-    }
-    else if (mode == "+i")
-    {
-        std::string msg = "IRCserv Non sei uno sbirro, non puoi impostare la modalità inviti!\r\n";
-        sendData(j, msg);
-    }
-    else if (mode == "-i")
-    {
-        std::string msg = "IRCserv Non sei uno sbirro, non puoi togliere la modalità inviti!\r\n";
-        sendData(j, msg);
-    }
-    else if (mode == "+t")
-    {
-        std::string msg = "IRCserv Non sei uno sbirro, non puoi impostare la modalità topic!\r\n";
-        sendData(j, msg);
-    }
-    else if (mode == "-t")
-    {
-        std::string msg = "IRCserv Non sei uno sbirro, non puoi togliere la modalità topic!\r\n";
-        sendData(j, msg);
-    }
-    else if (mode == "-l")
-    {
-        std::string msg = "IRCserv Non sei uno sbirro, non puoi togliere la modalità limit!\r\n";
-        sendData(j, msg);
-    }
-    else if (mode == "+l")
-    {
-        std::string msg = "IRCserv Non sei uno sbirro, non puoi impostare la modalità limit!\r\n";
-        sendData(j, msg);
-    }
+	if (mode == "+k")
+	{
+		std::string msg = "IRCserv You are not a channel operator, you cannot set a password!\r\n";
+		sendData(j, msg);
+	}
+	else if (mode == "-k")
+	{
+		std::string msg = "IRCserv You are not a channel operator, you cannot remove the password!\r\n";
+		sendData(j, msg);
+	}
+	else if (mode == "+i")
+	{
+		std::string msg = "IRCserv You are not a channel operator, you cannot set invite-only mode!\r\n";
+		sendData(j, msg);
+	}
+	else if (mode == "-i")
+	{
+		std::string msg = "IRCserv You are not a channel operator, you cannot remove invite-only mode!\r\n";
+		sendData(j, msg);
+	}
+	else if (mode == "+t")
+	{
+		std::string msg = "IRCserv You are not a channel operator, you cannot set topic mode!\r\n";
+		sendData(j, msg);
+	}
+	else if (mode == "-t")
+	{
+		std::string msg = "IRCserv You are not a channel operator, you cannot remove topic mode!\r\n";
+		sendData(j, msg);
+	}
+	else if (mode == "-l")
+	{
+		std::string msg = "IRCserv You are not a channel operator, you cannot remove limit mode!\r\n";
+		sendData(j, msg);
+	}
+	else if (mode == "+l")
+	{
+		std::string msg = "IRCserv You are not a channel operator, you cannot set limit mode!\r\n";
+		sendData(j, msg);
+	}
 }
