@@ -1,18 +1,41 @@
-NAME = ircserv
-CC = c++
-CFLAGS = -Wall -Wextra -Werror -Wshadow -Wno-shadow -std=c++98
-SRCS = main.cpp Server.cpp User.cpp Channel.cpp ServerCmd.cpp Utils.cpp Cycle.cpp
-OBJS = $(SRCS:.cpp=.o)
+NAME	=	ircserv
 
-all: $(NAME)
+CXX 	= 	c++ -Wall -Wextra -Werror -std=c++98
 
-$(NAME): $(OBJS)
-	$(CC) $(CFLAGS) -o $(NAME) $(OBJS)
+SRCS 	=	src/ircserv.cpp\
+			src/Command.cpp\
+			src/Server.cpp
 
-clean:
-	rm -f $(OBJS)
+OBJS 	=	$(SRCS:.cpp=.o)
 
-fclean: clean
-	rm -f $(NAME)
+# colors
+END		=	\033[0;39m
+GREEN	=	\033[0;92m
+RED		=	\033[0;91m
+YELLOW	=	\033[0;93m
+GRAY	=	\033[0;90m
 
-re: fclean all
+all		:	$(NAME)
+
+%.o		:	%.cpp
+			@echo "$(GRAY)Compiling $<...$(END)"
+			@$(CXX) -c $< -o $@
+
+$(NAME)	:	$(OBJS)
+			@$(CXX) -o $(NAME) $(OBJS)
+			@echo "All files are compiled !"
+			@echo "$(GREEN)✅Excutable file made !!$(END)"
+
+clean	:
+			@echo "$(RED)❌Object files cleaned !$(END)"
+			@$(RM) $(OBJS)
+
+fclean	:	clean
+			@echo "$(RED)❌Excutable file cleaned !$(END)"
+			@$(RM) $(NAME)
+
+re		:	fclean
+			@$(MAKE) all
+			@echo "$(YELLOW)🍋Cleaned and Rebuilt all files !$(END)"
+
+.PHONY	:	all clean fclean re
