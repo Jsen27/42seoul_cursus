@@ -1,0 +1,21 @@
+FROM alpine:3.16.5
+
+RUN apk -U add nginx openssl tini
+RUN adduser -D -g 'www' www
+RUN mkdir /www
+RUN chown -R www:www /var/lib/nginx
+RUN chown -R www:www /www
+
+RUN mkdir -p /etc/nginx/ssl
+RUN openssl	req -new -newkey rsa:4096 -x509 -sha256 -days 365 \
+			-nodes -out /etc/nginx/ssl/nginx-ssl.crt \
+			-keyout /etc/nginx/ssl/nginx-ssl.key \
+			-subj "/C=KR/ST=Seoul/L=Gangnam-gu/O=42/OU=42Seoul/CN=sehjung.42.fr"
+
+COPY ./conf/nginx.conf /etc/nginx/http.d/default.conf
+
+EXPOSE 443
+
+ENTRYPOINT ["/sbin/tini", "--"]
+
+CMD ["nginx", "-g", "daemon off;"]
