@@ -11,13 +11,12 @@ create database $MYSQL_DB;
 create user '$MYSQL_USER'@'%' identified by '$MYSQL_PASSWORD';
 create user '$MYSQL_ROOT'@'%' identified by '$MYSQL_ROOT_PASSWORD';
 grant all privileges on $MYSQL_DB.* to '$MYSQL_USER'@'%';
-
 alter user '$MYSQL_ROOT'@'localhost' identified by '$MYSQL_ROOT_PASSWORD';
 
 flush privileges;
 EOF
 fi
 
-echo "mariadb ready, port is 3306"
+echo "mariadb ON, port is 3306"
 
 exec mysqld --datadir=/var/lib/mysql

@@ -3,7 +3,7 @@
 i=0
 while ! mysqladmin -h$MYSQL_HOST -u$MYSQL_USER -p$MYSQL_PASSWORD ping >/dev/null 2>&1; do
   if [ $i -eq 60 ]; then
-    echo "Unable to connect to MariaDB after 5 minutes. Exiting."
+    echo "Unable connect to MariaDB after 5 minutes"
     exit 1
   elif [ $i -eq 0 ]; then
     echo "Waiting for MariaDB at Wordpress ..."
@@ -13,7 +13,8 @@ while ! mysqladmin -h$MYSQL_HOST -u$MYSQL_USER -p$MYSQL_PASSWORD ping >/dev/null
   sleep 5
   i=$(($i+1))
 done
-echo "Waiting for MariaDB at Wordpress ... done"
+echo "Waiting for MariaDB at Wordpress ..."
+echo "done"
 
 wp-cli core download --allow-root
 wp-cli config create --dbname=$MYSQL_DB --dbuser=$MYSQL_USER --dbpass=$MYSQL_PASSWORD --dbhost=$MYSQL_HOST --allow-root
@@ -23,6 +24,6 @@ wp-cli theme install twentytwenty --allow-root
 wp-cli theme update twentytwenty --allow-root
 wp-cli theme activate twentytwenty --allow-root
 
-echo "wordpress ready, port is 9000"
+echo "wordpress ON, port is 9000"
 
 exec /usr/sbin/php-fpm7.3 -F

@@ -2,7 +2,7 @@ FROM debian:buster
 
 EXPOSE 9000
 
-COPY ./tools/setup.sh /setup.sh
+COPY ./tools/install.sh /install.sh
 
 RUN apt-get update && \
     apt-get upgrade -y && \
@@ -14,10 +14,10 @@ RUN apt-get update && \
     mkdir -p /var/www/html/wordpress /run/php && \
     usermod -G www-data -a www-data && \
     chown -R www-data:www-data /var/www/ && \
-    chmod +x setup.sh
+    chmod +x install.sh
 
 WORKDIR /var/www/html/wordpress
 
 COPY ./conf/www.conf /etc/php/7.3/fpm/pool.d/www.conf
 
-ENTRYPOINT ["sh", "/setup.sh"]
+ENTRYPOINT ["sh", "/install.sh"]
