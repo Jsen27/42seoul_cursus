@@ -9,5 +9,4 @@ public:
 	BrickWall();
 	virtual ~BrickWall();
 	ATarget* clone() const;
-
 };

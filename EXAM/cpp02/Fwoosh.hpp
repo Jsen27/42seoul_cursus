@@ -3,8 +3,6 @@
 #include "ASpell.hpp"
 #include <iostream>
 
-class ASpell;
-
 class Fwoosh : public ASpell
 {
 public:
@@ -12,4 +10,3 @@ public:
 	virtual ~Fwoosh();
 	ASpell* clone() const;
 };
-

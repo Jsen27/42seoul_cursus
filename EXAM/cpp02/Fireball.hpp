@@ -3,8 +3,6 @@
 #include "ASpell.hpp"
 #include <iostream>
 
-class ASpell;
-
 class Fireball : public ASpell
 {
 public:
@@ -12,4 +10,3 @@ public:
 	virtual ~Fireball();
 	ASpell* clone() const;
 };
-

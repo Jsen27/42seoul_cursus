@@ -24,5 +24,4 @@ public:
 	virtual ASpell* clone() const = 0;
 
 	void launch(ATarget const& ref) const;
-
 };

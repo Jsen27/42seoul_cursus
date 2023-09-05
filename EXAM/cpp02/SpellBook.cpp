@@ -1,15 +1,12 @@
 #include "SpellBook.hpp"
 
 SpellBook::SpellBook()
-{
-
-}
+{}
 
 SpellBook::~SpellBook()
 {
 	std::map<std::string, ASpell*>::iterator it = book.begin();
-	while (it != book.end())
-	{
+	while (it != book.end()){
 		delete it->second;
 		it++;
 	}
@@ -24,14 +21,15 @@ void SpellBook::learnSpell(ASpell* spell)
 void SpellBook::forgetSpell(std::string const& spell_name)
 {
 	std::map<std::string, ASpell*>::iterator it = book.find(spell_name);
-	if (it != book.end())
+	if (it != book.end()){
 		delete it->second;
-	book.erase(spell_name);
+		book.erase(spell_name);
+	}
 }
 
-ASpell* SpellBook::createSpell(std::string const& spell)
+ASpell* SpellBook::createSpell(std::string const& spell_name)
 {
-	if (book.find(spell) != book.end())
-		return book[spell];
+	if (book.find(spell_name) != book.end())
+		return book[spell_name];
 	return NULL;
 }

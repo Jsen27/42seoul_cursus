@@ -7,7 +7,7 @@
 class TargetGenerator
 {
 private:
-	std::map<std::string, ATarget*> targetmap;
+	std::map<std::string, ATarget*> targen;
 	TargetGenerator(TargetGenerator const& ref);
 	TargetGenerator& operator=(TargetGenerator const& ref);
 
@@ -16,7 +16,7 @@ public:
 	~TargetGenerator();
 
 	void learnTargetType(ATarget* target);
-	void forgetTargetType(std::string const& target);
-	ATarget* createTarget(std::string const& target);
+	void forgetTargetType(std::string const& target_name);
+	ATarget* createTarget(std::string const& target_name);
 
 };

@@ -22,5 +22,4 @@ public:
 	virtual ATarget* clone() const = 0;
 
 	void getHitBySpell(ASpell const& ref) const;
-
 };
