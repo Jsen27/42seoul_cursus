@@ -21,7 +21,7 @@ This repository contains a collection of projects I completed during my time at 
 |   | [minishell](./minishell) | Implementation of a basic Unix shell (2 people project) |
 | 4 | netPractice | Focusing on networking practice and gaining hands-on experience with networking concepts and protocols (no code) |
 |   | [cub3d](./cub3d) | Simple 3D game engine using raycasting techniques (2 people project) |
-| 5 | [cpp_module_00~09](./cpp_module) | Developing C++ modules to enhance programming skills in C++ programming |
+| 5 | [cpp_module](./cpp_module) | Developing C++ modules to enhance programming skills in C++ programming |
 |   | [ft_irc](./ft_irc) | Implementing an Internet Relay Chat (IRC) server (3 people project) |
 |   | [inception](./inception) | Broaden your knowledge of system dministration by using Docker. You will virtualize several Docker images, creating them in your new personal virtual machine |
 | 6 | [ft_transcendence](./ft_transcendence) | This project is an ongoing project. Detailed information and status updates for this project are pending. As of now, it is actively being worked on |
