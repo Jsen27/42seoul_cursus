@@ -1,4 +1,6 @@
-[![sehjung's 42 stats](https://badge.mediaplus.ma/darkblue/sehjung?1337Badge=off&42Network=off&UM6P=off)](https://github.com/oakoudad/badge42)
+<div align="center">
+<a href="https://github.com/oakoudad/badge42"><img src="https://badge.mediaplus.ma/darkblue/sehjung?1337Badge=off&42Network=off&UM6P=off" alt="sehjung's 42 stats" /></a>
+</div>
 
 # 42 Seoul Cursus
 ### Intra name -  Sehjung
