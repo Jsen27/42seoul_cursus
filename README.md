@@ -16,24 +16,9 @@ This repository contains a collection of projects I completed during my time at 
 8. [philosophers](./Philosophers) - Solving the dining philosophers problem.
 9. [minishell](./minishell) - Implementation of a basic Unix shell. (2 people project)
 10. [netPractice] - Focusing on networking practice and gaining hands-on experience with networking concepts and protocols.
-11. [cpp_module_00~09] - Developing C++ modules to enhance programming skills in C++ programming.
-12. [cub3d](./cub3d) - Simple 3D game engine using raycasting techniques.
-13. [ft_irc](./ft_irc) - Implementing an Internet Relay Chat (IRC) server, focusing on network communication and protocol implementation.
-14. [inception](./inception) - 
+11. [cpp_module_00~09](./cpp_module) - Developing C++ modules to enhance programming skills in C++ programming.
+12. [cub3d](./cub3d) - Simple 3D game engine using raycasting techniques. (2 people project)
+13. [ft_irc](./ft_irc) - Implementing an Internet Relay Chat (IRC) server, focusing on network communication and protocol implementation. (3 people project)
+14. [inception](./inception) - Broaden your knowledge of system dministration by using Docker. You will virtualize several Docker images, creating them in your new personal virtual machine
+15. [ft_transcendence](./ft_transcendence) - This project is an ongoing project. Detailed information and status updates for this project are pending. As of now, it is actively being worked on.
 
-
-15. [minilibx](./minilibx) - The Minilibx library for graphical programming.
-16. [ft_services](./ft_services) - Kubernetes-based project to set up various services.
-  
-17. [so_long](./so_long) - 2D game development using the Minilibx library.
-18. 
-
-Each project folder contains detailed descriptions, the technology stack used, and the implemented features. You can navigate to each project's folder to find more information.
-
-## License
-
-This repository's code is distributed under the [MIT License](./LICENSE).
-
----
-
-**Note:** Use this README file to manage your project list and provide detailed information about each project. You can further enhance it by emphasizing specific points or highlighting significant achievements for each project.
