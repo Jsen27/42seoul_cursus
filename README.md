@@ -1,4 +1,4 @@
-![42Logo](https://github.com/Jsen27/42seoul_cursus/assets/87853922/3f1ec952-abb9-4b27-9fd9-998e7f4dfa15)
+![42Logo](https://github.com/Jsen27/42seoul_cursus/assets/87853922/ab1bf20f-e60d-411d-aa4e-590d742615c8)
 
 # 42 Seoul Cursus
 ### Intra name -  Sehjung
