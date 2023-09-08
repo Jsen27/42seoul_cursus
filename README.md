@@ -3,7 +3,6 @@
 </div>
 
 # 42 Seoul Cursus
-### Intra name -  Sehjung
 
 This repository contains a collection of projects I completed during my time at 42 Seoul Cursus. Each folder represents a different project, with information and source code included.
 
