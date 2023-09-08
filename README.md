@@ -1,4 +1,4 @@
-![42Logo](https://github.com/Jsen27/42seoul_cursus/assets/87853922/ab1bf20f-e60d-411d-aa4e-590d742615c8)
+[![sehjung's 42 stats](https://badge.mediaplus.ma/darkblue/sehjung?1337Badge=off&42Network=off&UM6P=off)](https://github.com/oakoudad/badge42)
 
 # 42 Seoul Cursus
 ### Intra name -  Sehjung
