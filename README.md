@@ -25,4 +25,4 @@ This repository contains a collection of projects I completed during my time at 
 | 5 | [cpp_module](./cpp_module) | Developing C++ modules to enhance programming skills in C++ programming |
 |   | [ft_irc](./ft_irc) | Implementing an Internet Relay Chat (IRC) server (3 people project) |
 |   | [inception](./inception) | Broaden your knowledge of system dministration by using Docker. You will virtualize several Docker images, creating them in your new personal virtual machine |
-| 6 | [ft_transcendence](./ft_transcendence) | This project is an ongoing project. Detailed information and status updates for this project are pending. As of now, it is actively being worked on |
+| 6 | [ft_transcendence](https://github.com/42ft-transcendence/transcendence) | This project is an ongoing project. Detailed information and status updates for this project are pending. As of now, it is actively being worked on |
