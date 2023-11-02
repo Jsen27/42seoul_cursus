@@ -8,6 +8,12 @@
 
 ---
 
+[![Notion](https://img.shields.io/badge/Notion-Click%20Here-blue?style=for-the-badge&logo=notion)](https://jsen27.notion.site/get_next_line-29f7887fe6db4fdb938958f8ed15cbbb?pvs=4)
+
+If you want to know about the assignment, check my notion.
+
+---
+
 ### **Reading a line on a fd is way too tedious**
 
 fd에서 한 줄을 읽는다는 것은 너무나도 지루한 일입니다.
