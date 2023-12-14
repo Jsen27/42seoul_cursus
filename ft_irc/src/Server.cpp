@@ -32,28 +32,23 @@ Server::~Server(void) {
 	}
 }
 
-int
-Server::getPort(void) const {
+int Server::getPort(void) const {
 	return (port);
 }
 
-std::string
-Server::getPass(void) const {
+std::string Server::getPass(void) const {
 	return (pass);
 }
 
-int
-Server::getSock(void) const {
+int Server::getSock(void) const {
 	return (sock);
 }
 
-std::vector<pollfd>
-Server::getStby(void) const {
+std::vector<pollfd> Server::getStby(void) const {
 	return (stby);
 }
 
-void
-Server::setPort(char *port_to_use) {
+void Server::setPort(char *port_to_use) {
 	size_t		i;
 	size_t		port_len = std::strlen(port_to_use);
 	int 		nb = std::atoi(port_to_use);
@@ -82,11 +77,10 @@ Server::setPass(char *pass_to_use) {
 	pass = std::string(pass_to_use);
 }
 
-void
-Server::init_sock(void) {
-	int					opt = 1;
-	struct sockaddr_in	serv_addr;
-	struct sockaddr		*bind_addr;
+void Server::init_sock(void) {
+	int opt = 1;
+	struct sockaddr_in serv_addr;
+	struct sockaddr *bind_addr;
 	serv_addr.sin_family = AF_INET;
 	serv_addr.sin_addr.s_addr = htonl(INADDR_ANY);
 	serv_addr.sin_port = htons(port);
@@ -103,10 +97,9 @@ Server::init_sock(void) {
 		throw (std::runtime_error(RED "Failed to listen on the server socket\n" RESET));
 }
 
-void
-Server::run(void) {
-	int		num_events;
-	pollfd	initialClient;
+void Server::run(void) {
+	int num_events;
+	pollfd initialClient;
 	initialClient.fd = sock;
 	initialClient.events = POLLIN;
 	clients.push_back(initialClient);
@@ -121,7 +114,7 @@ Server::run(void) {
 		for (size_t i = 0; !stby.empty() && i < stby.size() && check_pass(i, stby[i].fd) == true; i++)
 			init_client(i, stby[i].fd);
 		for (size_t i = 1; !clients.empty() && i < clients.size(); i++) {
-			std::vector<std::string>	cmd(splity(get_input(i, clients[i].fd, false), ISSPACE));
+			std::vector<std::string> cmd(splity(get_input(i, clients[i].fd, false), ISSPACE));
 			if (!cmd.empty())
 				display_logs(cmd, i, clients[i].fd);
 			if (!cmd.empty() && clients[i].fd != -1)
@@ -130,8 +123,7 @@ Server::run(void) {
 	}
 }
 
-void
-Server::create_client(void) {
+void Server::create_client(void) {
 	int	newClient_fd;
 
 	newClient_fd = accept(sock, NULL, NULL);
@@ -146,11 +138,10 @@ Server::create_client(void) {
 	}
 }
 
-bool
-Server::check_pass(int i, int cfd) {
-	static std::map<int, std::string>	buffer;
-	std::vector<std::string>			input;
-	int									tmp = cfd;
+bool Server::check_pass(int i, int cfd) {
+	static std::map<int, std::string> buffer;
+	std::vector<std::string> input;
+	int tmp = cfd;
 
 	buffer[cfd] += " " + get_input(CHECK_PASS, cfd, false);
 	if (cfd == -1) {
@@ -172,9 +163,8 @@ Server::check_pass(int i, int cfd) {
 	return (false);
 }
 
-std::string
-Server::get_input(int i, int &cfd, bool reset) {
-	static std::map<int, std::string>	buffer;
+std::string Server::get_input(int i, int &cfd, bool reset) {
+	static std::map<int, std::string> buffer;
 
 	if (reset == true || buffer[cfd].find('\n') != std::string::npos)
 		buffer[cfd].clear();
@@ -186,10 +176,9 @@ Server::get_input(int i, int &cfd, bool reset) {
 	return (EMPTY);
 }
 
-std::string
-Server::handle_client(int i, int &cfd) {
-	char	buffer[BUFFER_SIZE] = {0};
-	int		read;
+std::string Server::handle_client(int i, int &cfd) {
+	char buffer[BUFFER_SIZE] = {0};
+	int	read;
 
 	if (i == CHECK_PASS || (clients[i].revents & POLLIN)) {
 		if ((read = recv(cfd, buffer, BUFFER_SIZE, 0)) == ERROR)
@@ -208,9 +197,8 @@ Server::handle_client(int i, int &cfd) {
 	return (EMPTY);
 }
 
-bool
-Server::create_user(std::vector<std::string> input, int cfd) {
-	std::vector<std::string>::iterator	it;
+bool Server::create_user(std::vector<std::string> input, int cfd) {
+	std::vector<std::string>::iterator it;
 
 	users[cfd].cfd = cfd;
 	it = std::find(input.begin(), input.end(), "NICK");
@@ -230,19 +218,11 @@ Server::create_user(std::vector<std::string> input, int cfd) {
 	return (false);
 }
 
-void
-Server::init_client(int i, int cfd) {
+void Server::init_client(int i, int cfd) {
 	clients.push_back(stby[i]);
 	std::string message = "SUCCESS : Welcome!!\r\n"; //??
 	if (send(cfd, message.c_str(), message.length(), 0) == ERROR)
 		std::cerr << RED "Client " << cfd << SEND_ERROR RESET;
-	// message = users[cfd].nick + " : !";
-	// Command::send_code(message, cfd);
-	// std::string codes[5] = {"002", "003", "004", "005", "375"};
-	// for (int j(0); j < 5; j++)
-	// 	Command::send_code(codes[j], EMPTY, cfd);
-	// Command::send_code("Welcome!!", cfd);
-	// Command::send_code("376", EMPTY, cfd);
 	std::cout << YELLOW "--------------------------------------------------\n";
 	std::cout << "Client " << cfd << " : Connected\n";
 	std::cout << "Nickname : " << users[cfd].nick << std::endl;
@@ -251,9 +231,8 @@ Server::init_client(int i, int cfd) {
 	stby.erase(stby.begin() + i);
 }
 
-void
-Server::display_logs(std::vector<std::string> &cmd, int i, int cfd) {
-	std::vector<std::string>::iterator	it;
+void Server::display_logs(std::vector<std::string> &cmd, int i, int cfd) {
+	std::vector<std::string>::iterator it;
 
 	if (cfd != -1) {
 		for (size_t j(0); j < cmd[0].size(); j++)

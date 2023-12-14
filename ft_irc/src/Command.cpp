@@ -15,23 +15,19 @@ Command	&Command::operator=(const Command &other) {
 
 Command::~Command(void) {}
 
-std::vector<pollfd>
-Command::getClients(void) const {
+std::vector<pollfd> Command::getClients(void) const {
 	return (clients);
 }
 
-std::map<int, t_user>
-Command::getUsers(void) const {
+std::map<int, t_user> Command::getUsers(void) const {
 	return (users);
 }
 
-std::map<std::string, t_chan>
-Command::getChannels(void) const {
+std::map<std::string, t_chan> Command::getChannels(void) const {
 	return (channels);
 }
 
-void
-Command::exec_command(std::vector<std::string> cmd, int i) {
+void Command::exec_command(std::vector<std::string> cmd, int i) {
 	if (cmd[0] == "oper" && cmd.size() == 3)
 		oper(cmd[1], cmd[2], clients[i].fd);
 	else if (cmd[0] == "nick")
@@ -54,22 +50,19 @@ Command::exec_command(std::vector<std::string> cmd, int i) {
 		invite(cmd, clients[i].fd);
 }
 
-void
-Command::send_code(std::string message, int cfd) {
+void Command::send_code(std::string message, int cfd) {
 	message = message + "\r\n";
 	if (send(cfd, message.c_str(), message.length(), 0) == ERROR)
 		std::cerr << RED "Client " << cfd << SEND_ERROR RESET;
 }
 
-void
-Command::pong(std::vector<std::string> cmd, int cfd) {
+void Command::pong(std::vector<std::string> cmd, int cfd) {
 	std::string	message = "PONG " + cmd[1] + "\r\n";
 	if (send(cfd, message.c_str(), message.length(), 0) == ERROR)
 		std::cerr << RED "Client " << cfd << SEND_ERROR << RESET;
 }
 
-void
-Command::disconnect(int i, int &cfd) {
+void Command::disconnect(int i, int &cfd) {
 	if (clients.empty() && i != CHECK_PASS)
 		return ;
 	else if (i > 0)
@@ -84,8 +77,7 @@ Command::disconnect(int i, int &cfd) {
 	cfd = -1;
 }
 
-void
-Command::oper(std::string user, std::string password, int cfd) {
+void Command::oper(std::string user, std::string password, int cfd) {
 	if (users[cfd].g_oper == false) {
 		if (user != ADMIN_USER) {
 			send_code(users[cfd].nick + " : Wrong username", cfd);
@@ -103,7 +95,7 @@ Command::oper(std::string user, std::string password, int cfd) {
 	}
 }
 
-void	Command::nick(std::vector<std::string> cmd, int cfd) {
+void Command::nick(std::vector<std::string> cmd, int cfd) {
 	for (std::map<int, t_user>::iterator it = users.begin(); it != users.end(); ++it) {
 		if (it->second.nick == cmd[1]) {
 			std::string	message = " " + cmd[1] + " Already in use";
@@ -126,7 +118,7 @@ int	Command::user_inchan(std::string chan, int cfd) {
 	return (-1);
 }
 
-bool	Command::oper_inchan(std::string chan, int cfd) {
+bool Command::oper_inchan(std::string chan, int cfd) {
 	for (size_t j = 0; j < channels[chan].chan_users.size(); j++) {
 		if (users[cfd].nick == channels[chan].chan_users[j]->nick) {
 			for (size_t i = 0; i < channels[chan].chan_operators.size(); i++) {
@@ -139,8 +131,7 @@ bool	Command::oper_inchan(std::string chan, int cfd) {
 	return (false);
 }
 
-bool
-Command::user_invited(std::string chan, int cfd) {
+bool Command::user_invited(std::string chan, int cfd) {
 	for (size_t j = 0; j < channels[chan].chan_invitees.size(); j++) {
 		if (users[cfd].nick == channels[chan].chan_invitees[j])
 			return (true);
@@ -148,8 +139,7 @@ Command::user_invited(std::string chan, int cfd) {
 	return (false);
 }
 
-void
-Command::topic(std::vector<std::string> cmd, int cfd) {
+void Command::topic(std::vector<std::string> cmd, int cfd) {
 	if (cmd.size() < 2) {
 		send_code(EMPTY, cfd);
 		return ;
@@ -190,8 +180,7 @@ Command::topic(std::vector<std::string> cmd, int cfd) {
 		send_code(" " + cmd[1] + " :No such channel", cfd);
 }
 
-void
-Command::privmsg(std::vector<std::string> cmd, int cfd) {
+void Command::privmsg(std::vector<std::string> cmd, int cfd) {
 	if (cmd.size() < 3)
 		return ;
 
@@ -230,8 +219,7 @@ Command::privmsg(std::vector<std::string> cmd, int cfd) {
 	}
 }
 
-void
-Command::kick(std::vector<std::string> cmd, int cfd) {
+void Command::kick(std::vector<std::string> cmd, int cfd) {
 	if (cmd.size() < 3)
 		return ;
 	std::map<std::string, t_chan>::iterator it;
@@ -261,8 +249,7 @@ Command::kick(std::vector<std::string> cmd, int cfd) {
 	}
 }
 
-void
-Command::invite(std::vector<std::string> cmd, int cfd) {
+void Command::invite(std::vector<std::string> cmd, int cfd) {
 	if (cmd.size() < 3) {
 		send_code(EMPTY, cfd);
 		return ;
@@ -299,8 +286,7 @@ Command::invite(std::vector<std::string> cmd, int cfd) {
 	}
 }
 
-void
-Command::mode(std::vector<std::string> cmd, int cfd) {
+void Command::mode(std::vector<std::string> cmd, int cfd) {
 	if (cmd.size() < 3 || cmd.size() > 4)
 		return ;
 	if (cmd[1][0] != '#' || (cmd[2][0] != '+' && cmd[2][0] != '-') || cmd[2].size() != 2)
@@ -372,17 +358,16 @@ Command::mode(std::vector<std::string> cmd, int cfd) {
 	}
 }
 
-void
-Command::join(std::vector<std::string> cmd, int cfd) {
+void Command::join(std::vector<std::string> cmd, int cfd) {
 	if (cmd.size() > 3)
 		return ;
 	if (cmd.size() < 2) {
 		send_code(" JOIN", cfd);
 		return ;
 	}
-	std::istringstream	iss(cmd[1]);
-	std::vector<std::string>	chan;
-	std::vector<std::string>	key;
+	std::istringstream iss(cmd[1]);
+	std::vector<std::string> chan;
+	std::vector<std::string> key;
 	std::string	tmp;
 	while (getline(iss, tmp, ','))
 		chan.push_back(tmp);
@@ -410,7 +395,7 @@ Command::join(std::vector<std::string> cmd, int cfd) {
 			}
 		}
 		else {
-			t_chan	new_chan;
+			t_chan new_chan;
 			if (i < key.size())
 				new_chan.chan_key = key[i];
 			new_chan.mode_inv = false;
@@ -430,7 +415,6 @@ Command::join(std::vector<std::string> cmd, int cfd) {
 		top.push_back(chan[i]);
 		topic(top, cfd);
 		msg = chan[i] + " members : ";
-		// msg = users[cfd].nick + " = " + chan[i] + " ";
 		for (size_t j = 0; j < channels[chan[i]].chan_users.size(); j++)
 			msg += channels[chan[i]].chan_users[j]->nick + " ";
 		msg += "\r\n";
@@ -446,8 +430,7 @@ Command::join(std::vector<std::string> cmd, int cfd) {
 	}
 }
 
-void
-Command::part(std::vector<std::string> cmd, int cfd) {
+void Command::part(std::vector<std::string> cmd, int cfd) {
 	if (cmd.size() < 2) {
 		send_code(EMPTY, cfd);
 		return ;

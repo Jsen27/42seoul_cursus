@@ -2,11 +2,10 @@
 
 bool	g_stop = false;
 
-std::vector<std::string>
-splity(std::string str, const char *delim) {
-	char						*buffer;
-	std::string					strCpy(str);
-	std::vector<std::string>	tab;
+std::vector<std::string> splity(std::string str, const char *delim) {
+	char *buffer;
+	std::string strCpy(str);
+	std::vector<std::string> tab;
 
 	buffer = std::strtok(&strCpy[0], delim);
 	while (buffer != NULL) {
@@ -16,15 +15,13 @@ splity(std::string str, const char *delim) {
 	return (tab);
 }
 
-static void
-handle_sigint(int signum) {
+static void handle_sigint(int signum) {
 	(void)signum;
 	g_stop = true;
 	std::cout << std::endl;
 }
 
-int
-main(int ac, char **av) {
+int main(int ac, char **av) {
 	std::signal(SIGINT, handle_sigint);
 	std::signal(SIGQUIT, SIG_IGN);
 	std::signal(SIGPIPE, SIG_IGN);

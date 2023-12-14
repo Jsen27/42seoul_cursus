@@ -11,7 +11,6 @@ OBJS 	=	$(SRCS:.cpp=.o)
 # colors
 END		=	\033[0;39m
 GREEN	=	\033[0;92m
-RED		=	\033[0;91m
 YELLOW	=	\033[0;93m
 GRAY	=	\033[0;90m
 
@@ -27,11 +26,11 @@ $(NAME)	:	$(OBJS)
 			@echo "$(GREEN)✅Excutable file made !!$(END)"
 
 clean	:
-			@echo "$(RED)❌Object files cleaned !$(END)"
+			@echo "$(GREEN)❌Object files cleaned !$(END)"
 			@$(RM) $(OBJS)
 
 fclean	:	clean
-			@echo "$(RED)❌Excutable file cleaned !$(END)"
+			@echo "$(GREEN)❌Excutable file cleaned !$(END)"
 			@$(RM) $(NAME)
 
 re		:	fclean
