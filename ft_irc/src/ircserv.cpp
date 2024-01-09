@@ -1,6 +1,6 @@
 #include "../inc/ircserv.hpp"
 
-bool	g_stop = false;
+bool g_stop = false;
 
 std::vector<std::string> splity(std::string str, const char *delim) {
 	char *buffer;

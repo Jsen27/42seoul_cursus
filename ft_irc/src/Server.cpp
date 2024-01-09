@@ -13,7 +13,7 @@ Server::Server(const Server &other_serv) : Command() {
 	*this = other_serv;
 }
 
-Server	&Server::operator=(const Server &other_serv) {
+Server &Server::operator=(const Server &other_serv) {
 	port = other_serv.port;
 	pass = other_serv.pass;
 	sock = other_serv.sock;
@@ -66,8 +66,7 @@ void Server::setPort(char *port_to_use) {
 		port = static_cast<int>(nb);
 }
 
-void
-Server::setPass(char *pass_to_use) {
+void Server::setPass(char *pass_to_use) {
 	size_t	i;
 	size_t	pass_len = std::strlen(pass_to_use);
 
